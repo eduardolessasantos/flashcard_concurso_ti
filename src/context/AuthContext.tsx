@@ -8,11 +8,11 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   db,
   doc,
   getDoc,
   setDoc,
-  onSnapshot,
   collection,
   query,
   where,
@@ -21,13 +21,36 @@ import {
 } from '../lib/firebase';
 import { UserProfileData, ReviewSessionStats, Flashcard } from '../types';
 
-interface AuthContextType {
+const GUEST_STORAGE_KEY = 'devconcursos_guest_profile_v1';
+
+/**
+ * Utility to strip undefined properties recursively so Firestore setDoc never throws.
+ */
+function sanitizeForFirestore<T extends Record<string, any>>(obj: T): Record<string, any> {
+  const result: Record<string, any> = {};
+  for (const key of Object.keys(obj)) {
+    const val = obj[key];
+    if (val !== undefined) {
+      if (val !== null && typeof val === 'object' && !Array.isArray(val)) {
+        result[key] = sanitizeForFirestore(val);
+      } else {
+        result[key] = val;
+      }
+    }
+  }
+  return result;
+}
+
+export interface AuthContextType {
   user: User | null;
   userProfile: UserProfileData | null;
+  isGuest: boolean;
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
   signInEmail: (email: string, pass: string) => Promise<void>;
   signUpEmail: (email: string, pass: string, name: string) => Promise<void>;
+  sendPasswordReset: (email: string) => Promise<void>;
+  loginAsGuest: () => void;
   logout: () => Promise<void>;
   updateUserProfileData: (data: Partial<UserProfileData>) => Promise<void>;
   saveCloudStats: (stats: ReviewSessionStats) => Promise<void>;
@@ -41,40 +64,80 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfileData | null>(null);
+  const [isGuest, setIsGuest] = useState<boolean>(() => {
+    return localStorage.getItem(GUEST_STORAGE_KEY) === 'true';
+  });
   const [loading, setLoading] = useState(true);
 
-  // Monitor auth state changes
+  // Monitor auth state changes from Firebase
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        // Load user profile from firestore
+        // If logged into Firebase, clear guest flag
+        setIsGuest(false);
+        localStorage.removeItem(GUEST_STORAGE_KEY);
+
         try {
           const userDocRef = doc(db, 'users', currentUser.uid);
           const docSnap = await getDoc(userDocRef);
+          
           if (docSnap.exists()) {
             setUserProfile(docSnap.data() as UserProfileData);
           } else {
-            // Create initial profile
+            // Build and sanitize initial profile
             const initialProfile: UserProfileData = {
               userId: currentUser.uid,
-              displayName: currentUser.displayName || 'Concurseiro TI',
+              displayName: currentUser.displayName || currentUser.email?.split('@')[0] || 'Concurseiro TI',
               email: currentUser.email || '',
-              photoURL: currentUser.photoURL || undefined,
               targetBanca: 'TODAS',
-              targetConcurso: 'Auditor de TI / Analista',
+              targetConcurso: 'Auditor / Analista de TI',
               dailyGoalCards: 20,
               createdAt: new Date().toISOString(),
               lastActiveAt: new Date().toISOString(),
             };
-            await setDoc(userDocRef, initialProfile);
+
+            if (currentUser.photoURL) {
+              initialProfile.photoURL = currentUser.photoURL;
+            }
+
+            await setDoc(userDocRef, sanitizeForFirestore(initialProfile));
             setUserProfile(initialProfile);
           }
         } catch (err) {
-          console.error('Error fetching user profile:', err);
+          console.warn('Could not sync profile with Firestore, using session fallback:', err);
+          // Fallback profile so user can still study even if Firestore encounters network delays
+          setUserProfile({
+            userId: currentUser.uid,
+            displayName: currentUser.displayName || currentUser.email?.split('@')[0] || 'Concurseiro TI',
+            email: currentUser.email || '',
+            targetBanca: 'TODAS',
+            targetConcurso: 'Auditor / Analista de TI',
+            dailyGoalCards: 20,
+            createdAt: new Date().toISOString(),
+            lastActiveAt: new Date().toISOString(),
+          });
         }
       } else {
-        setUserProfile(null);
+        // Not logged into Firebase. Check if user is in Guest mode
+        const savedGuest = localStorage.getItem(GUEST_STORAGE_KEY) === 'true';
+        if (savedGuest) {
+          setIsGuest(true);
+          setUserProfile({
+            userId: 'guest_user_local',
+            displayName: 'Visitante Concurseiro',
+            email: 'visitante@devconcursos.local',
+            targetBanca: 'TODAS',
+            targetConcurso: 'Modo Demonstração / Testes',
+            dailyGoalCards: 20,
+            createdAt: new Date().toISOString(),
+            lastActiveAt: new Date().toISOString(),
+            isGuest: true,
+          });
+        } else {
+          setIsGuest(false);
+          setUserProfile(null);
+        }
       }
       setLoading(false);
     });
@@ -85,7 +148,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Google Sign In failed:', err);
       throw err;
     }
@@ -93,8 +156,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signInEmail = async (email: string, pass: string) => {
     try {
-      await signInWithEmailAndPassword(auth, email, pass);
-    } catch (err) {
+      await signInWithEmailAndPassword(auth, email.trim(), pass);
+    } catch (err: any) {
       console.error('Email sign in failed:', err);
       throw err;
     }
@@ -102,66 +165,106 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signUpEmail = async (email: string, pass: string, name: string) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+      const userCredential = await createUserWithEmailAndPassword(auth, email.trim(), pass);
       const newUser = userCredential.user;
+      
       const initialProfile: UserProfileData = {
         userId: newUser.uid,
-        displayName: name || 'Concurseiro TI',
-        email: newUser.email || '',
+        displayName: name.trim() || 'Concurseiro TI',
+        email: newUser.email || email.trim(),
         targetBanca: 'TODAS',
         targetConcurso: 'Analista de TI / Auditor',
         dailyGoalCards: 20,
         createdAt: new Date().toISOString(),
         lastActiveAt: new Date().toISOString(),
       };
-      await setDoc(doc(db, 'users', newUser.uid), initialProfile);
+
+      try {
+        await setDoc(doc(db, 'users', newUser.uid), sanitizeForFirestore(initialProfile));
+      } catch (firestoreErr) {
+        console.warn('Firestore initial profile write error:', firestoreErr);
+      }
+      
       setUserProfile(initialProfile);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Sign up failed:', err);
       throw err;
     }
   };
 
+  const sendPasswordReset = async (email: string) => {
+    try {
+      await sendPasswordResetEmail(auth, email.trim());
+    } catch (err: any) {
+      console.error('Password reset email failed:', err);
+      throw err;
+    }
+  };
+
+  const loginAsGuest = () => {
+    localStorage.setItem(GUEST_STORAGE_KEY, 'true');
+    setIsGuest(true);
+    setUserProfile({
+      userId: 'guest_user_local',
+      displayName: 'Visitante Concurseiro',
+      email: 'visitante@devconcursos.local',
+      targetBanca: 'TODAS',
+      targetConcurso: 'Modo Demonstração / Testes',
+      dailyGoalCards: 20,
+      createdAt: new Date().toISOString(),
+      lastActiveAt: new Date().toISOString(),
+      isGuest: true,
+    });
+  };
+
   const logout = async () => {
     try {
-      await signOut(auth);
+      localStorage.removeItem(GUEST_STORAGE_KEY);
+      setIsGuest(false);
+      setUserProfile(null);
+      if (auth.currentUser) {
+        await signOut(auth);
+      }
     } catch (err) {
-      console.error('Sign out failed:', err);
+      console.error('Sign out error:', err);
     }
   };
 
   const updateUserProfileData = async (data: Partial<UserProfileData>) => {
-    if (!user) return;
-    try {
-      const userDocRef = doc(db, 'users', user.uid);
-      const updated = {
-        ...userProfile,
-        ...data,
-        lastActiveAt: new Date().toISOString(),
-      };
-      await setDoc(userDocRef, updated, { merge: true });
-      setUserProfile(updated as UserProfileData);
-    } catch (err) {
-      console.error('Error updating user profile:', err);
+    const updated = {
+      ...userProfile,
+      ...data,
+      lastActiveAt: new Date().toISOString(),
+    } as UserProfileData;
+
+    setUserProfile(updated);
+
+    if (user && !isGuest) {
+      try {
+        const userDocRef = doc(db, 'users', user.uid);
+        await setDoc(userDocRef, sanitizeForFirestore(updated), { merge: true });
+      } catch (err) {
+        console.error('Error updating user profile in cloud:', err);
+      }
     }
   };
 
   const saveCloudStats = async (stats: ReviewSessionStats) => {
-    if (!user) return;
+    if (!user || isGuest) return;
     try {
       const statsDocRef = doc(db, 'study_stats', user.uid);
-      await setDoc(statsDocRef, {
+      await setDoc(statsDocRef, sanitizeForFirestore({
         userId: user.uid,
         ...stats,
         updatedAt: new Date().toISOString(),
-      }, { merge: true });
+      }), { merge: true });
     } catch (err) {
-      console.error('Error saving study stats to cloud:', err);
+      console.warn('Error saving study stats to cloud:', err);
     }
   };
 
   const loadCloudStats = async (): Promise<ReviewSessionStats | null> => {
-    if (!user) return null;
+    if (!user || isGuest) return null;
     try {
       const statsDocRef = doc(db, 'study_stats', user.uid);
       const docSnap = await getDoc(statsDocRef);
@@ -169,19 +272,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return docSnap.data() as ReviewSessionStats;
       }
     } catch (err) {
-      console.error('Error loading study stats from cloud:', err);
+      console.warn('Error loading study stats from cloud:', err);
     }
     return null;
   };
 
   const addCustomCardToCloud = async (cardData: Omit<Flashcard, 'id'>): Promise<string | null> => {
-    if (!user) return null;
+    if (!user || isGuest) return null;
     try {
-      const docRef = await addDoc(collection(db, 'custom_cards'), {
+      const docRef = await addDoc(collection(db, 'custom_cards'), sanitizeForFirestore({
         ...cardData,
         userId: user.uid,
         createdAt: new Date().toISOString(),
-      });
+      }));
       return docRef.id;
     } catch (err) {
       console.error('Error adding custom card to cloud:', err);
@@ -190,7 +293,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const loadUserCustomCards = async (): Promise<Flashcard[]> => {
-    if (!user) return [];
+    if (!user || isGuest) return [];
     try {
       const q = query(collection(db, 'custom_cards'), where('userId', '==', user.uid));
       const querySnap = await getDocs(q);
@@ -217,7 +320,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       return loaded;
     } catch (err) {
-      console.error('Error loading user custom cards from cloud:', err);
+      console.warn('Error loading user custom cards from cloud:', err);
       return [];
     }
   };
@@ -227,10 +330,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       value={{
         user,
         userProfile,
+        isGuest,
         loading,
         signInWithGoogle,
         signInEmail,
         signUpEmail,
+        sendPasswordReset,
+        loginAsGuest,
         logout,
         updateUserProfileData,
         saveCloudStats,

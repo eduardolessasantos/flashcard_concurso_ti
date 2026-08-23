@@ -32,7 +32,18 @@ const STORAGE_KEY_CARDS = 'flashcards_ti_cards_v1';
 const STORAGE_KEY_STATS = 'flashcards_ti_stats_v1';
 
 export default function App() {
-  const { user, userProfile, loading, saveCloudStats, loadCloudStats, loadUserCustomCards, addCustomCardToCloud } = useAuth();
+  const { 
+    user, 
+    userProfile, 
+    isGuest, 
+    loading, 
+    saveCloudStats, 
+    loadCloudStats, 
+    loadUserCustomCards, 
+    addCustomCardToCloud 
+  } = useAuth();
+
+  const isAuthenticated = !!user || isGuest;
 
   // Active View Mode: Flashcards practice or Detailed Study Guides
   const [currentView, setCurrentView] = useState<'flashcards' | 'guides'>('flashcards');
@@ -330,8 +341,8 @@ export default function App() {
             </div>
           </div>
 
-          {/* View Toggle Tabs - Active only when logged in */}
-          {user && (
+          {/* View Toggle Tabs - Active when logged in or guest */}
+          {isAuthenticated && (
             <div className="flex items-center p-1 bg-slate-950/80 rounded-full border border-slate-800">
               <button
                 onClick={() => setCurrentView('flashcards')}
@@ -373,25 +384,30 @@ export default function App() {
           )}
 
           {/* User Button */}
-          {user ? (
+          {isAuthenticated ? (
             <button
               onClick={() => setIsProfileModalOpen(true)}
               className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 rounded-full transition-all shadow-sm group"
             >
-              {user.photoURL ? (
+              {user?.photoURL ? (
                 <img
                   src={user.photoURL}
                   alt={userProfile?.displayName || 'User'}
                   className="w-5 h-5 rounded-full object-cover"
                 />
               ) : (
-                <div className="w-5 h-5 rounded-full bg-indigo-600 text-white text-[10px] font-bold flex items-center justify-center">
-                  {(userProfile?.displayName || user.email || 'U')[0].toUpperCase()}
+                <div className={`w-5 h-5 rounded-full ${isGuest ? 'bg-amber-600' : 'bg-indigo-600'} text-white text-[10px] font-bold flex items-center justify-center`}>
+                  {(userProfile?.displayName || user?.email || 'V')[0].toUpperCase()}
                 </div>
               )}
               <span className="text-xs font-semibold text-slate-200 group-hover:text-white max-w-[100px] sm:max-w-[140px] truncate">
-                {userProfile?.displayName || user.email?.split('@')[0]}
+                {userProfile?.displayName || user?.email?.split('@')[0] || 'Visitante'}
               </span>
+              {isGuest && (
+                <span className="hidden sm:inline-block text-[9px] px-1.5 py-0.2 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full">
+                  Visitante
+                </span>
+              )}
             </button>
           ) : (
             <button
@@ -404,7 +420,7 @@ export default function App() {
           )}
 
           {/* Quick actions in top bar - for logged in users */}
-          {user && (
+          {isAuthenticated && (
             <div className="hidden sm:flex items-center gap-1.5 border-l border-slate-800 pl-2.5">
               <button
                 onClick={() => setIsExportModalOpen(true)}
@@ -419,7 +435,7 @@ export default function App() {
       </header>
 
       {/* ================= VIEW CONTAINER ================= */}
-      {!user ? (
+      {!isAuthenticated ? (
         <AuthGateView />
       ) : currentView === 'guides' ? (
         <StudyGuidesView onStartFlashcardTopic={handleStartFlashcardTopic} />

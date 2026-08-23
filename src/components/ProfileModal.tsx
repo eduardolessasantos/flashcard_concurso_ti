@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { UserProfileData, Banca } from '../types';
-import { X, User, Target, Award, Flame, Calendar, LogOut, Check, Sparkles } from 'lucide-react';
+import { X, User, Target, Award, Flame, Calendar, LogOut, Check, Sparkles, Cloud, CloudOff, LogIn } from 'lucide-react';
 
 interface ProfileModalProps {
   isOpen: boolean;
@@ -16,14 +16,14 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
   accuracyRate,
   totalCardsCount,
 }) => {
-  const { user, userProfile, updateUserProfileData, logout } = useAuth();
+  const { user, userProfile, isGuest, updateUserProfileData, logout } = useAuth();
   const [displayName, setDisplayName] = useState(userProfile?.displayName || '');
   const [targetBanca, setTargetBanca] = useState<Banca | 'TODAS'>(userProfile?.targetBanca || 'TODAS');
   const [targetConcurso, setTargetConcurso] = useState(userProfile?.targetConcurso || '');
   const [dailyGoalCards, setDailyGoalCards] = useState(userProfile?.dailyGoalCards || 20);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  if (!isOpen || !user) return null;
+  if (!isOpen || (!user && !isGuest)) return null;
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
         {/* Header */}
         <div className="p-6 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-3.5">
-            {user.photoURL ? (
+            {user?.photoURL ? (
               <img
                 src={user.photoURL}
                 alt={user.displayName || 'Usuário'}
@@ -56,17 +56,23 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               />
             ) : (
               <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center font-bold text-lg">
-                {(userProfile?.displayName || user.email || 'U')[0].toUpperCase()}
+                {(userProfile?.displayName || user?.email || 'V')[0].toUpperCase()}
               </div>
             )}
             <div>
               <h2 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
                 {userProfile?.displayName || 'Concurseiro TI'}
-                <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30">
-                  Cloud Sync Ativo
-                </span>
+                {isGuest ? (
+                  <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">
+                    Modo Visitante
+                  </span>
+                ) : (
+                  <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30">
+                    Cloud Sync Ativo
+                  </span>
+                )}
               </h2>
-              <p className="text-xs text-slate-400">{user.email}</p>
+              <p className="text-xs text-slate-400">{user?.email || 'Sessão Local (Sem Nuvem)'}</p>
             </div>
           </div>
           <button
@@ -77,12 +83,22 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
           </button>
         </div>
 
+        {/* Guest Banner */}
+        {isGuest && (
+          <div className="px-6 py-3 bg-amber-500/10 border-b border-amber-500/20 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-xs text-amber-300">
+              <CloudOff className="w-4 h-4" />
+              <span>Você está navegando como visitante (dados salvos localmente).</span>
+            </div>
+          </div>
+        )}
+
         {/* Form Body */}
         <form onSubmit={handleSave} className="p-6 space-y-4">
           {savedSuccess && (
             <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-300 text-xs flex items-center gap-2">
               <Check className="w-4 h-4 text-emerald-400" />
-              <span>Metas e perfil atualizados com sucesso na nuvem!</span>
+              <span>Metas e perfil atualizados com sucesso!</span>
             </div>
           )}
 
@@ -168,7 +184,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 rounded-full transition-all"
             >
               <LogOut className="w-3.5 h-3.5" />
-              <span>Desconectar</span>
+              <span>{isGuest ? 'Sair do Modo Visitante' : 'Desconectar'}</span>
             </button>
 
             <button

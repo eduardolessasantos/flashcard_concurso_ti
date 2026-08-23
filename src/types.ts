@@ -62,6 +62,7 @@ export interface UserProfileData {
   dailyGoalCards: number;
   createdAt: string;
   lastActiveAt: string;
+  isGuest?: boolean;
 }
 
 export interface StudyGuideLesson {

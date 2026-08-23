@@ -8,6 +8,7 @@ import { ExportHtmlModal } from './components/ExportHtmlModal';
 import { AuthModal } from './components/AuthModal';
 import { ProfileModal } from './components/ProfileModal';
 import { StudyGuidesView } from './components/StudyGuidesView';
+import { AuthGateView } from './components/AuthGateView';
 import { useAuth } from './context/AuthContext';
 import { 
   PlusCircle, 
@@ -31,7 +32,7 @@ const STORAGE_KEY_CARDS = 'flashcards_ti_cards_v1';
 const STORAGE_KEY_STATS = 'flashcards_ti_stats_v1';
 
 export default function App() {
-  const { user, userProfile, saveCloudStats, loadCloudStats, loadUserCustomCards, addCustomCardToCloud } = useAuth();
+  const { user, userProfile, loading, saveCloudStats, loadCloudStats, loadUserCustomCards, addCustomCardToCloud } = useAuth();
 
   // Active View Mode: Flashcards practice or Detailed Study Guides
   const [currentView, setCurrentView] = useState<'flashcards' | 'guides'>('flashcards');
@@ -298,6 +299,17 @@ export default function App() {
     'Arquitetura de Software',
   ];
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-slate-200 font-sans flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-9 h-9 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+          <span className="text-xs text-slate-400 font-medium tracking-wide">Carregando DevConcursos...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans flex flex-col antialiased selection:bg-indigo-600 selection:text-white">
       {/* ================= TOP NAVIGATION BAR ================= */}
@@ -318,40 +330,42 @@ export default function App() {
             </div>
           </div>
 
-          {/* View Toggle Tabs */}
-          <div className="flex items-center p-1 bg-slate-950/80 rounded-full border border-slate-800">
-            <button
-              onClick={() => setCurrentView('flashcards')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                currentView === 'flashcards'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5" />
-              <span>Flashcards (SRS)</span>
-            </button>
+          {/* View Toggle Tabs - Active only when logged in */}
+          {user && (
+            <div className="flex items-center p-1 bg-slate-950/80 rounded-full border border-slate-800">
+              <button
+                onClick={() => setCurrentView('flashcards')}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  currentView === 'flashcards'
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>Flashcards (SRS)</span>
+              </button>
 
-            <button
-              onClick={() => setCurrentView('guides')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                currentView === 'guides'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Estudo Teórico</span>
-              <span className="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded-full border border-emerald-500/30">
-                Novo
-              </span>
-            </button>
-          </div>
+              <button
+                onClick={() => setCurrentView('guides')}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  currentView === 'guides'
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Estudo Teórico</span>
+                <span className="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded-full border border-emerald-500/30">
+                  Novo
+                </span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* User Auth & Actions */}
         <div className="flex items-center gap-2.5">
-          {cloudSynced && (
+          {cloudSynced && user && (
             <div className="hidden md:flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full animate-in fade-in">
               <Cloud className="w-3.5 h-3.5" />
               <span>Nuvem Sincronizada</span>
@@ -389,21 +403,25 @@ export default function App() {
             </button>
           )}
 
-          {/* Quick actions in top bar */}
-          <div className="hidden sm:flex items-center gap-1.5 border-l border-slate-800 pl-2.5">
-            <button
-              onClick={() => setIsExportModalOpen(true)}
-              className="p-1.5 text-slate-400 hover:text-emerald-400 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 rounded-full transition-colors"
-              title="Exportar HTML autônomo"
-            >
-              <Download className="w-4 h-4" />
-            </button>
-          </div>
+          {/* Quick actions in top bar - for logged in users */}
+          {user && (
+            <div className="hidden sm:flex items-center gap-1.5 border-l border-slate-800 pl-2.5">
+              <button
+                onClick={() => setIsExportModalOpen(true)}
+                className="p-1.5 text-slate-400 hover:text-emerald-400 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 rounded-full transition-colors"
+                title="Exportar HTML autônomo"
+              >
+                <Download className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
       {/* ================= VIEW CONTAINER ================= */}
-      {currentView === 'guides' ? (
+      {!user ? (
+        <AuthGateView />
+      ) : currentView === 'guides' ? (
         <StudyGuidesView onStartFlashcardTopic={handleStartFlashcardTopic} />
       ) : (
         /* ================= FLASHCARD WORKSPACE ================= */

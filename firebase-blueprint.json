@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profile and learning preferences",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Unique Firebase Auth UID" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "targetBanca": { "type": "string" },
+        "targetConcurso": { "type": "string" },
+        "dailyGoal": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "lastActiveAt": { "type": "string" }
+      },
+      "required": ["userId", "email"]
+    },
+    "UserStudyStats": {
+      "title": "UserStudyStats",
+      "description": "User personalized SRS progress and Leitner statistics",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "totalRevisados": { "type": "number" },
+        "erreiCount": { "type": "number" },
+        "dificilCount": { "type": "number" },
+        "bomCount": { "type": "number" },
+        "facilCount": { "type": "number" },
+        "cardsDominados": { "type": "number" },
+        "historicoRespostas": { "type": "array" },
+        "cardMastery": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId"]
+    },
+    "CustomCard": {
+      "title": "CustomCard",
+      "description": "User custom created flashcards",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "banca": { "type": "string" },
+        "topico": { "type": "string" },
+        "subtopico": { "type": "string" },
+        "tipo": { "type": "string" },
+        "pergunta": { "type": "string" },
+        "resposta": { "type": "string" },
+        "explicacao": { "type": "string" },
+        "gabaritoOficial": { "type": "string" },
+        "dica": { "type": "string" },
+        "concurso": { "type": "string" },
+        "ano": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "banca", "topico", "pergunta", "resposta"]
+    }
+  }
+}

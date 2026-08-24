@@ -19,9 +19,13 @@ import {
   getDocs,
   addDoc
 } from '../lib/firebase';
-import { UserProfileData, ReviewSessionStats, Flashcard } from '../types';
-
-const GUEST_STORAGE_KEY = 'devconcursos_guest_profile_v1';
+import { 
+  UserProfileData, 
+  ReviewSessionStats, 
+  Flashcard, 
+  UserCardProgressMap, 
+  UserLessonProgress 
+} from '../types';
 
 /**
  * Utility to strip undefined properties recursively so Firestore setDoc never throws.
@@ -44,17 +48,19 @@ function sanitizeForFirestore<T extends Record<string, any>>(obj: T): Record<str
 export interface AuthContextType {
   user: User | null;
   userProfile: UserProfileData | null;
-  isGuest: boolean;
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
   signInEmail: (email: string, pass: string) => Promise<void>;
   signUpEmail: (email: string, pass: string, name: string) => Promise<void>;
   sendPasswordReset: (email: string) => Promise<void>;
-  loginAsGuest: () => void;
   logout: () => Promise<void>;
   updateUserProfileData: (data: Partial<UserProfileData>) => Promise<void>;
   saveCloudStats: (stats: ReviewSessionStats) => Promise<void>;
   loadCloudStats: () => Promise<ReviewSessionStats | null>;
+  saveUserCardProgress: (progress: UserCardProgressMap) => Promise<void>;
+  loadUserCardProgress: () => Promise<UserCardProgressMap | null>;
+  saveUserLessonProgress: (progress: Omit<UserLessonProgress, 'userId' | 'updatedAt'>) => Promise<void>;
+  loadUserLessonProgress: () => Promise<UserLessonProgress | null>;
   addCustomCardToCloud: (card: Omit<Flashcard, 'id'>) => Promise<string | null>;
   loadUserCustomCards: () => Promise<Flashcard[]>;
 }
@@ -64,9 +70,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfileData | null>(null);
-  const [isGuest, setIsGuest] = useState<boolean>(() => {
-    return localStorage.getItem(GUEST_STORAGE_KEY) === 'true';
-  });
   const [loading, setLoading] = useState(true);
 
   // Monitor auth state changes from Firebase
@@ -74,10 +77,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        // If logged into Firebase, clear guest flag
-        setIsGuest(false);
-        localStorage.removeItem(GUEST_STORAGE_KEY);
-
         try {
           const userDocRef = doc(db, 'users', currentUser.uid);
           const docSnap = await getDoc(userDocRef);
@@ -106,7 +105,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           }
         } catch (err) {
           console.warn('Could not sync profile with Firestore, using session fallback:', err);
-          // Fallback profile so user can still study even if Firestore encounters network delays
           setUserProfile({
             userId: currentUser.uid,
             displayName: currentUser.displayName || currentUser.email?.split('@')[0] || 'Concurseiro TI',
@@ -119,25 +117,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           });
         }
       } else {
-        // Not logged into Firebase. Check if user is in Guest mode
-        const savedGuest = localStorage.getItem(GUEST_STORAGE_KEY) === 'true';
-        if (savedGuest) {
-          setIsGuest(true);
-          setUserProfile({
-            userId: 'guest_user_local',
-            displayName: 'Visitante Concurseiro',
-            email: 'visitante@devconcursos.local',
-            targetBanca: 'TODAS',
-            targetConcurso: 'Modo Demonstração / Testes',
-            dailyGoalCards: 20,
-            createdAt: new Date().toISOString(),
-            lastActiveAt: new Date().toISOString(),
-            isGuest: true,
-          });
-        } else {
-          setIsGuest(false);
-          setUserProfile(null);
-        }
+        setUserProfile(null);
       }
       setLoading(false);
     });
@@ -201,26 +181,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const loginAsGuest = () => {
-    localStorage.setItem(GUEST_STORAGE_KEY, 'true');
-    setIsGuest(true);
-    setUserProfile({
-      userId: 'guest_user_local',
-      displayName: 'Visitante Concurseiro',
-      email: 'visitante@devconcursos.local',
-      targetBanca: 'TODAS',
-      targetConcurso: 'Modo Demonstração / Testes',
-      dailyGoalCards: 20,
-      createdAt: new Date().toISOString(),
-      lastActiveAt: new Date().toISOString(),
-      isGuest: true,
-    });
-  };
-
   const logout = async () => {
     try {
-      localStorage.removeItem(GUEST_STORAGE_KEY);
-      setIsGuest(false);
       setUserProfile(null);
       if (auth.currentUser) {
         await signOut(auth);
@@ -239,7 +201,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     setUserProfile(updated);
 
-    if (user && !isGuest) {
+    if (user) {
       try {
         const userDocRef = doc(db, 'users', user.uid);
         await setDoc(userDocRef, sanitizeForFirestore(updated), { merge: true });
@@ -250,7 +212,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const saveCloudStats = async (stats: ReviewSessionStats) => {
-    if (!user || isGuest) return;
+    if (!user) return;
     try {
       const statsDocRef = doc(db, 'study_stats', user.uid);
       await setDoc(statsDocRef, sanitizeForFirestore({
@@ -264,7 +226,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const loadCloudStats = async (): Promise<ReviewSessionStats | null> => {
-    if (!user || isGuest) return null;
+    if (!user) return null;
     try {
       const statsDocRef = doc(db, 'study_stats', user.uid);
       const docSnap = await getDoc(statsDocRef);
@@ -277,8 +239,65 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return null;
   };
 
+  const saveUserCardProgress = async (cardStates: UserCardProgressMap) => {
+    if (!user) return;
+    try {
+      const cardProgressDocRef = doc(db, 'user_card_progress', user.uid);
+      await setDoc(cardProgressDocRef, sanitizeForFirestore({
+        userId: user.uid,
+        cardStates,
+        updatedAt: new Date().toISOString(),
+      }), { merge: true });
+    } catch (err) {
+      console.warn('Error saving card progress to cloud:', err);
+    }
+  };
+
+  const loadUserCardProgress = async (): Promise<UserCardProgressMap | null> => {
+    if (!user) return null;
+    try {
+      const cardProgressDocRef = doc(db, 'user_card_progress', user.uid);
+      const docSnap = await getDoc(cardProgressDocRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        return (data.cardStates || null) as UserCardProgressMap;
+      }
+    } catch (err) {
+      console.warn('Error loading card progress from cloud:', err);
+    }
+    return null;
+  };
+
+  const saveUserLessonProgress = async (progress: Omit<UserLessonProgress, 'userId' | 'updatedAt'>) => {
+    if (!user) return;
+    try {
+      const lessonDocRef = doc(db, 'user_lesson_progress', user.uid);
+      await setDoc(lessonDocRef, sanitizeForFirestore({
+        userId: user.uid,
+        ...progress,
+        updatedAt: new Date().toISOString(),
+      }), { merge: true });
+    } catch (err) {
+      console.warn('Error saving lesson progress to cloud:', err);
+    }
+  };
+
+  const loadUserLessonProgress = async (): Promise<UserLessonProgress | null> => {
+    if (!user) return null;
+    try {
+      const lessonDocRef = doc(db, 'user_lesson_progress', user.uid);
+      const docSnap = await getDoc(lessonDocRef);
+      if (docSnap.exists()) {
+        return docSnap.data() as UserLessonProgress;
+      }
+    } catch (err) {
+      console.warn('Error loading lesson progress from cloud:', err);
+    }
+    return null;
+  };
+
   const addCustomCardToCloud = async (cardData: Omit<Flashcard, 'id'>): Promise<string | null> => {
-    if (!user || isGuest) return null;
+    if (!user) return null;
     try {
       const docRef = await addDoc(collection(db, 'custom_cards'), sanitizeForFirestore({
         ...cardData,
@@ -293,7 +312,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const loadUserCustomCards = async (): Promise<Flashcard[]> => {
-    if (!user || isGuest) return [];
+    if (!user) return [];
     try {
       const q = query(collection(db, 'custom_cards'), where('userId', '==', user.uid));
       const querySnap = await getDocs(q);
@@ -330,17 +349,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       value={{
         user,
         userProfile,
-        isGuest,
         loading,
         signInWithGoogle,
         signInEmail,
         signUpEmail,
         sendPasswordReset,
-        loginAsGuest,
         logout,
         updateUserProfileData,
         saveCloudStats,
         loadCloudStats,
+        saveUserCardProgress,
+        loadUserCardProgress,
+        saveUserLessonProgress,
+        loadUserLessonProgress,
         addCustomCardToCloud,
         loadUserCustomCards,
       }}

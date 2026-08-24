@@ -8,7 +8,7 @@ interface AuthModalProps {
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
-  const { signInWithGoogle, signInEmail, signUpEmail, sendPasswordReset, loginAsGuest } = useAuth();
+  const { signInWithGoogle, signInEmail, signUpEmail, sendPasswordReset } = useAuth();
   const [mode, setMode] = useState<'login' | 'signup' | 'forgot'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -101,11 +101,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     } finally {
       setSubmitting(false);
     }
-  };
-
-  const handleGuest = () => {
-    loginAsGuest();
-    onClose();
   };
 
   return (
@@ -332,16 +327,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               )}
             </button>
           </form>
-
-          <div className="pt-2 border-t border-slate-800 text-center">
-            <button
-              onClick={handleGuest}
-              className="text-[11px] text-slate-400 hover:text-indigo-300 font-medium inline-flex items-center gap-1.5"
-            >
-              <Zap className="w-3 h-3 text-amber-400" />
-              <span>Acessar no modo Visitante (Sem login)</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>

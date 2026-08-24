@@ -4,7 +4,10 @@ export type Topico =
   | 'Engenharia de Software' 
   | 'Linguagens (Java/Python)' 
   | 'Bancos de Dados' 
-  | 'Arquitetura de Software';
+  | 'Arquitetura de Software'
+  | 'Língua Portuguesa'
+  | 'Raciocínio Lógico e Matemática'
+  | 'Língua Inglesa';
 
 export type CardType = 'certo_errado' | 'conceitual';
 
@@ -62,7 +65,25 @@ export interface UserProfileData {
   dailyGoalCards: number;
   createdAt: string;
   lastActiveAt: string;
-  isGuest?: boolean;
+}
+
+export interface UsefulLink {
+  title: string;
+  url: string;
+  category: 'video' | 'doc' | 'article' | 'official';
+  badgeLabel?: string;
+  description?: string;
+}
+
+export interface HandwrittenNote {
+  title: string;
+  topicTag: string;
+  paperStyle?: 'lined' | 'grid' | 'postit';
+  colorTheme?: 'yellow' | 'green' | 'cyan' | 'pink' | 'purple' | 'rose';
+  headerNote?: string;
+  handwrittenContent: string; // Text formatted with handwritten vibe
+  annotations?: string[]; // Bullet annotations or sticky tags
+  diagramFormula?: string; // Schematic formula or table
 }
 
 export interface StudyGuideLesson {
@@ -73,12 +94,14 @@ export interface StudyGuideLesson {
   keyTakeaways: string[];
   summary: string;
   mnemonics?: string;
-  examPitfalls: string[]; // Pegadinhas de bancas (FGV, Cebraspe)
+  examPitfalls: string[]; // Pegadinhas de bancas (FGV, Cebraspe, Cesgranrio)
+  handwrittenNotes?: HandwrittenNote[];
   codeExample?: {
     language: string;
     code: string;
     explanation: string;
   };
+  usefulLinks?: UsefulLink[];
   sampleQuestion: {
     banca: Banca;
     statement: string;
@@ -90,8 +113,30 @@ export interface StudyGuideLesson {
 export interface StudyGuideTopic {
   id: Topico;
   title: string;
+  category: 'especificos_ti' | 'conhecimentos_gerais';
   description: string;
   badge: string;
   iconName: string;
+  generalUsefulLinks?: UsefulLink[];
   lessons: StudyGuideLesson[];
+}
+
+export interface UserLessonProgress {
+  userId: string;
+  completedLessonIds: string[];
+  bookmarkedLessonIds: string[];
+  userNotes: Record<string, string>; // lessonId -> personal note
+  updatedAt: string;
+}
+
+export interface UserCardProgressMap {
+  [cardId: string]: {
+    statusSRS: 'novo' | 'em_revisao' | 'dominado';
+    box: number;
+    revisoes: number;
+    acertos: number;
+    erros: number;
+    lastReviewedAt: number;
+    nextReviewDate?: string;
+  };
 }

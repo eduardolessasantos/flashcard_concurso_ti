@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { UserProfileData, Banca } from '../types';
-import { X, User, Target, Award, Flame, Calendar, LogOut, Check, Sparkles, Cloud, CloudOff, LogIn } from 'lucide-react';
+import { Banca, ReviewSessionStats } from '../types';
+import { X, Target, Award, Flame, Calendar, LogOut, Check, Sparkles, Cloud, ShieldCheck } from 'lucide-react';
 
 interface ProfileModalProps {
   isOpen: boolean;
   onClose: () => void;
-  accuracyRate: number;
-  totalCardsCount: number;
+  stats?: ReviewSessionStats;
 }
 
 export const ProfileModal: React.FC<ProfileModalProps> = ({
   isOpen,
   onClose,
-  accuracyRate,
-  totalCardsCount,
+  stats,
 }) => {
-  const { user, userProfile, isGuest, updateUserProfileData, logout } = useAuth();
+  const { user, userProfile, updateUserProfileData, logout } = useAuth();
   const [displayName, setDisplayName] = useState(userProfile?.displayName || '');
   const [targetBanca, setTargetBanca] = useState<Banca | 'TODAS'>(userProfile?.targetBanca || 'TODAS');
   const [targetConcurso, setTargetConcurso] = useState(userProfile?.targetConcurso || '');
   const [dailyGoalCards, setDailyGoalCards] = useState(userProfile?.dailyGoalCards || 20);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  if (!isOpen || (!user && !isGuest)) return null;
+  if (!isOpen || !user) return null;
+
+  const acertos = stats ? stats.bomCount + stats.facilCount + stats.dificilCount * 0.5 : 0;
+  const accuracyRate = stats && stats.totalRevisados > 0 ? Math.round((acertos / stats.totalRevisados) * 100) : 0;
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,28 +52,25 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             {user?.photoURL ? (
               <img
                 src={user.photoURL}
-                alt={user.displayName || 'Usuário'}
+                alt={userProfile?.displayName || user.displayName || 'Aluno'}
                 className="w-12 h-12 rounded-2xl border-2 border-indigo-500/40 object-cover shadow-lg"
               />
             ) : (
               <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center font-bold text-lg">
-                {(userProfile?.displayName || user?.email || 'V')[0].toUpperCase()}
+                {(userProfile?.displayName || user?.email || 'A')[0].toUpperCase()}
               </div>
             )}
             <div>
               <h2 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
-                {userProfile?.displayName || 'Concurseiro TI'}
-                {isGuest ? (
-                  <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">
-                    Modo Visitante
-                  </span>
-                ) : (
-                  <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30">
-                    Cloud Sync Ativo
-                  </span>
-                )}
+                {userProfile?.displayName || 'Concurseiro de TI'}
+                <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                  Conta Ativa
+                </span>
               </h2>
-              <p className="text-xs text-slate-400">{user?.email || 'Sessão Local (Sem Nuvem)'}</p>
+              <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
+                <Cloud className="w-3.5 h-3.5 text-indigo-400" />
+                <span>{user?.email}</span>
+              </p>
             </div>
           </div>
           <button
@@ -83,45 +81,37 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
           </button>
         </div>
 
-        {/* Guest Banner */}
-        {isGuest && (
-          <div className="px-6 py-3 bg-amber-500/10 border-b border-amber-500/20 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs text-amber-300">
-              <CloudOff className="w-4 h-4" />
-              <span>Você está navegando como visitante (dados salvos localmente).</span>
-            </div>
-          </div>
-        )}
-
         {/* Form Body */}
         <form onSubmit={handleSave} className="p-6 space-y-4">
           {savedSuccess && (
             <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-300 text-xs flex items-center gap-2">
               <Check className="w-4 h-4 text-emerald-400" />
-              <span>Metas e perfil atualizados com sucesso!</span>
+              <span>Metas e perfil atualizados com sucesso no seu perfil na nuvem!</span>
             </div>
           )}
 
           {/* Quick Stats overview */}
-          <div className="grid grid-cols-3 gap-2.5 p-3.5 bg-slate-950/60 rounded-2xl border border-slate-800/80 text-center">
-            <div>
-              <p className="text-[10px] text-slate-500 uppercase tracking-wider">Aproveitamento</p>
-              <p className="text-base font-bold text-indigo-400">{accuracyRate}%</p>
+          {stats && (
+            <div className="grid grid-cols-3 gap-2.5 p-3.5 bg-slate-950/60 rounded-2xl border border-slate-800/80 text-center">
+              <div>
+                <p className="text-[10px] text-slate-500 uppercase tracking-wider">Aproveitamento</p>
+                <p className="text-base font-bold text-indigo-400">{accuracyRate}%</p>
+              </div>
+              <div>
+                <p className="text-[10px] text-slate-500 uppercase tracking-wider">Meta Diária</p>
+                <p className="text-base font-bold text-slate-200">{dailyGoalCards} cards</p>
+              </div>
+              <div>
+                <p className="text-[10px] text-slate-500 uppercase tracking-wider">Revisados</p>
+                <p className="text-base font-bold text-slate-400">{stats.totalRevisados}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-[10px] text-slate-500 uppercase tracking-wider">Meta Diária</p>
-              <p className="text-base font-bold text-slate-200">{dailyGoalCards} cards</p>
-            </div>
-            <div>
-              <p className="text-[10px] text-slate-500 uppercase tracking-wider">Banco Global</p>
-              <p className="text-base font-bold text-slate-400">{totalCardsCount}</p>
-            </div>
-          </div>
+          )}
 
           <div className="space-y-3 pt-1">
             <div>
               <label className="block text-[11px] text-slate-400 uppercase tracking-wider mb-1 font-medium">
-                Nome de Exibição:
+                Nome do Concurseiro:
               </label>
               <input
                 type="text"
@@ -169,7 +159,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               </label>
               <input
                 type="text"
-                placeholder="Ex: TCU Auditor TI, BACEN Analista, DATAPREV..."
+                placeholder="Ex: TCU Auditor TI, BACEN Analista, DATAPREV, Caixa..."
                 value={targetConcurso}
                 onChange={(e) => setTargetConcurso(e.target.value)}
                 className="w-full px-3.5 py-2 bg-slate-950 border border-slate-700 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
@@ -184,7 +174,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 rounded-full transition-all"
             >
               <LogOut className="w-3.5 h-3.5" />
-              <span>{isGuest ? 'Sair do Modo Visitante' : 'Desconectar'}</span>
+              <span>Desconectar Conta</span>
             </button>
 
             <button

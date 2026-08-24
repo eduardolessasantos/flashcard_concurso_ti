@@ -105,10 +105,17 @@ export const AddCardModal: React.FC<AddCardModalProps> = ({
                 onChange={(e) => setTopico(e.target.value as Topico)}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
               >
-                <option value="Engenharia de Software">Engenharia de Software</option>
-                <option value="Linguagens (Java/Python)">Linguagens (Java/Python)</option>
-                <option value="Bancos de Dados">Bancos de Dados</option>
-                <option value="Arquitetura de Software">Arquitetura de Software</option>
+                <optgroup label="Conhecimentos Gerais">
+                  <option value="Língua Portuguesa">Língua Portuguesa</option>
+                  <option value="Raciocínio Lógico e Matemática">Raciocínio Lógico e Matemática</option>
+                  <option value="Língua Inglesa">Língua Inglesa</option>
+                </optgroup>
+                <optgroup label="Específicos de TI">
+                  <option value="Engenharia de Software">Engenharia de Software</option>
+                  <option value="Linguagens (Java/Python)">Linguagens (Java/Python)</option>
+                  <option value="Bancos de Dados">Bancos de Dados</option>
+                  <option value="Arquitetura de Software">Arquitetura de Software</option>
+                </optgroup>
               </select>
             </div>
 

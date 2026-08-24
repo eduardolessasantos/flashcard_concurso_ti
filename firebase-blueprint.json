@@ -11,7 +11,7 @@
         "photoURL": { "type": "string" },
         "targetBanca": { "type": "string" },
         "targetConcurso": { "type": "string" },
-        "dailyGoal": { "type": "number" },
+        "dailyGoalCards": { "type": "number" },
         "createdAt": { "type": "string" },
         "lastActiveAt": { "type": "string" }
       },
@@ -31,6 +31,30 @@
         "cardsDominados": { "type": "number" },
         "historicoRespostas": { "type": "array" },
         "cardMastery": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId"]
+    },
+    "UserCardProgress": {
+      "title": "UserCardProgress",
+      "description": "User personalized Leitner box and review status for each flashcard",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "cardStates": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId"]
+    },
+    "UserLessonProgress": {
+      "title": "UserLessonProgress",
+      "description": "User completed lessons, bookmarks and personal study notes",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "completedLessonIds": { "type": "array" },
+        "bookmarkedLessonIds": { "type": "array" },
+        "userNotes": { "type": "object" },
         "updatedAt": { "type": "string" }
       },
       "required": ["userId"]

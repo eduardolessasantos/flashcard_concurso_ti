@@ -275,5 +275,126 @@ def calcular_imposto():
     ano: 2022,
     dica: 'Analogia com disjuntor elétrico: Aberto = sem corrente elétrica passando (bloqueio de segurança).',
     statusSRS: 'novo'
+  },
+
+  // ================= CONHECIMENTOS GERAIS: LÍNGUA PORTUGUESA =================
+  {
+    id: 'portugues-fgv-01',
+    banca: 'FGV',
+    topico: 'Língua Portuguesa',
+    subtopico: 'Crase & Regência',
+    tipo: 'conceitual',
+    pergunta: 'Em quais circunstâncias da norma culta o uso do sinal indicativo de crase é considerado estritamente FACULTATIVO?',
+    resposta: '1) Antes de nomes próprios femininos; 2) Antes de pronomes possessivos femininos singulares (minha, tua, sua); 3) Depois da preposição "até".',
+    explicacao: 'Mnemônico "Até a minha Maria":\n• Até a praia / Até à praia (Depois de "até")\n• Entreguei o relatório a minha chefe / à minha chefe (Possessivo singular)\n• Refiro-me a Mariana / à Mariana (Nome próprio feminino)',
+    concurso: 'Receita Federal - Auditor Fiscal',
+    ano: 2023,
+    dica: 'Atenção: Se o pronome possessivo feminino estiver no PLURAL ("às minhas amigas"), a crase torna-se obrigatória caso haja preposição!',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'portugues-cebraspe-01',
+    banca: 'Cebraspe',
+    topico: 'Língua Portuguesa',
+    subtopico: 'Sintaxe & Orações Adjetivas',
+    tipo: 'certo_errado',
+    gabaritoOficial: 'CERTO',
+    pergunta: 'No período "Os auditores que concluíram a fiscalização foram elogiados", a inserção de vírgulas antes e depois da oração adjetiva ("Os auditores, que concluíram a fiscalização, foram elogiados") mantém a correção gramatical, mas altera o sentido original do texto.',
+    resposta: 'CERTO',
+    explicacao: 'Correto. Sem vírgulas, a oração é subordinada adjetiva restritiva (apenas os auditores que concluíram a fiscalização foram elogiados). Com vírgulas, torna-se explicativa (generaliza que todos os auditores concluíram a fiscalização e todos foram elogiados).',
+    concurso: 'TCU - Auditor Federal',
+    ano: 2023,
+    dica: 'FGV e Cebraspe adoram cobrar: Restritiva = Subconjunto (sem vírgula); Explicativa = Todo o conjunto (com vírgula).',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'portugues-cesgranrio-01',
+    banca: 'Cesgranrio',
+    topico: 'Língua Portuguesa',
+    subtopico: 'Conjunções Subordinativas',
+    tipo: 'conceitual',
+    pergunta: 'Qual a distinção semântica entre as conjunções "porquanto", "conquanto" e "portanto" frequentemente cobradas em provas de concurso?',
+    resposta: 'Porquanto = Causal/Explicativa (porque); Conquanto = Concessiva (embora); Portanto = Conclusiva (logo/então).',
+    explicacao: '• Porquanto: "Estudou muito, porquanto almejava a aprovação" (= porque / visto que).\n• Conquanto: "Conquanto a prova fosse difícil, obteve excelente nota" (= embora / ainda que).\n• Portanto: "Treinou muitas questões, portanto dominou o conteúdo" (= logo / desse modo).',
+    concurso: 'Caixa Econômica - T.I.',
+    ano: 2024,
+    dica: 'Conquanto = Concessão (embora). Porquanto = Causa (porque). Portanto = Conclusão (logo).',
+    statusSRS: 'novo'
+  },
+
+  // ================= CONHECIMENTOS GERAIS: RACIOCÍNIO LÓGICO E MATEMÁTICA =================
+  {
+    id: 'rlm-fgv-01',
+    banca: 'FGV',
+    topico: 'Raciocínio Lógico e Matemática',
+    subtopico: 'Lógica Proposicional - Negação',
+    tipo: 'conceitual',
+    pergunta: 'Qual é a regra prática (mnemônico) para encontrar a negação lógica de uma proposição condicional "Se P, então Q" (P → Q)?',
+    resposta: 'Regra do MANÉ: Mantém a primeira (P) E Nega a segunda (~Q). Formalmente: ~(P → Q) ≡ P ∧ ~Q.',
+    explicacao: 'A negação de "Se programo em Java, então sou aprovado" é: "Programo em Java E NÃO sou aprovado". O "se... então" NUNCA é negado com outro condicional.',
+    concurso: 'SEFAZ-MG - Auditor Fiscal de TI',
+    ano: 2023,
+    dica: 'MANÉ: MAntém a primeira E NEga a segunda.',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'rlm-cebraspe-01',
+    banca: 'Cebraspe',
+    topico: 'Raciocínio Lógico e Matemática',
+    subtopico: 'Equivalência Lógica - Contrapositiva',
+    tipo: 'certo_errado',
+    gabaritoOficial: 'CERTO',
+    pergunta: 'A proposição "Se o servidor de banco de dados atingir 95% de uso de memória, então o alerta de segurança será disparado" é logicamente equivalente a "Se o alerta de segurança não for disparado, então o servidor de banco de dados não atingiu 95% de uso de memória".',
+    resposta: 'CERTO',
+    explicacao: 'Correto. Trata-se da Equivalência Contrapositiva do condicional: (P → Q) ≡ (~Q → ~P). Inverte-se a ordem das proposições e negam-se ambas.',
+    concurso: 'Polícia Federal - Perito Criminal TI',
+    ano: 2022,
+    dica: 'Contrapositiva: Inverte e nega tudo! p → q equivale a ~q → ~p.',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'rlm-cesgranrio-01',
+    banca: 'Cesgranrio',
+    topico: 'Raciocínio Lógico e Matemática',
+    subtopico: 'Análise Combinatória',
+    tipo: 'conceitual',
+    pergunta: 'Ao montar agrupamentos de elementos, qual o critério definitivo para decidir entre usar a fórmula de Arranjo ou a fórmula de Combinação?',
+    resposta: 'Se a troca de ordem dos elementos alterar o resultado do grupo, usa-se Arranjo; se a troca de ordem mantiver o mesmo grupo (ex: comissões/duplas), usa-se Combinação.',
+    explicacao: '• Ordem importa (Arranjo): Senhas, pódios, cargos com hierarquia (Presidente e Vice).\n• Ordem NÃO importa (Combinação): Comissões de trabalho, times de projeto, sorteio de prêmios idênticos.',
+    concurso: 'BNDES - Tecnologia da Informação',
+    ano: 2024,
+    dica: 'Pergunta-chave: "A ordem dos elementos importa?" Sim = Arranjo / Não = Combinação.',
+    statusSRS: 'novo'
+  },
+
+  // ================= CONHECIMENTOS GERAIS: LÍNGUA INGLESA (TI) =================
+  {
+    id: 'ingles-fgv-01',
+    banca: 'FGV',
+    topico: 'Língua Inglesa',
+    subtopico: 'False Friends (Falsos Cognatos)',
+    tipo: 'conceitual',
+    pergunta: 'Em textos técnicos de TI, o que significam realmente os falsos cognatos "Actually", "Eventually" e "Pretend"?',
+    resposta: 'Actually = "Na verdade / De fato"; Eventually = "Com o tempo / No final das contas"; Pretend = "Fingir / Simular".',
+    explicacao: '• Actually NÃO é "atualmente" (atualmente = currently / nowadays).\n• Eventually NÃO é "eventualmente/às vezes" (às vezes = occasionally).\n• Pretend NÃO é "pretender/planejar" (pretender = intend).',
+    concurso: 'Auditor do Estado - TI',
+    ano: 2023,
+    dica: 'Pegadinha muito cobrada pela FGV em textos de tecnologia!',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'ingles-cebraspe-01',
+    banca: 'Cebraspe',
+    topico: 'Língua Inglesa',
+    subtopico: 'RFC 2119 & Normas Técnicas',
+    tipo: 'certo_errado',
+    gabaritoOficial: 'ERRADO',
+    pergunta: 'In specifications complying with RFC 2119 (such as IETF, W3C and OAuth 2.0 standards), the modal verb "SHOULD" establishes an absolute and unconditionally mandatory requirement with which systems must comply without exception.',
+    resposta: 'ERRADO',
+    explicacao: 'Errado. Pela RFC 2119, "SHOULD" (ou RECOMMENDED) indica uma forte recomendação de boas práticas que pode admitir exceções válidas se houver justificativa técnica. A exigência absoluta e incondicional é definida por "MUST", "REQUIRED" ou "SHALL".',
+    concurso: 'Dataprev - Engenheiro de Software',
+    ano: 2023,
+    dica: 'RFC 2119: MUST/SHALL = Obrigatório; SHOULD = Recomendado; MAY = Opcional.',
+    statusSRS: 'novo'
   }
 ];

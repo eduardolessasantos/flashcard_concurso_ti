@@ -325,6 +325,20 @@ export const StudyGuidesView: React.FC<StudyGuidesViewProps> = ({ onStartFlashca
             );
           })}
         </div>
+
+        {/* Sidebar Footer Copyright & Version */}
+        <div className="p-3 border-t border-slate-800/80 bg-slate-950/60 text-center space-y-0.5">
+          <p className="text-[10px] text-slate-400 font-medium tracking-wide">
+            Developed by <span className="text-slate-200 font-semibold">Eduardo Lessa</span>
+          </p>
+          <div className="flex items-center justify-center gap-2 text-[10px] text-slate-500">
+            <span>DevConcursos</span>
+            <span>•</span>
+            <span className="px-1.5 py-0.2 rounded-full bg-slate-800 text-indigo-300 border border-slate-700/80 font-mono font-bold text-[9px]">
+              v1.0.0
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* ================= RIGHT LESSON VIEWER & STUDY ARENA ================= */}

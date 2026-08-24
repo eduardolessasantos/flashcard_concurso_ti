@@ -701,6 +701,20 @@ export default function App() {
                   <span>Embaralhar</span>
                 </button>
               </div>
+
+              {/* Sidebar Footer Copyright & Version */}
+              <div className="pt-3.5 mt-2 border-t border-slate-800/80 text-center space-y-1">
+                <p className="text-[11px] text-slate-400 font-medium tracking-wide">
+                  Developed by <span className="text-slate-200 font-semibold">Eduardo Lessa</span>
+                </p>
+                <div className="flex items-center justify-center gap-2 text-[10px] text-slate-500">
+                  <span>DevConcursos</span>
+                  <span>•</span>
+                  <span className="px-2 py-0.5 rounded-full bg-slate-800/80 text-indigo-300 border border-slate-700/80 font-mono font-bold">
+                    v1.0.0
+                  </span>
+                </div>
+              </div>
             </div>
           </aside>
 

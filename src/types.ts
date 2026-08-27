@@ -5,9 +5,14 @@ export type Topico =
   | 'Linguagens (Java/Python)' 
   | 'Bancos de Dados' 
   | 'Arquitetura de Software'
+  | 'Segurança da Informação'
+  | 'Governança & Gestão de TI'
+  | 'Inteligência de Negócios (BI)'
+  | 'Legislação & Proteção de Dados'
   | 'Língua Portuguesa'
   | 'Raciocínio Lógico e Matemática'
-  | 'Língua Inglesa';
+  | 'Língua Inglesa'
+  | 'Atualidades & IA';
 
 export type CardType = 'certo_errado' | 'conceitual';
 

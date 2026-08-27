@@ -109,12 +109,17 @@ export const AddCardModal: React.FC<AddCardModalProps> = ({
                   <option value="Língua Portuguesa">Língua Portuguesa</option>
                   <option value="Raciocínio Lógico e Matemática">Raciocínio Lógico e Matemática</option>
                   <option value="Língua Inglesa">Língua Inglesa</option>
+                  <option value="Atualidades & IA">Atualidades & IA</option>
+                  <option value="Legislação & Proteção de Dados">Legislação & Proteção de Dados</option>
                 </optgroup>
                 <optgroup label="Específicos de TI">
                   <option value="Engenharia de Software">Engenharia de Software</option>
                   <option value="Linguagens (Java/Python)">Linguagens (Java/Python)</option>
                   <option value="Bancos de Dados">Bancos de Dados</option>
                   <option value="Arquitetura de Software">Arquitetura de Software</option>
+                  <option value="Segurança da Informação">Segurança da Informação</option>
+                  <option value="Governança & Gestão de TI">Governança & Gestão de TI</option>
+                  <option value="Inteligência de Negócios (BI)">Inteligência de Negócios (BI)</option>
                 </optgroup>
               </select>
             </div>

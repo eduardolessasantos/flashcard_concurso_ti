@@ -371,13 +371,18 @@ export default function App() {
   const topicosGerais: Topico[] = [
     'Língua Portuguesa',
     'Raciocínio Lógico e Matemática',
-    'Língua Inglesa'
+    'Língua Inglesa',
+    'Atualidades & IA',
+    'Legislação & Proteção de Dados'
   ];
   const topicosTI: Topico[] = [
     'Engenharia de Software',
     'Linguagens (Java/Python)',
     'Bancos de Dados',
-    'Arquitetura de Software'
+    'Arquitetura de Software',
+    'Segurança da Informação',
+    'Governança & Gestão de TI',
+    'Inteligência de Negócios (BI)'
   ];
 
   if (loading) {
@@ -607,21 +612,28 @@ export default function App() {
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {topicosGerais.map((topico) => {
-                        const isSelected = selectedTopico === topico;
-                        return (
-                          <button
-                            key={topico}
-                            onClick={() => setSelectedTopico(isSelected ? 'TODOS' : topico)}
-                            className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
-                              isSelected
-                                ? 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 shadow-sm'
-                                : 'bg-slate-800 border border-slate-700 text-slate-400 opacity-70 hover:opacity-100'
-                            }`}
-                          >
-                            {topico === 'Língua Portuguesa' ? 'Português' : topico === 'Raciocínio Lógico e Matemática' ? 'RLM' : 'Inglês'}
-                          </button>
-                        );
-                      })}
+                         const isSelected = selectedTopico === topico;
+                         const labelMap: Record<string, string> = {
+                           'Língua Portuguesa': 'Português',
+                           'Raciocínio Lógico e Matemática': 'RLM',
+                           'Língua Inglesa': 'Inglês',
+                           'Atualidades & IA': 'Atualidades & IA',
+                           'Legislação & Proteção de Dados': 'Legislação / LGPD'
+                         };
+                         return (
+                           <button
+                             key={topico}
+                             onClick={() => setSelectedTopico(isSelected ? 'TODOS' : topico)}
+                             className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+                               isSelected
+                                 ? 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 shadow-sm'
+                                 : 'bg-slate-800 border border-slate-700 text-slate-400 opacity-70 hover:opacity-100'
+                             }`}
+                           >
+                             {labelMap[topico] || topico}
+                           </button>
+                         );
+                       })}
                     </div>
                   </div>
 
@@ -630,21 +642,30 @@ export default function App() {
                     <p className="text-[11px] text-slate-500 uppercase tracking-wider mb-1.5 font-medium">Específicos de TI:</p>
                     <div className="flex flex-wrap gap-1.5">
                       {topicosTI.map((topico) => {
-                        const isSelected = selectedTopico === topico;
-                        return (
-                          <button
-                            key={topico}
-                            onClick={() => setSelectedTopico(isSelected ? 'TODOS' : topico)}
-                            className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
-                              isSelected
-                                ? 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 shadow-sm'
-                                : 'bg-slate-800 border border-slate-700 text-slate-400 opacity-70 hover:opacity-100'
-                            }`}
-                          >
-                            {topico === 'Engenharia de Software' ? 'Eng. Software' : topico === 'Linguagens (Java/Python)' ? 'Java/Python' : topico === 'Bancos de Dados' ? 'Bancos de Dados' : 'Arquitetura'}
-                          </button>
-                        );
-                      })}
+                         const isSelected = selectedTopico === topico;
+                         const labelMap: Record<string, string> = {
+                           'Engenharia de Software': 'Eng. Software',
+                           'Linguagens (Java/Python)': 'Java / Python',
+                           'Bancos de Dados': 'Bancos de Dados',
+                           'Arquitetura de Software': 'Arquitetura',
+                           'Segurança da Informação': 'Segurança Info',
+                           'Governança & Gestão de TI': 'Governança & ITIL',
+                           'Inteligência de Negócios (BI)': 'BI & Data Warehouse'
+                         };
+                         return (
+                           <button
+                             key={topico}
+                             onClick={() => setSelectedTopico(isSelected ? 'TODOS' : topico)}
+                             className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+                               isSelected
+                                 ? 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 shadow-sm'
+                                 : 'bg-slate-800 border border-slate-700 text-slate-400 opacity-70 hover:opacity-100'
+                             }`}
+                           >
+                             {labelMap[topico] || topico}
+                           </button>
+                         );
+                       })}
                     </div>
                   </div>
 

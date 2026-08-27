@@ -28,7 +28,12 @@ import {
   Sparkles,
   PenTool,
   CheckCircle,
-  GraduationCap
+  GraduationCap,
+  ShieldCheck,
+  Briefcase,
+  BarChart3,
+  Scale,
+  Bot
 } from 'lucide-react';
 
 interface StudyGuidesViewProps {
@@ -90,6 +95,16 @@ export const StudyGuidesView: React.FC<StudyGuidesViewProps> = ({ onStartFlashca
         return <Database className="w-4 h-4 text-cyan-400" />;
       case 'Arquitetura de Software':
         return <Server className="w-4 h-4 text-rose-400" />;
+      case 'Segurança da Informação':
+        return <ShieldCheck className="w-4 h-4 text-red-400" />;
+      case 'Governança & Gestão de TI':
+        return <Briefcase className="w-4 h-4 text-orange-400" />;
+      case 'Inteligência de Negócios (BI)':
+        return <BarChart3 className="w-4 h-4 text-teal-400" />;
+      case 'Legislação & Proteção de Dados':
+        return <Scale className="w-4 h-4 text-blue-400" />;
+      case 'Atualidades & IA':
+        return <Bot className="w-4 h-4 text-pink-400" />;
     }
   };
 

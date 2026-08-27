@@ -1,6 +1,12 @@
 import { Flashcard } from '../types';
+import { SECURITY_CARDS } from './cards/securityCards';
+import { GOVERNANCE_CARDS } from './cards/governanceCards';
+import { BI_CARDS } from './cards/biCards';
+import { LEGISLATION_CARDS } from './cards/legislationCards';
+import { CURRENT_AFFAIRS_CARDS } from './cards/currentAffairsCards';
+import { ADDITIONAL_EXAM_CARDS } from './cards/generalExamCards';
 
-export const INITIAL_FLASHCARDS: Flashcard[] = [
+export const CORE_INITIAL_CARDS: Flashcard[] = [
   // ================= CEBRASPE (Certo/Errado) =================
   {
     id: 'cebraspe-01',
@@ -134,9 +140,7 @@ export const INITIAL_FLASHCARDS: Flashcard[] = [
     explicacao: '1. String: Imutável (cada concatenação cria novo objeto no String Pool).\n2. StringBuilder: Mutável e NÃO sincronizada (alta performance para manipulação em uma única thread).\n3. StringBuffer: Mutável e com métodos sincronizados (thread-safe, porém com overhead de locks).',
     concurso: 'MPO - Analista de Planejamento e Orçamento (TI)',
     ano: 2024,
-    trechoCodigo: `String s = "A" + "B"; // novo objeto
-StringBuilder sb = new StringBuilder(); // rÃ¡pido, single thread
-StringBuffer sbf = new StringBuffer(); // sincronizado`,
+    trechoCodigo: `String s = "A" + "B"; // novo objeto\nStringBuilder sb = new StringBuilder(); // rápido, single thread\nStringBuffer sbf = new StringBuffer(); // sincronizado`,
     dica: 'FGV adora contrastar StringBuilder (Java 5+) com a antiga StringBuffer em concorrência.',
     statusSRS: 'novo'
   },
@@ -209,10 +213,7 @@ StringBuffer sbf = new StringBuffer(); // sincronizado`,
     explicacao: 'Operações Intermediárias (filter, map, sorted, flatMap) não executam processamento no momento da chamada; elas montam o pipeline (Lazy Evaluation). Apenas quando uma Operação Terminal (collect, reduce, forEach, anyMatch) é invocada, os elementos são de fato processados e o Stream é consumido.',
     concurso: 'Banco do Brasil - Tecnologia da Informação',
     ano: 2023,
-    trechoCodigo: `List<String> res = list.stream()
-  .filter(s -> s.length() > 3) // IntermediÃ¡ria (Lazy)
-  .map(String::toUpperCase)     // IntermediÃ¡ria (Lazy)
-  .collect(Collectors.toList());// Terminal (Executa)`,
+    trechoCodigo: `List<String> res = list.stream()\n  .filter(s -> s.length() > 3) // Intermediária (Lazy)\n  .map(String::toUpperCase)     // Intermediária (Lazy)\n  .collect(Collectors.toList());// Terminal (Executa)`,
     dica: 'Cesgranrio cobra muito a natureza LAZY das operações intermediárias de Streams!',
     statusSRS: 'novo'
   },
@@ -227,10 +228,7 @@ StringBuffer sbf = new StringBuffer(); // sincronizado`,
     explicacao: 'Decorators em Python são funções de alta ordem (higher-order functions) baseadas no conceito de Closures. A sintaxe "@meu_decorador def func():" é um syntactical sugar equivalente a "func = meu_decorador(func)". É amplamente usado para logging, autenticação, medição de tempo e cache em frameworks como Flask, Django e FastAPI.',
     concurso: 'Caixa Econômica Federal - T.I.',
     ano: 2024,
-    trechoCodigo: `@tempo_execucao
-def calcular_imposto():
-    pass
-# Equivalente a: calcular_imposto = tempo_execucao(calcular_imposto)`,
+    trechoCodigo: `@tempo_execucao\ndef calcular_imposto():\n    pass\n# Equivalente a: calcular_imposto = tempo_execucao(calcular_imposto)`,
     dica: 'Em Python, funções são objetos de primeira classe (First-Class Citizens), permitindo serem passadas como argumentos.',
     statusSRS: 'novo'
   },
@@ -397,4 +395,14 @@ def calcular_imposto():
     dica: 'RFC 2119: MUST/SHALL = Obrigatório; SHOULD = Recomendado; MAY = Opcional.',
     statusSRS: 'novo'
   }
+];
+
+export const INITIAL_FLASHCARDS: Flashcard[] = [
+  ...CORE_INITIAL_CARDS,
+  ...SECURITY_CARDS,
+  ...GOVERNANCE_CARDS,
+  ...BI_CARDS,
+  ...LEGISLATION_CARDS,
+  ...CURRENT_AFFAIRS_CARDS,
+  ...ADDITIONAL_EXAM_CARDS
 ];

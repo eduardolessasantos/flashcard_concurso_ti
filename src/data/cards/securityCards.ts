@@ -1,0 +1,90 @@
+import { Flashcard } from '../../types';
+
+export const SECURITY_CARDS: Flashcard[] = [
+  {
+    id: 'seg-cebraspe-01',
+    banca: 'Cebraspe',
+    topico: 'Segurança da Informação',
+    subtopico: 'Pilares & Gestão de Riscos',
+    tipo: 'certo_errado',
+    gabaritoOficial: 'ERRADO',
+    pergunta: 'No âmbito da segurança da informação, a vulnerabilidade é definida como a causa potencial de um incidente indesejado, a qual pode resultar em dano a um sistema ou organização, enquanto a ameaça corresponde a uma fraqueza intrínseca de um ativo ou controle.',
+    resposta: 'ERRADO',
+    explicacao: 'Os conceitos foram invertidos pela banca! Ameaça (Threat) é o agente ou evento externo causador potencial do incidente; Vulnerabilidade (Vulnerability) é a fraqueza/fragilidade intrínseca do ativo ou controle que pode ser explorada pela ameaça.',
+    concurso: 'Polícia Federal - Perito Criminal Federal (TI)',
+    ano: 2024,
+    dica: 'Ameaça = Hacker/Vírus/Enchente (externo). Vulnerabilidade = Porta aberta/Sem antivírus/Senha fraca (interno).',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'seg-cebraspe-02',
+    banca: 'Cebraspe',
+    topico: 'Segurança da Informação',
+    subtopico: 'MFA & Controle de Acesso',
+    tipo: 'certo_errado',
+    gabaritoOficial: 'ERRADO',
+    pergunta: 'A exigência de que um usuário informe sua senha alfanumérica pessoal e, na sequência, responda a uma pergunta de segurança pré-cadastrada (como o nome de solteira da mãe) configura tecnicamente um mecanismo de Autenticação Multifator (MFA).',
+    resposta: 'ERRADO',
+    explicacao: 'Incorreto. A autenticação multifator (MFA) exige pelo menos dois fatores de categorias DISTINTAS: 1) Conhecimento (algo que sabe), 2) Posse (algo que tem) ou 3) Inerência/Biometria (algo que é). Senha e pergunta secreta pertencem ambas à mesma categoria de Conhecimento (algo que sabe).',
+    concurso: 'TCU - Auditor Federal de Controle Externo (TI)',
+    ano: 2023,
+    dica: 'MFA exige categorias diferentes: Sabe + Tem (ex: senha + OTP) ou Sabe + É (ex: senha + digital).',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'seg-fgv-01',
+    banca: 'FGV',
+    topico: 'Segurança da Informação',
+    subtopico: 'Assinatura Digital & Criptografia',
+    tipo: 'conceitual',
+    pergunta: 'No processo de assinatura digital de um documento eletrônico, quais chaves criptográficas são utilizadas na geração da assinatura pelo emissor e na sua posterior verificação pelo destinatário, e quais pilares de segurança são garantidos?',
+    resposta: 'Geração com a Chave Privada do Emissor; Verificação com a Chave Pública do Emissor. Garante Autenticidade, Integridade e Não-Repúdio.',
+    explicacao: 'O emissor gera o resumo criptográfico (hash) do documento e o cifra com a sua própria CHAVE PRIVADA (gerando a assinatura digital). O destinatário decifra o hash usando a CHAVE PÚBLICA do emissor e compara com o hash recalculado do documento. Isso garante Autenticidade (identidade do autor), Integridade (o documento não foi alterado) e Não-Repúdio / Irretratabilidade.',
+    concurso: 'Receita Federal - Auditor Fiscal de TI',
+    ano: 2023,
+    dica: 'Assinatura Digital: Chave Privada do autor assina; Chave Pública do autor confere.',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'seg-fgv-02',
+    banca: 'FGV',
+    topico: 'Segurança da Informação',
+    subtopico: 'ISO/IEC 27002:2022',
+    tipo: 'conceitual',
+    pergunta: 'Na revisão da norma ABNT NBR ISO/IEC 27002:2022, os 93 controles de segurança da informação foram reestruturados em quais 4 grandes temas?',
+    resposta: '1. Controles Organizacionais (37 controles); 2. Controles de Pessoas (8 controles); 3. Controles Físicos (14 controles); 4. Controles Tecnológicos (34 controles).',
+    explicacao: 'A norma ISO/IEC 27002:2022 simplificou a antiga estrutura de 14 cláusulas para 4 temas: Organizacionais (políticas, relações), Pessoas (treinamentos, teletrabalho), Físicos (perímetros, instalações seguras) e Tecnológicos (IAM, criptografia, segurança em nuvem).',
+    concurso: 'SEFAZ-SP - Analista de TI',
+    ano: 2024,
+    dica: 'Mnemônico dos 4 temas da ISO 27002:2022: O-P-F-T (Organizacionais, Pessoas, Físicos, Tecnológicos).',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'seg-cesgranrio-01',
+    banca: 'Cesgranrio',
+    topico: 'Segurança da Informação',
+    subtopico: 'OWASP Top 10:2021',
+    tipo: 'conceitual',
+    pergunta: 'Qual vulnerabilidade ocupa a primeira posição (#1) na lista do OWASP Top 10:2021 e em que ela consiste tecnicamente?',
+    resposta: 'A01:2021 - Broken Access Control (Controle de Acesso Quebrado/Falho).',
+    explicacao: 'Broken Access Control ocorre quando as restrições de permissão não são devidamente aplicadas no servidor, permitindo que usuários não autorizados acessem recursos restritos, modifiquem dados de outros usuários (IDOR) ou elevem seus privilégios administrativos. Ultrapassou a categoria Injection, que caiu para a 3ª posição.',
+    concurso: 'Petrobras - Analista de Sistemas (Engenharia de Software)',
+    ano: 2023,
+    dica: 'A01 do OWASP 2021 = Broken Access Control (Controle de Acesso Quebrado)!',
+    statusSRS: 'novo'
+  },
+  {
+    id: 'seg-cesgranrio-02',
+    banca: 'Cesgranrio',
+    topico: 'Segurança da Informação',
+    subtopico: 'Testes SAST vs DAST',
+    tipo: 'conceitual',
+    pergunta: 'Em relação às abordagens de testes de segurança de software, qual a diferença metodológica entre SAST (Static Application Security Testing) e DAST (Dynamic Application Security Testing)?',
+    resposta: 'SAST é análise estática de Caixa Branca (analisa código-fonte sem executá-lo); DAST é análise dinâmica de Caixa Preta (testa a aplicação em execução via requisições externas).',
+    explicacao: '• SAST (White Box): Analisa o código-fonte em repouso antes da compilação, apontando a linha exata do problema (ex: SonarQube, Checkmarx).\n• DAST (Black Box): Analisa a aplicação em execução contra ataques reais via HTTP/rede (ex: OWASP ZAP, Burp Suite), sem acesso ao código.',
+    concurso: 'Banco do Brasil - Tecnologia da Informação',
+    ano: 2023,
+    dica: 'SAST = Código estático (Caixa Branca). DAST = App rodando (Caixa Preta).',
+    statusSRS: 'novo'
+  }
+];

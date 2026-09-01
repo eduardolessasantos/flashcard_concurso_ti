@@ -8,7 +8,11 @@ import { ExportHtmlModal } from './components/ExportHtmlModal';
 import { AuthModal } from './components/AuthModal';
 import { ProfileModal } from './components/ProfileModal';
 import { StudyGuidesView } from './components/StudyGuidesView';
-import { AuthGateView } from './components/AuthGateView';
+import { Footer } from './components/Footer';
+import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
+import { TermsModal } from './components/TermsModal';
+import { AboutModal } from './components/AboutModal';
+import { ContactModal } from './components/ContactModal';
 import { useAuth } from './context/AuthContext';
 import { 
   PlusCircle, 
@@ -81,6 +85,10 @@ export default function App() {
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   // Cloud Sync notification toast
   const [cloudSynced, setCloudSynced] = useState(false);
@@ -417,36 +425,34 @@ export default function App() {
           </div>
 
           {/* View Toggle Tabs */}
-          {isAuthenticated && (
-            <div className="flex items-center p-1 bg-slate-950/80 rounded-full border border-slate-800">
-              <button
-                onClick={() => setCurrentView('flashcards')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  currentView === 'flashcards'
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <Layers className="w-3.5 h-3.5" />
-                <span>Flashcards (SRS)</span>
-              </button>
+          <div className="flex items-center p-1 bg-slate-950/80 rounded-full border border-slate-800">
+            <button
+              onClick={() => setCurrentView('flashcards')}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                currentView === 'flashcards'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Flashcards (SRS)</span>
+            </button>
 
-              <button
-                onClick={() => setCurrentView('guides')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  currentView === 'guides'
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>Estudo Teórico</span>
-                <span className="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded-full border border-emerald-500/30">
-                  Caderno
-                </span>
-              </button>
-            </div>
-          )}
+            <button
+              onClick={() => setCurrentView('guides')}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                currentView === 'guides'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Estudo Teórico</span>
+              <span className="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded-full border border-emerald-500/30">
+                Caderno
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* User Auth & Actions */}
@@ -490,24 +496,37 @@ export default function App() {
           )}
 
           {/* Quick actions in top bar */}
-          {isAuthenticated && (
-            <div className="hidden sm:flex items-center gap-1.5 border-l border-slate-800 pl-2.5">
-              <button
-                onClick={() => setIsExportModalOpen(true)}
-                className="p-1.5 text-slate-400 hover:text-emerald-400 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 rounded-full transition-colors"
-                title="Exportar HTML autônomo"
-              >
-                <Download className="w-4 h-4" />
-              </button>
-            </div>
-          )}
+          <div className="hidden sm:flex items-center gap-1.5 border-l border-slate-800 pl-2.5">
+            <button
+              onClick={() => setIsExportModalOpen(true)}
+              className="p-1.5 text-slate-400 hover:text-emerald-400 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 rounded-full transition-colors"
+              title="Exportar HTML autônomo"
+            >
+              <Download className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </header>
 
+      {/* Guest Mode Notice Banner */}
+      {!isAuthenticated && (
+        <div className="bg-gradient-to-r from-indigo-950/70 via-slate-900 to-indigo-950/70 border-b border-indigo-500/20 px-4 py-2 text-xs text-slate-300 flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span><strong>Acesso Aberto:</strong> Você pode estudar todos os cadernos teóricos e praticar flashcards livremente.</span>
+          </div>
+          <button
+            onClick={() => setIsAuthModalOpen(true)}
+            className="text-indigo-400 hover:text-indigo-300 underline font-semibold flex items-center gap-1"
+          >
+            <Cloud className="w-3 h-3" />
+            <span>Fazer login para salvar progresso na nuvem</span>
+          </button>
+        </div>
+      )}
+
       {/* ================= VIEW CONTAINER ================= */}
-      {!isAuthenticated ? (
-        <AuthGateView />
-      ) : currentView === 'guides' ? (
+      {currentView === 'guides' ? (
         <StudyGuidesView onStartFlashcardTopic={handleStartFlashcardTopic} />
       ) : (
         /* ================= FLASHCARD WORKSPACE ================= */
@@ -807,6 +826,15 @@ export default function App() {
         </div>
       )}
 
+      {/* ================= FOOTER ================= */}
+      <Footer
+        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
+        onOpenTerms={() => setIsTermsModalOpen(true)}
+        onOpenAbout={() => setIsAboutModalOpen(true)}
+        onOpenContact={() => setIsContactModalOpen(true)}
+        onSelectView={(v) => setCurrentView(v)}
+      />
+
       {/* ================= MODALS ================= */}
       <CardListModal
         isOpen={isListModalOpen}
@@ -836,6 +864,26 @@ export default function App() {
         isOpen={isProfileModalOpen}
         onClose={() => setIsProfileModalOpen(false)}
         stats={stats}
+      />
+
+      <PrivacyPolicyModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+
+      <TermsModal
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
+      />
+
+      <AboutModal
+        isOpen={isAboutModalOpen}
+        onClose={() => setIsAboutModalOpen(false)}
+      />
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
       />
     </div>
   );

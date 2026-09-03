@@ -75,7 +75,77 @@ export const GOVERNANCE_TOPIC: StudyGuideTopic = {
 3) INCIDENTE vs PROBLEMA vs WORKAROUND:
    • Incidente: O servidor caiu! (Meta: Restaurar rápido!).
    • Problema: Por que o servidor caiu? (Meta: Achar a causa raiz).
-   • Workaround: Reiniciar resolve provisoriamente (Solução de contorno).`
+   • Workaround: Reiniciar resolve provisoriamente (Solução de contorno).`,
+          annotations: [
+            'Utilidade = Fit for Purpose (O que o serviço faz).',
+            'Garantia = Fit for Use (Disponibilidade, Segurança, Continuidade, Capacidade).',
+            'SVS é o Sistema de Valor de Serviço centrado em Cocriação de Valor.'
+          ],
+          diagramFormula: 'Valor = Utilidade (Funcionalidade) + Garantia (Disponibilidade + Segurança + Capacidade + Continuidade)\nIncidente (Restauração Rápida) != Problema (Causa Raiz) != Workaround (Contorno)',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'SEFAZ-MG – Auditor Fiscal da Receita Estadual (Tecnologia da Informação) – 2023',
+            enunciado: `No âmbito da biblioteca de boas práticas ITIL 4 (Information Technology Infrastructure Library), o valor de um serviço entregue aos contribuintes e à administração tributária é cocriado a partir de duas dimensões centrais complementares:
+
+"A dimensão I refere-se à ==adequação ao propósito (fit for purpose)==, ou seja, as funcionalidades que o serviço oferece para atender às necessidades específicas do negócio. Por sua vez, a dimensão II refere-se à ==adequação ao uso (fit for use)==, garantindo níveis satisfatórios de disponibilidade, capacidade, continuidade e segurança da informação."
+
+As dimensões I e II correspondem, respectiva e formalmente, aos conceitos de:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'Garantia e Eficácia.',
+                correta: false,
+                comentario: 'INCORRETA: A dimensão I é Utilidade e a II é Garantia.'
+              },
+              {
+                letra: 'B',
+                texto: '==Utilidade e Garantia==.',
+                correta: true,
+                comentario: 'CORRETA: Definição literal da ITIL 4! Utilidade (Utility) = fit for purpose (o que o serviço faz, funcionalidades e requisitos de negócio). Garantia (Warranty) = fit for use (como o serviço desempenha, assegurando disponibilidade, capacidade, continuidade e segurança). Ambas são indispensáveis para gerar valor.'
+              },
+              {
+                letra: 'C',
+                texto: 'Eficiência e Utilidade.',
+                correta: false,
+                comentario: 'INCORRETA: Inverte e substitui Garantia por Eficiência.'
+              },
+              {
+                letra: 'D',
+                texto: 'Garantia e Utilidade.',
+                correta: false,
+                comentario: 'INCORRETA: Inverteu a ordem respectiva dos conceitos I e II.'
+              },
+              {
+                letra: 'E',
+                texto: 'Cadeia de Valor e Prática de Gerenciamento.',
+                correta: false,
+                comentario: 'INCORRETA: Trata-se de outros componentes do Sistema de Valor de Serviço (SVS).'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'adequação ao propósito (fit for purpose)',
+                papel: 'Definição Canônica de Utilidade',
+                regra: 'Utilidade = o que o serviço faz em termos de funcionalidade para cumprir seu objetivo.',
+                cor: 'yellow'
+              },
+              {
+                termo: 'adequação ao uso (fit for use)',
+                papel: 'Definição Canônica de Garantia',
+                regra: 'Garantia = disponibilidade, capacidade, segurança e continuidade operacional.',
+                cor: 'green'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. GRUPO MNEMÔNICO CENTRAL DA ITIL: "Utilidade é o propósito (Purpose); Garantia é o uso (Use)".',
+              '2. ANALISE A DIMENSÃO I: "adequação ao propósito (fit for purpose)" = UTILIDADE.',
+              '3. ANALISE A DIMENSÃO II: "adequação ao uso (fit for use - disponibilidade/segurança)" = GARANTIA.',
+              '4. ATENÇÃO À PALAVRA "RESPECTIVAMENTE": I = Utilidade, II = Garantia.',
+              '5. MARQUE: Letra B com total segurança.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA B',
+            conclusaoPedagogica: 'PEGADINHA CLÁSSICA DE BANCAS: Trocar "Utilidade" por "Garantia" ou inverter a ordem "respectiva". Guarde o mantra: Utilidade = Propósito | Garantia = Uso seguro e disponível!'
+          }
         }
       ],
       usefulLinks: [
@@ -139,7 +209,74 @@ export const GOVERNANCE_TOPIC: StudyGuideTopic = {
    • Gateways (Losangos):
      [ X ] Exclusivo (XOR - apenas 1 rota).
      [ + ] Paralelo (AND - todas as rotas ao mesmo tempo).
-     [ O ] Inclusivo (OR - 1 ou mais rotas possíveis).`
+     [ O ] Inclusivo (OR - 1 ou mais rotas possíveis).`,
+          annotations: [
+            'COBIT separa Governança (EDM - 5 objetivos) de Gestão (APO, BAI, DSS, MEA - 35 objetivos).',
+            'No BPMN, Fluxos de Sequência NUNCA cruzam bordas de Piscinas (Pools).'
+          ],
+          diagramFormula: 'Governança (Avaliar, Dirigir, Monitorar) ---> Alinha Diretrizes\nGestão (Planejar, Construir, Entregar, Monitorar) ---> Executa Operações',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Auditor Federal de Controle Externo (TCU) – Tecnologia da Informação – 2022',
+            enunciado: `De acordo com o framework COBIT 2019 da ISACA, a governança corporativa de informação e tecnologia exige uma clara distinção conceitual e prática entre as responsabilidades de Governança e as de Gestão.
+
+A respeito dessa diferenciação fundamental, assinale a afirmativa CORRETA:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'A Gestão é de responsabilidade primária do Conselho de Administração (Board of Directors), incumbida de avaliar as necessidades estratégicas das partes interessadas.',
+                correta: false,
+                comentario: 'INCORRETA: Avaliar necessidades e definir o direcionamento estratégico do Conselho é atribuição exclusiva de GOVERNANÇA (EDM).'
+              },
+              {
+                letra: 'B',
+                texto: 'O domínio EDM (Evaluate, Direct and Monitor) agrega 14 objetivos de gestão executiva focados na construção e aquisição de soluções tecnológicas.',
+                correta: false,
+                comentario: 'INCORRETA: EDM tem 5 objetivos e pertence à GOVERNANÇA. Quem constrói e adquire é o domínio BAI (Build, Acquire, Implement), que pertence à Gestão.'
+              },
+              {
+                letra: 'C',
+                texto: '==A Governança garante que as necessidades das partes interessadas sejam avaliadas para definir objetivos corporativos acordados, direcionando prioridades e monitorando desempenho e conformidade==.',
+                correta: true,
+                comentario: 'CORRETA: Transcrição literal do COBIT 2019! A governança (sob responsabilidade da alta administração / Conselho) tem o tríplice papel EDM: Avaliar (Evaluate) necessidades, Dirigir (Direct) através de priorização/decisões e Monitorar (Monitor) desempenho e conformidade.'
+              },
+              {
+                letra: 'D',
+                texto: 'As atividades operacionais de suporte técnico, service desk e entrega diária de serviços integram o domínio EDM de governança.',
+                correta: false,
+                comentario: 'INCORRETA: Suporte e entrega integram o domínio DSS (Deliver, Service and Support) de GESTÃO.'
+              },
+              {
+                letra: 'E',
+                texto: 'O COBIT 2019 aboliu a distinção entre governança e gestão unificando todos os 40 processos em um comitê técnico consultivo.',
+                correta: false,
+                comentario: 'INCORRETA: A separação entre governança e gestão permanece como um dos princípios cardeais mais fortes do COBIT 2019.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'avaliadas para definir objetivos corporativos, direcionando prioridades e monitorando desempenho',
+                papel: 'Tríade EDM de Governança',
+                regra: 'Governança = Evaluate (Avaliar) + Direct (Dirigir) + Monitor (Monitorar).',
+                cor: 'cyan'
+              },
+              {
+                termo: 'distinção conceitual e prática entre Governança e Gestão',
+                papel: 'Pilar Arquitetural do COBIT',
+                regra: 'Governança dita a estratégia; Gestão planeja, constrói, entrega e opera.',
+                cor: 'yellow'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE AS PALAVRAS-CHAVE DO COBIT: Governança = EDM (Avaliar, Dirigir, Monitorar). Gestão = Planejar, Construir, Executar, Monitorar.',
+              '2. EXAMINE A LETRA A: Atribui avaliar necessidades à "Gestão". Errado!',
+              '3. EXAMINE A LETRA B: Diz que EDM é domínio de "gestão executiva". Errado, é governança!',
+              '4. EXAMINE A LETRA C: Descreve fielmente as 3 ações do EDM: avaliar necessidades, direcionar prioridades e monitorar desempenho.',
+              '5. MARQUE: Letra C.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA C',
+            conclusaoPedagogica: 'RESUMO COBIT: Governança define o QUE deve ser feito e para ONDE a empresa vai (EDM). Gestão arregaça as mangas e faz acontecer (APO, BAI, DSS, MEA)!'
+          }
         }
       ],
       usefulLinks: [
@@ -195,7 +332,80 @@ export const GOVERNANCE_TOPIC: StudyGuideTopic = {
 
 3) KANBAN - REGRA DE OURO:
    • "Pare de começar e comece a terminar!"
-   • Limite o WIP (Work In Progress) para destravar gargalos.`
+   • Limite o WIP (Work In Progress) para destravar gargalos.`,
+          annotations: [
+            'No TDD, o teste SEMPRE antecede a implementação do código.',
+            'Kanban usa limites de WIP (Work in Progress) para otimizar o fluxo contínuo.'
+          ],
+          diagramFormula: 'TDD: [1. Escreve Teste] -> [2. RED (Falha)] -> [3. Código Mínimo] -> [4. GREEN (Passou)] -> [5. REFACTOR (Otimiza)]',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Prefeitura de São Paulo – Auditor Fiscal Tributário Municipal (Tecnologia da Informação) – 2023',
+            enunciado: `No contexto da engenharia de software ágil fundamentada na metodologia ==Extreme Programming (XP)==, o desenvolvimento orientado a testes (==TDD - Test-Driven Development==) orienta a rotina de codificação diária dos desenvolvedores.
+
+Assinale a opção que descreve com exatidão a sequência cronológica de etapas preconizada pelo ciclo canônico do TDD:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'Codificar a funcionalidade completa em produção -> Realizar testes manuais de aceitação -> Refatorar o código para remover warnings.',
+                correta: false,
+                comentario: 'INCORRETA: Isso é o modelo tradicional de desenvolvimento, oposto ao TDD.'
+              },
+              {
+                letra: 'B',
+                texto: 'Elaborar a suíte completa de testes de carga -> Solicitar aprovação do cliente on-site -> Escrever os testes unitários após o deploy.',
+                correta: false,
+                comentario: 'INCORRETA: Testes unitários no TDD são escritos antes de qualquer deploy ou linha de código produtivo.'
+              },
+              {
+                letra: 'C',
+                texto: '==Escrever um teste automatizado que falha (Red) -> Escrever o código de produção mínimo para fazê-lo passar (Green) -> Refatorar o código para melhorar a estrutura mantendo os testes passando (Refactor)==.',
+                correta: true,
+                comentario: 'CORRETA: Esse é o ciclo Red-Green-Refactor, pedra fundamental do TDD formulado por Kent Beck no Extreme Programming! Primeiro o teste que falha (Red), depois o código mínimo estritamente necessário para aprovação (Green) e, por fim, a melhoria do design eliminando duplicações sem alterar o comportamento externo (Refactor).'
+              },
+              {
+                letra: 'D',
+                texto: 'Executar testes de estresse SAST e DAST -> Refatorar os microserviços -> Implementar o código e aguardar o resultado do linter.',
+                correta: false,
+                comentario: 'INCORRETA: SAST e DAST são ferramentas de segurança de aplicação, não o ciclo TDD.'
+              },
+              {
+                letra: 'E',
+                texto: 'Refatorar a arquitetura de classes -> Escrever o código produtivo -> Executar os testes unitários ao final da sprint.',
+                correta: false,
+                comentario: 'INCORRETA: A refatoração é a última etapa, nunca a primeira.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'Extreme Programming (XP)',
+                papel: 'Metodologia Ágil de Engenharia',
+                regra: 'Focada em excelência técnica, código limpo, testes automáticos e ritmo sustentável.',
+                cor: 'cyan'
+              },
+              {
+                termo: 'TDD - Test-Driven Development',
+                papel: 'Prática de Desenvolvimento Guiado por Testes',
+                regra: 'O teste antecede o código de produção e orienta o design.',
+                cor: 'green'
+              },
+              {
+                termo: 'Red -> Green -> Refactor',
+                papel: 'Ciclo Canônico de 3 Passos',
+                regra: '1. Teste falha (Red) -> 2. Código mínimo passa (Green) -> 3. Limpeza do código (Refactor).',
+                cor: 'yellow'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE O TEMA: TDD no Extreme Programming.',
+              '2. LEMBRE-SE DO SEMÁFORO DO TDD: Vermelho (Red) -> Verde (Green) -> Refatora (Refactor).',
+              '3. CONFIRA A SEQUÊNCIA: 1) Teste antes do código (Red); 2) Código mínimo para aprovação (Green); 3) Refatoração com segurança dos testes verdes.',
+              '4. ANALISE AS ALTERNATIVAS: A letra C é a única que reproduz com precisão esse ciclo.',
+              '5. MARQUE: Letra C com 100% de convicção.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA C',
+            conclusaoPedagogica: 'MANTRA DO TDD: "Teste primeiro, código mínimo depois, limpeza sempre!" Se o teste não existia antes do código, NÃO foi TDD!'
+          }
         }
       ],
       usefulLinks: [

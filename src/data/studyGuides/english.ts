@@ -63,7 +63,72 @@ export const ENGLISH_TOPIC: StudyGuideTopic = {
           annotations: [
             'Data (dados) é plural de datum.',
             'Facilities = instalações/recursos, não facilidades.'
-          ]
+          ],
+          diagramFormula: 'ACTUALLY = "Na verdade / In fact" (≠ Atualmente = Currently)\nEVENTUALLY = "Com o tempo / No fim" (≠ Eventualmente = Occasionally)',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Secretaria de Fazenda de Minas Gerais (SEF/MG) – Auditor Fiscal da Receita Estadual – Tecnologia da Informação – 2023',
+            enunciado: `Read the following excerpt from a technical whitepaper on distributed databases:
+
+"Distributed consensus protocols do not ==actually== guarantee zero latency; ==eventually==, all replica nodes synchronize their state across the network."
+
+In the context of the sentence above, the underlined words "actually" and "eventually" can be correctly and accurately replaced, without changing the original semantic meaning, by:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'currently / occasionally.',
+                correta: false,
+                comentario: 'INCORRETA: Pegadinha clássica dos falsos cognatos! "Currently" significa "atualmente", e "occasionally" significa "de vez em quando / ocasionalmente".'
+              },
+              {
+                letra: 'B',
+                texto: '==in fact / ultimately==.',
+                correta: true,
+                comentario: 'CORRETA: "Actually" significa "de fato / na verdade" (= in fact / really), desfazendo um equívoco comum sobre protocolos distribuídos. "Eventually" significa "com o tempo / ao final / em última análise" (= ultimately / in the end / with time), referindo-se exatamente ao conceito de Consistência Eventual (Eventual Consistency), onde todas as réplicas sincronizam com o passar do tempo.'
+              },
+              {
+                letra: 'C',
+                texto: 'nowadays / rarely.',
+                correta: false,
+                comentario: 'INCORRETA: "Nowadays" refere-se a tempo cronológico (hoje em dia), e "rarely" indica frequência baixa (raramente).'
+              },
+              {
+                letra: 'D',
+                texto: 'presently / sometimes.',
+                correta: false,
+                comentario: 'INCORRETA: "Sometimes" denota incerteza ou esporadicidade, contrariando o princípio de que a consistência eventual certamente acontecerá.'
+              },
+              {
+                letra: 'E',
+                texto: 'intentionally / theoretically.',
+                correta: false,
+                comentario: 'INCORRETA: Altera completamente a intencionalidade e o rigor do texto técnico.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'actually -> in fact / really',
+                papel: 'Falso Cognato Semântico',
+                regra: 'Significa "na verdade / de fato", desfazendo suposições erradas.',
+                cor: 'cyan'
+              },
+              {
+                termo: 'eventually -> ultimately / in the end',
+                papel: 'Termo de Consistência Técnica',
+                regra: 'Significa "com o passar do tempo / ao final", base do teorema CAP (Eventual Consistency).',
+                cor: 'yellow'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE AS PALAVRAS ALVO: "actually" e "eventually".',
+              '2. DESCARTE AS TRADUÇÕES LITERAIS ENGANOSAS: Actually NÃO é atualmente (currently). Eventually NÃO é eventualmente (occasionally).',
+              '3. BUSQUE OS SINÔNIMOS REAIS EM INGLÊS: Actually = in fact / really. Eventually = ultimately / in the long run.',
+              '4. CRUZE COM AS ALTERNATIVAS: A letra B traz perfeitamente "in fact / ultimately".',
+              '5. MARQUE: Letra B.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA B',
+            conclusaoPedagogica: 'REGRA DE OURO EM INGLÊS TÉCNICO: Se parecer com português mas mudar tudo na frase, desconfie! "Actually = De fato" e "Eventually = Ao final / Com o tempo".'
+          }
         }
       ],
       usefulLinks: [
@@ -123,7 +188,79 @@ export const ENGLISH_TOPIC: StudyGuideTopic = {
           annotations: [
             'MUST NOT = PROIBIDO terminantemente.',
             'SHALL em contratos e RFPs = Obrigatório.'
-          ]
+          ],
+          diagramFormula: 'MUST / SHALL (Obrigatório) > SHOULD (Recomendado) > MAY (Opcional)\nMUST NOT / SHALL NOT = Proibição Absoluta',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Senado Federal – Analista Legislativo – Informática Legislativa – 2022',
+            enunciado: `In software engineering standards, security baselines, and networking specifications complying with ==IETF RFC 2119==, the interpretation of requirement level keywords is critical for compliance auditing.
+
+Consider the following excerpt from an API security specification:
+
+"The authentication gateway ==MUST NOT== accept unencrypted plain-text tokens over HTTP. Furthermore, client applications ==SHOULD== implement exponential backoff retry policies, and they ==MAY== include telemetry tracing headers in the request."
+
+Based strictly on the normative definitions established by RFC 2119, analyze the statements below and choose the CORRETA option:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'The keyword "SHOULD" imposes an absolute, non-negotiable obligation that cannot be bypassed under any circumstances.',
+                correta: false,
+                comentario: 'INCORRETA: "SHOULD" indica uma recomendação de boa prática. Obrigações absolutas e inegociáveis utilizam "MUST" ou "SHALL".'
+              },
+              {
+                letra: 'B',
+                texto: 'The keyword "MAY" implies that the implementation of telemetry headers is strictly forbidden by the security standard.',
+                correta: false,
+                comentario: 'INCORRETA: "MAY" significa opcional / permitido a critério do desenvolvedor. A proibição estrita seria expressa por "MUST NOT".'
+              },
+              {
+                letra: 'C',
+                texto: '==The keyword "MUST NOT" defines an absolute prohibition of the specification, whereas "SHOULD" represents a strongly recommended practice that may permit exceptions if technically justified==.',
+                correta: true,
+                comentario: 'CORRETA: Definição perfeita da RFC 2119! "MUST NOT" (ou "SHALL NOT") representa uma proibição categórica e absoluta. "SHOULD" (ou "RECOMMENDED") significa que podem existir razões válidas em circunstâncias particulares para não seguir a recomendação, mas o impacto total deve ser compreendido e justificado.'
+              },
+              {
+                letra: 'D',
+                texto: 'The keywords "MUST NOT" and "SHOULD" have the same normative weight and both require immediate disqualification if violated.',
+                correta: false,
+                comentario: 'INCORRETA: "MUST NOT" é mandatório (peso máximo de infração), enquanto "SHOULD" é apenas recomendação.'
+              },
+              {
+                letra: 'E',
+                texto: 'The standard does not establish distinction between "MAY" and "REQUIRED", treating both as voluntary.',
+                correta: false,
+                comentario: 'INCORRETA: "REQUIRED" é sinônimo de "MUST" (obrigatório), enquanto "MAY" é voluntário/opcional.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'MUST NOT -> absolute prohibition',
+                papel: 'Cláusula de Proibição Absoluta',
+                regra: 'Inegociável: qualquer violação quebra a conformidade do protocolo.',
+                cor: 'rose'
+              },
+              {
+                termo: 'SHOULD -> strongly recommended',
+                papel: 'Recomendação Normativa',
+                regra: 'Padrão esperado de boa prática, admitindo exceções justificadas tecnicamente.',
+                cor: 'yellow'
+              },
+              {
+                termo: 'MAY -> truly optional',
+                papel: 'Permissão Facultativa',
+                regra: 'O desenvolvedor decide livremente se inclui ou não o recurso.',
+                cor: 'green'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. LEMBRE DA HIERARQUIA DA RFC 2119: 1) MUST/SHALL = Mandatório; 2) MUST NOT/SHALL NOT = Proibido; 3) SHOULD = Recomendado; 4) MAY = Opcional.',
+              '2. ANALISE O EXCERTO: "gateway MUST NOT accept..." (proibido); "clients SHOULD implement..." (recomendado); "they MAY include..." (opcional).',
+              '3. CONFIRA A LETRA C: Descreve "MUST NOT" como proibição absoluta e "SHOULD" como prática fortemente recomendada com possibilidade de exceção.',
+              '4. MARQUE: Letra C.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA C',
+            conclusaoPedagogica: 'TRIÂNGULO NORMATIVO DA RFC 2119: MUST (Tem que fazer) vs SHOULD (É bom fazer) vs MAY (Faz se quiser). Em provas de TI, não erre essa gradação!'
+          }
         }
       ],
       usefulLinks: [

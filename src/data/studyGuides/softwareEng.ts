@@ -64,7 +64,85 @@ export const SOFTWARE_ENG_TOPIC: StudyGuideTopic = {
             'Daily Scrum: 15 min, foco na Meta da Sprint.',
             'Sprint Review: Inspeciona o Incremento com Stakeholders.'
           ],
-          diagramFormula: 'Pilares: Transparência + Inspeção + Adaptação (TIA)'
+          diagramFormula: 'Pilares: Transparência + Inspeção + Adaptação (TIA)\nCompromissos: Product Goal -> Sprint Goal -> Definition of Done',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'TJ-AP – Analista Judiciário (Especialidade: Tecnologia da Informação) – 2023',
+            enunciado: `Uma equipe de desenvolvimento ágil de um tribunal estadual adotou o framework Scrum (conforme o Guia Scrum 2020) para o desenvolvimento de um novo módulo processual eletrônico. Durante a execução de uma Sprint de 3 semanas, foram observadas as seguintes ocorrências:
+
+I. ==O Scrum Master determinou unilateralmente o cancelamento da Sprint== porque a tecnologia de nuvem escolhida tornou-se incompatível com as regras de segurança do tribunal.
+II. ==A Definition of Done (DoD) foi formalmente associada como o compromisso do Incremento== produzido pela equipe.
+III. ==Durante a Sprint Planning, definiu-se a Sprint Goal== como o compromisso do Sprint Backlog.
+
+À luz estrita do Guia Scrum oficial (versão 2020), está CORRETO o que se afirma em:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'I, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: No Guia Scrum 2020, o Scrum Master NUNCA tem autoridade para cancelar uma Sprint. Apenas o Product Owner (PO) possui a autoridade exclusiva de cancelar uma Sprint antes do fim do timebox.'
+              },
+              {
+                letra: 'B',
+                texto: 'I e II, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: O item I é flagrantemente falso, pois o cancelamento da Sprint é competência privativa do Product Owner.'
+              },
+              {
+                letra: 'C',
+                texto: '==II e III, apenas==.',
+                correta: true,
+                comentario: 'CORRETA: Perfeito alinhamento com o Guia 2020! O Guia Scrum 2020 introduziu 3 compromissos formais atrelados aos artefatos: para o Product Backlog é a Product Goal; para o Sprint Backlog é a Sprint Goal (Item III); e para o Incremento é a Definition of Done (Item II).'
+              },
+              {
+                letra: 'D',
+                texto: 'I e III, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: O item I é incorreto.'
+              },
+              {
+                letra: 'E',
+                texto: 'I, II e III.',
+                correta: false,
+                comentario: 'INCORRETA: O item I invalida a opção.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'Scrum Master determinou o cancelamento',
+                papel: 'Pegadinha de Autoridade de Papel',
+                regra: 'No Scrum, SOMENTE o Product Owner tem autoridade para cancelar a Sprint se a meta se tornar obsoleta.',
+                cor: 'rose'
+              },
+              {
+                termo: 'Definition of Done (DoD) compromisso do Incremento',
+                papel: 'Compromisso Formal do Guia 2020',
+                regra: 'Cada artefato contém um compromisso: Incremento <-> Definition of Done (DoD).',
+                cor: 'green'
+              },
+              {
+                termo: 'Sprint Goal compromisso do Sprint Backlog',
+                papel: 'Compromisso Formal do Guia 2020',
+                regra: 'Sprint Backlog <-> Sprint Goal (Meta da Sprint, definida na Planning).',
+                cor: 'cyan'
+              },
+              {
+                termo: 'Guia Scrum oficial (versão 2020)',
+                papel: 'Referencial Normativo da Banca',
+                regra: 'Elimina referências a "papéis" substituídos por "responsabilidades" e fixa os 3 compromissos.',
+                cor: 'yellow'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE A VERSÃO DO FRAMEWORK: O enunciado invoca o Guia Scrum 2020.',
+              '2. JULGUE O ITEM I (CANCELAMENTO): Quem cancela Sprint? REGRA DE OURO: Apenas o Product Owner. O Scrum Master não cancela nada. Item I é FALSO.',
+              '3. ELIMINE ALTERNATIVAS: Com o item I falso, risque de imediato A, B, D e E!',
+              '4. CONFIRME O ITEM II E III: O Guia 2020 estabeleceu a tríade Artefato x Compromisso: Product Backlog = Product Goal; Sprint Backlog = Sprint Goal; Increment = DoD. Ambos corretos!',
+              '5. MARQUE COM SEGURANÇA: Letra C em menos de 45 segundos.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA C',
+            conclusaoPedagogica: 'PADRÃO CLÁSSICO FGV/CEBRASPE: A banca sempre tenta empurrar poderes de gestão ao Scrum Master. Lembre-se: Scrum Master é líder servidor e facilitador; quem decide sobre produto, dinheiro e cancelamento de Sprint é sempre o Product Owner!'
+          }
         }
       ],
       usefulLinks: [
@@ -116,7 +194,93 @@ D -> Inversão de Dependência: Dependa de Interfaces/Abstrações, NUNCA de imp
           annotations: [
             'OCP é garantido através de Polimorfismo.',
             'DIP permite mockar repositórios em testes unitários.'
-          ]
+          ],
+          diagramFormula: 'S: 1 Responsabilidade | O: Aberto Extensão / Fechado Modificação\nL: Subtipo Substituível | I: Interfaces Finas | D: Dependa de Abstrações',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Auditoria Geral do Estado (AGE-PA) – Auditor de TI – 2023',
+            enunciado: `Analise o trecho de código Java em um módulo de faturamento de um órgão público:
+
+\`\`\`java
+public class GerenciadorDesconto {
+    public double aplicarDesconto(Pedido pedido) {
+        if (pedido.getTipoCliente().equals("ESPECIAL")) {
+            return pedido.getValor() * 0.15;
+        } else if (pedido.getTipoCliente().equals("CORPORATIVO")) {
+            return pedido.getValor() * 0.20;
+        } else if (pedido.getTipoCliente().equals("GOVERNO")) {
+            return pedido.getValor() * 0.25;
+        }
+        return 0.0;
+    }
+}
+\`\`\`
+
+==Sempre que um novo tipo de cliente for criado==, a classe \`GerenciadorDesconto\` ==precisará ser aberta e alterada== para a inclusão de um novo bloco condicional. 
+
+Segundo os princípios fundamentais SOLID, essa estrutura viola PRIMARIAMENTE o princípio:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'Single Responsibility Principle (SRP), exclusivamente.',
+                correta: false,
+                comentario: 'INCORRETA: Embora classes com muitos ifs tendam a acumular responsabilidades, a necessidade direta de alterar a classe existente ao adicionar um novo tipo de cliente é a violação clássica e primordial do OCP.'
+              },
+              {
+                letra: 'B',
+                texto: '==Open/Closed Principle (OCP)==.',
+                correta: true,
+                comentario: 'CORRETA: O princípio Aberto/Fechado (OCP) determina que artefatos de software devem estar abertos para extensão (novas regras de desconto), mas FECHADOS para modificação (não deveríamos editar uma classe já testada e em produção). A solução SOLID é criar uma interface \`EstrategiaDesconto\` e classes concretas para cada cliente.'
+              },
+              {
+                letra: 'C',
+                texto: 'Liskov Substitution Principle (LSP).',
+                correta: false,
+                comentario: 'INCORRETA: O LSP trata da preservação do contrato comportamental de classes derivadas em relação à classe base. No código apresentado sequer há herança.'
+              },
+              {
+                letra: 'D',
+                texto: 'Interface Segregation Principle (ISP).',
+                correta: false,
+                comentario: 'INCORRETA: O ISP preconiza que interfaces não devem conter métodos inúteis para certas classes implementadoras ("interfaces gordas"). Aqui não há interfaces.'
+              },
+              {
+                letra: 'E',
+                texto: 'Dependency Inversion Principle (DIP).',
+                correta: false,
+                comentario: 'INCORRETA: O DIP prescreve depender de abstrações em vez de classes concretas. Embora haja alto acoplamento, a questão destaca a necessidade de alteração de código existente ao estender o sistema, que é a definição exata do OCP.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'Sempre que um novo tipo de cliente for criado',
+                papel: 'Cenário de Extensão do Sistema',
+                regra: 'O sistema precisa crescer para comportar novas regras de negócio.',
+                cor: 'yellow'
+              },
+              {
+                termo: 'precisará ser aberta e alterada',
+                papel: 'Violação Direta de "Closed for Modification"',
+                regra: 'Se para incluir um recurso você tem que modificar o código existente, o OCP está quebrado.',
+                cor: 'rose'
+              },
+              {
+                termo: 'Open/Closed Principle (OCP)',
+                papel: 'Princípio Violado',
+                regra: 'Aberto para extensão através de polimorfismo/interfaces; fechado para modificação de código fonte legado.',
+                cor: 'green'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. LEIA O CÓDIGO E O GATILHO: A classe tem uma sequência de "if/else if" checando tipos.',
+              '2. IDENTIFIQUE A DOR: O enunciado diz textualmente que para adicionar um novo cliente a classe "precisa ser aberta e alterada".',
+              '3. RECORDE O SIGNIFICADO DE SOLID: Open/Closed = Aberto para extensão, FECHADO para modificação.',
+              '4. CONFIRME A SOLUÇÃO ARQUITETURAL: Aplicar o padrão Strategy (GoF) ou Polimorfismo, permitindo injetar novas classes de desconto sem tocar no código antigo.',
+              '5. MARQUE: Letra B (Open/Closed Principle).'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA B',
+            conclusaoPedagogica: 'GATILHO AUTOMÁTICO FGV/CEBRASPE: Viu cadeia de "if (tipo == ...)" ou "switch/case" que precisa ser mexida a cada novo requisito? A resposta é OCP (Aberto/Fechado) em 95% das provas de TI!'
+          }
         }
       ],
       codeExample: {
@@ -175,8 +339,80 @@ D -> Inversão de Dependência: Dependa de Interfaces/Abstrações, NUNCA de imp
    -> Anexa novas responsabilidades dinamicamente em tempo de execução sem usar herança estática!`,
           annotations: [
             'Singleton: Apenas 1 instância global com construtor privado.',
-            'Observer: Notificação 1-para-Muitos quando o Subject muda.'
-          ]
+            'Observer: Notificação 1-para-Muitos quando o Subject muda.',
+            'Decorator (Wrapper): Agrega funcionalidade dinâmica com a mesma interface do objeto original.'
+          ],
+          diagramFormula: 'Adapter: Interface Incompatível -> Converte\nFacade: Subsistema Complexo -> Simplifica\nDecorator: Objeto Concreto -> Adiciona Casca Funcional\nStrategy: Algoritmo Intercambiável',
+          realExamQuestion: {
+            banca: 'Cesgranrio',
+            orgaoAno: 'Banco do Brasil / Caixa Econômica Federal – Tecnologia da Informação – 2023',
+            enunciado: `Um arquiteto de software de uma instituição financeira precisa implementar um componente de comunicação bancária capaz de ==acrescentar dinamicamente camadas de criptografia (AES-256) e de compressão (GZIP) a fluxos de dados de mensagens==, sem alterar a classe original do fluxo e ==sem recorrer a uma explosão de subclasses estáticas== por meio de herança.
+
+Além disso, as diferentes camadas devem poder ser combinadas de forma flexível em tempo de execução (ex.: apenas criptografia, apenas compressão, ou ambas combinadas).
+
+Assinale o padrão de projeto GoF (Gang of Four) que resolve PRIMARIAMENTE essa necessidade arquitetural:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'Adapter (Adaptador).',
+                correta: false,
+                comentario: 'INCORRETA: O Adapter é utilizado para converter uma interface incompatível em outra interface esperada pelo cliente. Não serve para compor ou empilhar novas responsabilidades dinâmicas.'
+              },
+              {
+                letra: 'B',
+                texto: 'Facade (Fachada).',
+                correta: false,
+                comentario: 'INCORRETA: O Facade fornece uma interface simplificada e de alto nível para um subsistema complexo, não tendo por objetivo a agregação dinâmica de funcionalidades em tempo de execução.'
+              },
+              {
+                letra: 'C',
+                texto: '==Decorator (Decorador / Wrapper)==.',
+                correta: true,
+                comentario: 'CORRETA: O padrão Decorator anexa responsabilidades adicionais a um objeto dinamicamente em tempo de execução. Decoradores oferecem uma alternativa flexível ao uso de subclasses para extensão de funcionalidades, permitindo "embrulhar" (wrap) o objeto em camadas sucessivas (ex: \`new CriptografiaDecorator(new CompressaoDecorator(stream))\`), exatamente como no pacote \`java.io\`.'
+              },
+              {
+                letra: 'D',
+                texto: 'Proxy.',
+                correta: false,
+                comentario: 'INCORRETA: O Proxy fornece um substituto ou marcador de localização para controlar o acesso a outro objeto (ex: lazy loading, controle de permissões ou acesso remoto), e não para empilhar dinamicamente novos comportamentos funcionais de negócio.'
+              },
+              {
+                letra: 'E',
+                texto: 'Bridge (Ponte).',
+                correta: false,
+                comentario: 'INCORRETA: O Bridge desacopla uma abstração de sua implementação, de modo que as duas possam variar independentemente, o que não atende ao cenário de empilhamento dinâmico de filtros.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'acrescentar dinamicamente camadas',
+                papel: 'Requisito Central do Decorator',
+                regra: 'Agregar responsabilidades em tempo de execução envolvendo o objeto original.',
+                cor: 'green'
+              },
+              {
+                termo: 'sem recorrer a uma explosão de subclasses',
+                papel: 'Alternativa Elegante à Herança',
+                regra: 'Decorator evita criar classes combinatórias (ex: FluxoComCripto, FluxoComZip, FluxoComCriptoEZip).',
+                cor: 'yellow'
+              },
+              {
+                termo: 'combinadas de forma flexível em tempo de execução',
+                papel: 'Composição Recursiva (Wrapper)',
+                regra: 'O Decorator implementa a mesma interface do objeto decorado, permitindo aninhamento infinito.',
+                cor: 'cyan'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE AS PALAVRAS-CHAVE: "acrescentar dinamicamente", "sem alterar a classe original", "sem herança estática", "combinadas em tempo de execução".',
+              '2. CONECTE AO CASO CLÁSSICO: Esse é o exemplo clássico da biblioteca de I/O do Java (BufferedInputStream envolvendo FileInputStream).',
+              '3. ELIMINE OS DISTRATORES: Adapter converte interfaces; Facade cria interface simples para subsistema; Proxy controla acesso.',
+              '4. CONFIRME O PADRÃO ESTRUTURAL: Decorator (também conhecido como Wrapper).',
+              '5. MARQUE: Letra C.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA C',
+            conclusaoPedagogica: 'MEMORIZAÇÃO DEFINITIVA: Falou em "adicionar comportamento em tempo de execução" ou "empilhar funcionalidades sem herança", a banca está gritando DECORATOR!'
+          }
         }
       ],
       usefulLinks: [

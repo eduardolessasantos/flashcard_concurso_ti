@@ -80,6 +80,29 @@ export interface UsefulLink {
   description?: string;
 }
 
+export interface HighlightedTerm {
+  termo: string;
+  papel: string;
+  regra: string;
+  cor?: 'yellow' | 'cyan' | 'green' | 'rose' | 'amber';
+}
+
+export interface RealExamQuestionAnalysis {
+  banca: string;
+  orgaoAno: string;
+  enunciado: string;
+  alternativas?: {
+    letra: string;
+    texto: string;
+    correta: boolean;
+    comentario: string;
+  }[];
+  termosGrifados: HighlightedTerm[];
+  comoLerPassoAPasso: string[];
+  gabaritoOficial: string;
+  conclusaoPedagogica?: string;
+}
+
 export interface HandwrittenNote {
   title: string;
   topicTag: string;
@@ -89,6 +112,7 @@ export interface HandwrittenNote {
   handwrittenContent: string; // Text formatted with handwritten vibe
   annotations?: string[]; // Bullet annotations or sticky tags
   diagramFormula?: string; // Schematic formula or table
+  realExamQuestion?: RealExamQuestionAnalysis; // Questão real de concurso com termos grifados e raio-x
 }
 
 export interface StudyGuideLesson {

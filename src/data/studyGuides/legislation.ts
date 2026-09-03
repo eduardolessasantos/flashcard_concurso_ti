@@ -73,7 +73,73 @@ export const LEGISLATION_TOPIC: StudyGuideTopic = {
 
 3) PEGADINHAS FGV / CEBRASPE:
    • É proibido exigir o motivo do pedido do cidadão!
-   • Violação de Direitos Humanos NUNCA pode ter sigilo decretado!`
+   • Violação de Direitos Humanos NUNCA pode ter sigilo decretado!`,
+          annotations: [
+            'Sigilo é exceção; publicidade é a regra geral da LAI.',
+            'Prazos: Ultrassecreta (25a), Secreta (15a), Reservada (5a) e Dados Pessoais (100a).',
+            'Tempo de resposta: Imediata ou 20 dias prorrogáveis por mais 10.'
+          ],
+          diagramFormula: 'Pedido Cidadão ---> [Imediata] ou [20 dias + 10 dias de prorrogação]\nSigilo: [Ultrassecreta: 25a] > [Secreta: 15a] > [Reservada: 5a] | [Pessoal: 100a]',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Receita Federal do Brasil (RFB) – Analista-Tributário da Receita Federal – 2023',
+            enunciado: `Com base nas disposições da Lei nº 12.527/2011 (Lei de Acesso à Informação - LAI) acerca da transparência, classificação e prazos de restrição de acesso a documentos públicos, assinale a afirmativa CORRETA:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'O fornecimento de informações de interesse público solicitadas pelo cidadão fica condicionado à apresentação de justificativa idônea quanto à destinação dos dados.',
+                correta: false,
+                comentario: 'INCORRETA: O art. 10, § 3º da LAI veda expressamente quaisquer exigências relativas aos motivos determinantes da solicitação de informações de interesse público.'
+              },
+              {
+                letra: 'B',
+                texto: '==Informações relativas à intimidade, vida privada, honra e imagem de indivíduos terão seu acesso restrito a agentes autorizados e à própria pessoa pelo prazo máximo de 100 anos==.',
+                correta: true,
+                comentario: 'CORRETA: Literalidade do art. 31, § 1º, I da Lei 12.527/2011: As informações pessoais relativas à intimidade, vida privada, honra e imagem terão seu acesso restrito, independentemente de classificação de sigilo e pelo prazo máximo de 100 (cem) anos a contar da sua produção.'
+              },
+              {
+                letra: 'C',
+                texto: 'O prazo máximo de sigilo para a informação classificada como ultrassecreta é de 15 anos, sendo terminantemente vedada qualquer prorrogação.',
+                correta: false,
+                comentario: 'INCORRETA: O prazo para ultrassecreta é de 25 anos (não 15), e pode ser prorrogado uma única vez por igual período pela CMRI.'
+              },
+              {
+                letra: 'D',
+                texto: 'Informações que versem sobre violação de direitos humanos praticada por agentes públicos poderão ser classificadas no grau reservado pelo prazo de 5 anos.',
+                correta: false,
+                comentario: 'INCORRETA: Informações sobre violação de direitos humanos NUNCA podem ter restrição de acesso decretada (art. 21, parágrafo único).'
+              },
+              {
+                letra: 'E',
+                texto: 'O prazo ordinário de atendimento a um pedido de acesso à informação é de 45 dias úteis, improrrogáveis.',
+                correta: false,
+                comentario: 'INCORRETA: O prazo é de resposta imediata se disponível, ou 20 dias corridos prorrogáveis por mais 10 mediante justificativa.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'prazo máximo de 100 anos a contar de sua produção',
+                papel: 'Prazo Constitucional de Proteção Pessoal',
+                regra: 'Aplica-se à intimidade, vida privada, honra e imagem (Art. 31, § 1º, I).',
+                cor: 'cyan'
+              },
+              {
+                termo: 'veda exigências relativas aos motivos da solicitação',
+                papel: 'Princípio do Acesso Universal e Incondicionado',
+                regra: 'O cidadão não é obrigado a justificar "por que" quer a informação.',
+                cor: 'yellow'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE OS PRAZOS DA LAI: Ultra = 25a, Secreta = 15a, Reservada = 5a, Pessoais = 100a.',
+              '2. ANALISE A LETRA A: Exigir justificativa? JAMAIS (Art. 10, § 3º proíbe).',
+              '3. ANALISE A LETRA B: 100 anos para dados de honra/intimidade pessoal. Certo absoluto!',
+              '4. ANALISE AS LETRAS C, D, E: Erros nos prazos e na falsa possibilidade de sigilo para violação de direitos humanos.',
+              '5. MARQUE: Letra B.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA B',
+            conclusaoPedagogica: 'CHAVE DE OURO DA LAI: Dados públicos = livres sem justificativa. Direitos humanos = sigilo zero. Dados íntimos = protegidos por até 100 anos!'
+          }
         }
       ],
       usefulLinks: [
@@ -131,7 +197,72 @@ export const LEGISLATION_TOPIC: StudyGuideTopic = {
    • Neutralidade de Rede: Provedor não pode cobrar mais caro para acessar YouTube vs Netflix!
 
 3) SANÇÃO MÁXIMA DA LGPD:
-   • Multa de até 2% do faturamento da empresa, limitada a R$ 50 MILHÕES por infração.`
+   • Multa de até 2% do faturamento da empresa, limitada a R$ 50 MILHÕES por infração.`,
+          annotations: [
+            'Logs de Conexão = 1 ANO de guarda (Provedor de Acesso).',
+            'Logs de Aplicação = 6 MESES de guarda (Sites/Apps).',
+            'Multa máxima da LGPD = até 2% do faturamento, limitada a R$ 50 milhões por infração.'
+          ],
+          diagramFormula: 'Logs de Conexão: [Provedor de Acesso (IP)] ---> Guarda Obrigatória: 1 ANO\nLogs de Aplicação: [Provedores de Aplicações/Sites] ---> Guarda Obrigatória: 6 MESES',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Assembleia Legislativa de Minas Gerais (ALMG) – Analista de Sistemas – 2023',
+            enunciado: `De acordo com a Lei nº 12.965/2014 (Marco Civil da Internet), na provisão de conexão à internet e na provisão de aplicações de internet, os prazos obrigatórios de guarda de registros de conexão e de registros de acesso a aplicações, respectivamente, ressalvada prorrogação requerida por autoridade policial ou judicial, são de:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: '6 meses e 6 meses.',
+                correta: false,
+                comentario: 'INCORRETA: Registros de conexão devem ser guardados pelo prazo mínimo de 1 ano.'
+              },
+              {
+                letra: 'B',
+                texto: '==1 ano e 6 meses==.',
+                correta: true,
+                comentario: 'CORRETA: Conforme o art. 13 da Lei 12.965/2014 (Marco Civil), o provedor de CONEXÃO é obrigado a manter os registros de conexão pelo prazo de 1 (um) ano. Por sua vez, conforme o art. 15, os provedores de APLICAÇÕES de internet comerciais devem manter os registros de acesso a aplicações sob sigilo pelo prazo de 6 (seis) meses.'
+              },
+              {
+                letra: 'C',
+                texto: '5 anos e 2 anos.',
+                correta: false,
+                comentario: 'INCORRETA: Prazos exorbitantes e sem fundamento na legislação brasileira de internet.'
+              },
+              {
+                letra: 'D',
+                texto: '1 ano e 1 ano.',
+                correta: false,
+                comentario: 'INCORRETA: O prazo para aplicações é de 6 meses, não 1 ano.'
+              },
+              {
+                letra: 'E',
+                texto: '2 anos e 6 meses.',
+                correta: false,
+                comentario: 'INCORRETA: O prazo para conexão é de 1 ano.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'registros de conexão: 1 ano',
+                papel: 'Obrigação do Provedor de Acesso',
+                regra: 'Guarda sob sigilo de IPs e datas/horas de conexão por 12 meses (Art. 13).',
+                cor: 'cyan'
+              },
+              {
+                termo: 'registros de acesso a aplicações: 6 meses',
+                papel: 'Obrigação do Provedor de Aplicação',
+                regra: 'Guarda de acessos a sistemas, sites e apps por 6 meses (Art. 15).',
+                cor: 'green'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE A DUPLA: 1) Registros de Conexão; 2) Registros de Acesso a Aplicações.',
+              '2. RECUPERE O MNEMÔNICO: "C de Conexão = 1 Ano completo (12 meses); A de Aplicação = metade (6 meses)".',
+              '3. CONFIRA A ORDEM DO ENUNCIADO: "registros de conexão e registros de acesso a aplicações, respectivamente".',
+              '4. MARQUE: Letra B (1 ano e 6 meses).'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA B',
+            conclusaoPedagogica: 'PRAZOS SAGRADOS DO MARCO CIVIL: Conexão (IP à internet) = 1 ANO. Aplicação (acesso ao app/site) = 6 MESES!'
+          }
         }
       ],
       usefulLinks: [

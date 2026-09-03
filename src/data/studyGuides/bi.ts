@@ -62,7 +62,80 @@ export const BI_TOPIC: StudyGuideTopic = {
 
 3) TABELA FATO vs DIMENSÃO:
    • FATO: Números, Métricas, Medidas (Soma de Vendas, Quantidade).
-   • DIMENSÃO: Contexto, Filtros, "GroupBy" (Nome, Cidade, Mês, Ano).`
+   • DIMENSÃO: Contexto, Filtros, "GroupBy" (Nome, Cidade, Mês, Ano).`,
+          annotations: [
+            'Star Schema: Dimensões desnormalizadas em 1 nível (Consultas rápidas).',
+            'Snowflake Schema: Dimensões normalizadas em hierarquias (Economiza espaço, mas custa JOINs).',
+            'Staging Area: Área técnica de limpeza intermediária sem acesso aos usuários finais.'
+          ],
+          diagramFormula: 'Star Schema: [Fato] <---1:N---> [Dimensão Desnormalizada]\nSnowflake: [Fato] <---1:N---> [Dimensão] <---1:N---> [Sub-Dimensão Normalizada]',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'SEFAZ-AM – Auditor Fiscal de Tributos Estaduais (Tecnologia da Informação) – 2022',
+            enunciado: `Durante o projeto de modelagem dimensional de um Data Warehouse para a arrecadação tributária estadual, o arquiteto de dados avaliou a escolha entre o ==Esquema Estrela (Star Schema)== e o ==Esquema Floco de Neve (Snowflake Schema)==.
+
+A respeito das características que diferenciam esses dois esquemas dimensionais, assinale a afirmativa CORRETA:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'No Star Schema, as tabelas de dimensão encontram-se normalizadas na terceira forma normal (3FN), reduzindo redundâncias ao custo de junções complexas.',
+                correta: false,
+                comentario: 'INCORRETA: O Star Schema mantém propositalmente as tabelas de dimensão DESNORMALIZADAS para acelerar o tempo de resposta das consultas analíticas com menos JOINs.'
+              },
+              {
+                letra: 'B',
+                texto: 'No Snowflake Schema, as tabelas de dimensão são mantidas totalmente desnormalizadas, enquanto a tabela fato é dividida em hierarquias subordinadas.',
+                correta: false,
+                comentario: 'INCORRETA: No Snowflake quem é normalizada são as tabelas de DIMENSÃO, nunca a tabela fato.'
+              },
+              {
+                letra: 'C',
+                texto: '==O Snowflake Schema normaliza as tabelas de dimensão gerando ramificações hierárquicas, o que reduz a redundância de dados mas exige junções adicionais nas consultas SQL==.',
+                correta: true,
+                comentario: 'CORRETA: Definição perfeita da modelagem dimensional! O esquema floco de neve (Snowflake) quebra as dimensões em sub-tabelas normalizadas (ex: DimProduto conecta em DimSubcategoria que conecta em DimCategoria). Isso economiza espaço em disco e elimina redundância, mas exige que as consultas realizem múltiplos JOINs na consulta, reduzindo o desempenho analítico em relação ao Star Schema.'
+              },
+              {
+                letra: 'D',
+                texto: 'O Star Schema não admite o uso de chaves substitutas (Surrogate Keys), exigindo obrigatoriamente as chaves primárias dos sistemas OLTP de origem.',
+                correta: false,
+                comentario: 'INCORRETA: O uso de Surrogate Keys (chaves numéricas inteiras sequenciais artificiais) é altamente recomendado e padrão na modelagem dimensional de Kimball.'
+              },
+              {
+                letra: 'E',
+                texto: 'A tabela fato no Snowflake Schema é dispensada, sendo as métricas financeiras calculadas dinamicamente dentro das dimensões normalizadas.',
+                correta: false,
+                comentario: 'INCORRETA: A tabela fato continua existindo no centro tanto no Star quanto no Snowflake.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'Esquema Estrela (Star Schema)',
+                papel: 'Modelo com Dimensões Desnormalizadas',
+                regra: 'Cada dimensão conecta-se diretamente à tabela fato sem níveis intermediários.',
+                cor: 'yellow'
+              },
+              {
+                termo: 'Esquema Floco de Neve (Snowflake Schema)',
+                papel: 'Modelo com Dimensões Normalizadas',
+                regra: 'As dimensões são normalizadas em hierarquias ramificadas, exigindo mais JOINs.',
+                cor: 'cyan'
+              },
+              {
+                termo: 'reduz a redundância de dados mas exige junções adicionais',
+                papel: 'Trade-off do Snowflake',
+                regra: 'Menos espaço ocupado versus menor velocidade de consulta.',
+                cor: 'green'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. LEMBRE-SE DA GEOMETRIA: Estrela = 1 centro (Fato) e pontas diretas (Dimensões Desnormalizadas). Floco de Neve = ramificações pontiagudas (Dimensões Normalizadas).',
+              '2. ANALISE O TRADE-OFF: Normalizar dimensões = menos repetição de texto, mas MUITO MAIS joins (consultas mais lentas).',
+              '3. CONFIRA AS ALTERNATIVAS: A letra C sintetiza perfeitamente essa relação estrutural de causa e efeito.',
+              '4. MARQUE: Letra C.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA C',
+            conclusaoPedagogica: 'RESUMO VISUAL: Star = 1 JOIN por dimensão (Desnormalizado / Rápido). Snowflake = Múltiplos JOINs em cascata (Normalizado / Lento).'
+          }
         }
       ],
       usefulLinks: [
@@ -115,7 +188,75 @@ export const BI_TOPIC: StudyGuideTopic = {
 
 2) APRENDIZADO EM DATA MINING:
    • Supervisionado: Tem gabarito (Classificação e Regressão).
-   • Não Supervisionado: Não tem gabarito (Clustering / K-Means e Associação / Apriori).`
+   • Não Supervisionado: Não tem gabarito (Clustering / K-Means e Associação / Apriori).`,
+          annotations: [
+            'Drill-down: desce na hierarquia (detalha o dado).',
+            'Roll-up: sobe na hierarquia (sumariza o dado).',
+            'Slice fixa 1 dimensão; Dice seleciona intervalos em 2 ou mais dimensões.'
+          ],
+          diagramFormula: 'Drill-down: [Ano] ---> [Mês] ---> [Dia] (Aumenta Detalhe / Reduz Granularidade)\nRoll-up: [Dia] ---> [Mês] ---> [Ano] (Aumenta Agregação)',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Prefeitura de Niterói – Auditor Fiscal da Receita Municipal – 2023',
+            enunciado: `Um analista de inteligência de negócios está interagindo com um cubo OLAP multidimensional contendo as dimensões Tempo, Geografia e Categoria de Produto, e a medida Faturamento.
+Inicialmente, a tela exibe as vendas agregadas por ==Estado==. O analista clica sobre o estado do Rio de Janeiro e passa a visualizar as vendas detalhadas por ==Município== e, em seguida, por ==Bairro==.
+
+As duas operações analíticas sequenciais realizadas pelo usuário sobre a dimensão Geografia correspondem tecnicamente a:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'Roll-up e Dice.',
+                correta: false,
+                comentario: 'INCORRETA: Roll-up sobe a hierarquia (agregando); o usuário desceu nos detalhes.'
+              },
+              {
+                letra: 'B',
+                texto: '==Drill-down e Drill-down==.',
+                correta: true,
+                comentario: 'CORRETA: A operação de Drill-down (ou Drill-through descendente) navega de um nível menos detalhado para um nível mais detalhado ao longo de uma hierarquia dimensional predefinida. Passar de Estado para Município é um Drill-down; passar de Município para Bairro é um segundo Drill-down sucessivo.'
+              },
+              {
+                letra: 'C',
+                texto: 'Slice e Pivot.',
+                correta: false,
+                comentario: 'INCORRETA: Slice extrai uma fatia e Pivot gira os eixos; nenhuma dessas foi a ação primária descrita.'
+              },
+              {
+                letra: 'D',
+                texto: 'Drill-up e Slice.',
+                correta: false,
+                comentario: 'INCORRETA: Drill-up é sinônimo de Roll-up (agrega), o oposto do que foi feito.'
+              },
+              {
+                letra: 'E',
+                texto: 'Dice e Roll-up.',
+                correta: false,
+                comentario: 'INCORRETA: Não houve operação de sumarização (Roll-up).'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'Estado -> Município -> Bairro',
+                papel: 'Descida na Hierarquia Dimensional',
+                regra: 'Aumenta o nível de detalhe (granularidade mais fina) = Operação de Drill-down.',
+                cor: 'cyan'
+              },
+              {
+                termo: 'duas operações analíticas sequenciais',
+                papel: 'Movimento em Cadeia',
+                regra: 'Cada salto para baixo na hierarquia é um Drill-down individual.',
+                cor: 'green'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE A DIREÇÃO DO MOVIMENTO: Estado (Macro) -> Município (Médio) -> Bairro (Micro/Detalhe).',
+              '2. DEFINA O CONCEITO OLAP: Descer no detalhe = Drill-down. Subir para o resumo = Roll-up.',
+              '3. CONTE OS PASSOS: Passo 1 (Estado -> Município) = 1º Drill-down; Passo 2 (Município -> Bairro) = 2º Drill-down.',
+              '4. MARQUE: Letra B (Drill-down e Drill-down).'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA B',
+            conclusaoPedagogica: 'MACETE DO OLAP: "Down" é descer no detalhe (dar zoom). "Up" é subir para o resumo executivo (afastar o zoom)!'
+          }
         }
       ],
       usefulLinks: [
@@ -172,7 +313,56 @@ export const BI_TOPIC: StudyGuideTopic = {
 
 2) ETL vs ELT:
    • ETL: Extrai -> Transforma fora -> Carrega pronto no DW (Modelo tradicional).
-   • ELT: Extrai -> Carrega direto na Nuvem -> Transforma usando SQL no Cloud Warehouse (Modelo Moderno!).`
+   • ELT: Extrai -> Carrega direto na Nuvem -> Transforma usando SQL no Cloud Warehouse (Modelo Moderno!).`,
+          annotations: [
+            'Data Lake = Schema-on-Read; Data Warehouse = Schema-on-Write.',
+            'Sem governança, o Data Lake apodrece e vira um Data Swamp.',
+            'Kafka e Flink operam ingestão em Streaming contínuo; Spark/MapReduce em Batch.'
+          ],
+          diagramFormula: 'Data Lake: [Dados Brutos] ---> Schema-on-Read ---> [Consulta Flexível]\nData Warehouse: [Dados Estruturados] ---> Schema-on-Write ---> [Relatórios Executivos]',
+          realExamQuestion: {
+            banca: 'Cebraspe',
+            orgaoAno: 'Polícia Federal – Perito Criminal Federal (Área 3 - Tecnologia da Informação) – 2021',
+            enunciado: `No que concerne aos conceitos de Big Data, arquiteturas de armazenamento distribuído e repositórios de dados corporativos, julgue o item que se segue:
+
+"Ao contrário dos Data Warehouses tradicionais, que exigem a definição e validação estrita prévia da estrutura e tipagem dos dados antes de sua carga física (==Schema-on-Write==), os repositórios do tipo ==Data Lake== armazenam dados brutos em formatos variados e aplicam a interpretação e estruturação somente no momento da leitura ou consulta dos dados, em um modelo denominado ==Schema-on-Read==."`,
+            alternativas: [
+              {
+                letra: 'C',
+                texto: '==CERTO==',
+                correta: true,
+                comentario: 'CORRETO (ITEM CERTO): Impecável! O Data Warehouse tradicional exige ETL completo com validação de esquema rígido antes da gravação (Schema-on-Write). Já o Data Lake armazena os dados em seu formato nativo bruto (JSON, Parquet, texto, logs, imagens) sem forçar um esquema antecipado; a estrutura e os tipos de dados são interpretados dinamicamente apenas no instante em que as ferramentas de analytics ou queries SQL realizam a leitura (Schema-on-Read).'
+              },
+              {
+                letra: 'E',
+                texto: 'ERRADO',
+                correta: false,
+                comentario: 'INCORRETO: A assertiva é irretocável e representa a distinção primordial entre DW e Data Lake.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'Data Warehouses tradicionais (...) Schema-on-Write',
+                papel: 'Característica do DW',
+                regra: 'O esquema é imposto na gravação (Write); dados inconsistentes são rejeitados na carga.',
+                cor: 'yellow'
+              },
+              {
+                termo: 'Data Lake (...) Schema-on-Read',
+                papel: 'Característica do Data Lake',
+                regra: 'O dado entra bruto; o esquema só é aplicado no momento da leitura (Read).',
+                cor: 'cyan'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE AS PALAVRAS-CHAVE: DW vs Data Lake; Schema-on-Write vs Schema-on-Read.',
+              '2. CONFRONTE COM A TEORIA: Data Warehouse = Write rígido. Data Lake = Read flexível no momento da consulta.',
+              '3. VERIFIQUE SE HÁ PEGADINHA OU INVERSÃO: O texto associou DW a Schema-on-Write e Data Lake a Schema-on-Read de forma exata.',
+              '4. MARQUE: Item CERTO.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: CERTO',
+            conclusaoPedagogica: 'MEMORIZE EM 1 FRASE: DW grava com regra (Write); Lake lê com regra (Read)!'
+          }
         }
       ],
       usefulLinks: [

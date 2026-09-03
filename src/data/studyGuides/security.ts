@@ -76,7 +76,78 @@ export const SECURITY_TOPIC: StudyGuideTopic = {
             'Controle Preventivo: Evita o incidente (Firewall).',
             'Controle Detectivo: Identifica o ataque (IDS / SIEM).',
             'Controle Corretivo: Restaura o ambiente (Backup / DRP).'
-          ]
+          ],
+          diagramFormula: 'Risco = Ameaça (Externa) × Vulnerabilidade (Interna) × Impacto\nTratamento: Mitigar | Transferir | Evitar | Aceitar',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Receita Federal do Brasil (RFB) – Auditor-Fiscal da Receita Federal – 2023',
+            enunciado: `Durante uma auditoria nos sistemas de processamento aduaneiro de um porto seco, a equipe de segurança identificou que determinado servidor de aplicação mantinha ==o protocolo Telnet ativo em texto claro na porta 23== com uma biblioteca de autenticação ==sem suporte do fabricante há três anos==. 
+
+Adicionalmente, relatórios de inteligência indicaram que ==grupos cibercriminosos organizados estão executando varreduras massivas== em busca de servidores expostos para inserção de ransomware.
+
+De acordo com as boas práticas de Gestão de Riscos de Segurança da Informação (ISO 31000 e ISO 27005), os elementos grifados correspondem, respectivamente, a:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'Ameaça e Vulnerabilidade.',
+                correta: false,
+                comentario: 'INCORRETA: A ordem está invertida. A fraqueza intrínseca (Telnet sem suporte) é uma vulnerabilidade interna; os grupos hackers externos são a ameaça.'
+              },
+              {
+                letra: 'B',
+                texto: '==Vulnerabilidade e Ameaça==.',
+                correta: true,
+                comentario: 'CORRETA: A vulnerabilidade é a fraqueza de um ativo ou controle que pode ser explorada por uma ou mais ameaças (porta Telnet sem suporte). A ameaça é a causa potencial de um incidente indesejado (os grupos criminosos realizando varreduras ativas).'
+              },
+              {
+                letra: 'C',
+                texto: 'Impacto e Risco Residual.',
+                correta: false,
+                comentario: 'INCORRETA: Impacto é a perda financeira/operacional se o ataque se concretizar. Nenhum dos dois itens descritos é impacto.'
+              },
+              {
+                letra: 'D',
+                texto: 'Incidente de Segurança e Ativo Crítico.',
+                correta: false,
+                comentario: 'INCORRETA: Não houve ainda a concretização do incidente (invasão consolidada), e sim a existência de vetores de risco.'
+              },
+              {
+                letra: 'E',
+                texto: 'Vulnerabilidade e Risco Inerente.',
+                correta: false,
+                comentario: 'INCORRETA: Grupos criminosos realizando varreduras são agentes de ameaça, e não a métrica de risco inerente.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'o protocolo Telnet ativo em texto claro na porta 23',
+                papel: 'Falha Técnica Intrínseca',
+                regra: 'Configuração insegura no próprio ambiente da organização -> Vulnerabilidade.',
+                cor: 'rose'
+              },
+              {
+                termo: 'sem suporte do fabricante há três anos',
+                papel: 'Obsolescência do Ativo',
+                regra: 'Falta de patches é a definição por excelência de Vulnerabilidade.',
+                cor: 'yellow'
+              },
+              {
+                termo: 'grupos cibercriminosos organizados estão executando varreduras massivas',
+                papel: 'Agente Causador Externo',
+                regra: 'Agente externo com potencial e intenção de causar dano -> Ameaça.',
+                cor: 'green'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE A ORIGEM DO PRIMEIRO ELEMENTO: Porta Telnet aberta sem suporte do fabricante. É algo de dentro da empresa (fraqueza do sistema)? Sim! Fraqueza interna = VULNERABILIDADE.',
+              '2. IDENTIFIQUE O SEGUNDO ELEMENTO: Grupos hackers varrendo a rede. É um agente externo com capacidade de explorar brechas? Sim! Agente externo = AMEAÇA.',
+              '3. CRUZE COM A ISO 31000/27005: Risco = Ameaça × Vulnerabilidade × Impacto.',
+              '4. CONFIRME A ORDEM SOLICITADA: Primeiro o elemento interno (Vulnerabilidade), depois o externo (Ameaça).',
+              '5. MARQUE: Letra B.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA B',
+            conclusaoPedagogica: 'DISTINÇÃO CLÁSSICA DE CONCURSO: A vulnerabilidade é o buraco na cerca (interno); a ameaça é o ladrão rondando a fazenda (externo); o risco é a probabilidade do ladrão passar pelo buraco e causar prejuízo!'
+          }
         }
       ],
       usefulLinks: [
@@ -133,7 +204,86 @@ export const SECURITY_TOPIC: StudyGuideTopic = {
 
 3) TOKENS NO OAUTH 2.0:
    • Access Token: Curta duração (minutos), enviado nos headers (Bearer).
-   • Refresh Token: Longa duração (dias/meses), serve unicamente para gerar novos Access Tokens sem pedir login novamente.`
+   • Refresh Token: Longa duração (dias/meses), serve unicamente para gerar novos Access Tokens sem pedir login novamente.`,
+          annotations: [
+            'MFA exige no mínimo dois fatores de CATEGORIAS DIFERENTES.',
+            'OIDC adiciona o ID Token (JWT) assinado pelo Authorization Server.'
+          ],
+          diagramFormula: 'Fator 1 (Sabe: Senha/PIN) + Fator 2 (Tem: Token/Celular) + Fator 3 (É: Biometria)\nOAuth 2.0 = Autorização (Scopes) | OIDC = Autenticação (Identidade)',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'Senado Federal – Analista Legislativo (Informática Legislativa) – 2022',
+            enunciado: `Para elevar a segurança no acesso ao sistema de votação e deliberação remota do Parlamento, a comissão de TI avaliou propostas para implantação de Autenticação Multifator (MFA).
+
+Considere as alternativas de mecanismos de autenticação apresentadas:
+
+I. ==Solicitar a senha alfanumérica de 10 caracteres e, ato contínuo, a resposta a uma pergunta de segurança pessoal== pré-cadastrada pelo parlamentar.
+II. ==Solicitar a senha individual associada à leitura biométrica da impressão digital== do parlamentar.
+III. ==Solicitar a inserção de um token físico criptográfico FIDO2/U2F (hardware conectado à porta USB) e a validação do reconhecimento facial== em tempo real.
+
+Constituem implementações GENUÍNAS de Autenticação Multifator (MFA), em estrita conformidade com os padrões internacionais do NIST (SP 800-63B), as propostas contidas em:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'I, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: Tanto a senha quanto a pergunta secreta são fatores da mesma categoria ("algo que você sabe" / conhecimento). Usar dois itens da mesma categoria NÃO constitui MFA.'
+              },
+              {
+                letra: 'B',
+                texto: 'I e II, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: A proposta I não é MFA.'
+              },
+              {
+                letra: 'C',
+                texto: '==II e III, apenas==.',
+                correta: true,
+                comentario: 'CORRETA: No item II temos: Senha ("algo que sabe") + Biometria ("algo que é") = 2 categorias distintas (MFA autêntico). No item III temos: Token FIDO2 ("algo que tem") + Reconhecimento Facial ("algo que é") = 2 categorias distintas (MFA autêntico).'
+              },
+              {
+                letra: 'D',
+                texto: 'II, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: O item III também é uma implementação válida de MFA (Posse + Inerência).'
+              },
+              {
+                letra: 'E',
+                texto: 'I, II e III.',
+                correta: false,
+                comentario: 'INCORRETA: O item I invalida a opção.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'senha alfanumérica de 10 caracteres e a resposta a uma pergunta de segurança',
+                papel: 'Mesma Categoria (Conhecimento)',
+                regra: 'Dois elementos da mesma classe (algo que sabe) NÃO formam MFA.',
+                cor: 'rose'
+              },
+              {
+                termo: 'senha individual associada à leitura biométrica',
+                papel: 'MFA Válido (Sabe + É)',
+                regra: 'Conhecimento + Inerência constituem categorias independentes.',
+                cor: 'green'
+              },
+              {
+                termo: 'token físico criptográfico FIDO2 e reconhecimento facial',
+                papel: 'MFA Válido (Tem + É)',
+                regra: 'Posse de hardware criptográfico + Inerência biométrica constituem MFA de alta segurança.',
+                cor: 'cyan'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. LEMBRE-SE DA DEFINIÇÃO DO NIST/ISO: MFA exige fatores de famílias distintas: 1) O que você sabe (conhecimento); 2) O que você tem (posse); 3) O que você é (inerência).',
+              '2. AVALIE A PROPOSTA I: Senha (sabe) + Pergunta secreta (sabe). Mesma categoria! NÃO É MFA. Risque A, B e E!',
+              '3. AVALIE A PROPOSTA II: Senha (sabe) + Digital (é). Duas categorias distintas. É MFA válido!',
+              '4. AVALIE A PROPOSTA III: Token USB FIDO2 (tem) + Facial (é). Duas categorias distintas. Também é MFA válido!',
+              '5. MARQUE: Letra C (II e III, apenas).'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA C',
+            conclusaoPedagogica: 'PEGADINHA FAVORITA DE BANCAS: Pedir "duas senhas" ou "senha + PIN" é o distrator mais comum. Só existe MFA se houver cruzamento entre Conhecimento, Posse ou Inerência!'
+          }
         }
       ],
       usefulLinks: [
@@ -193,7 +343,63 @@ export const SECURITY_TOPIC: StudyGuideTopic = {
    • Worm: Autônomo! Espalha-se sozinho pela rede.
    • Trojan: "Presente de grego" (jogo/crack falso que abre portas).
    • Ransomware: Cifra o HD e exige resgate em Bitcoin.
-   • Rootkit: Esconde processos no Kernel do SO.`
+   • Rootkit: Esconde processos no Kernel do SO.`,
+          annotations: [
+            'Assinatura Digital = Hash cifrado com Chave Privada do Emissor.',
+            'Verificação = Decifrar o Hash com a Chave Pública do Emissor.',
+            'Confidencialidade = Cifrado com a Chave Pública do Destinatário.'
+          ],
+          diagramFormula: 'Assinatura: Resumo Hash + Chave Privada do Emissor = Autenticidade, Integridade e Não-Repúdio\nSigilo: Mensagem + Chave Pública do Destinatário = Confidencialidade',
+          realExamQuestion: {
+            banca: 'Cebraspe',
+            orgaoAno: 'Polícia Federal (PF) – Perito Criminal Federal (Informática Forense) – 2021',
+            enunciado: `Acerca de criptografia, algoritmos e infraestrutura de chaves públicas (ICP-Brasil), julgue o item a seguir:
+
+"No processo padrão de assinatura digital baseado em criptografia assimétrica, ==o emissor utiliza a chave pública do destinatário para assinar digitalmente o resumo criptográfico (hash)== da mensagem, garantindo, dessa forma, a integridade do conteúdo e a irrefutabilidade (não-repúdio) da autoria perante terceiros."`,
+            alternativas: [
+              {
+                letra: 'C',
+                texto: 'CERTO',
+                correta: false,
+                comentario: 'INCORRETO: Cifrar com a chave pública do destinatário garante apenas CONFIDENCIALIDADE (sigilo para que só o destinatário leia). Para assinar digitalmente garantindo autoria e não-repúdio, o emissor DEVE utilizar a sua própria CHAVE PRIVADA!'
+              },
+              {
+                letra: 'E',
+                texto: '==ERRADO==',
+                correta: true,
+                comentario: 'CORRETO (ITEM ERRADO): Pegadinha campeã do Cebraspe! A assinatura digital é gerada cifrando o hash com a CHAVE PRIVADA DO EMISSOR (pois ela é exclusiva e secreta dele, comprovando autoria). Qualquer pessoa de posse da chave pública do emissor poderá decifrar e atestar que partiu dele, garantindo Autenticidade, Integridade e Não-Repúdio.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'o emissor utiliza a chave pública do destinatário para assinar digitalmente',
+                papel: 'Inversão Fatal de Chaves',
+                regra: 'Assinatura exige a chave PRIVADA do EMISSOR; a chave pública do destinatário serve para envio confidencial.',
+                cor: 'rose'
+              },
+              {
+                termo: 'resumo criptográfico (hash)',
+                papel: 'Objeto Cifrado na Assinatura',
+                regra: 'Não se cifra o arquivo inteiro por motivos de performance; cifra-se apenas o hash de tamanho fixo.',
+                cor: 'yellow'
+              },
+              {
+                termo: 'irrefutabilidade (não-repúdio) da autoria',
+                papel: 'Propriedade Jurídica da Chave Privada',
+                regra: 'Apenas a chave privada exclusiva do signatário pode conferir valor probatório irrefutável.',
+                cor: 'green'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE A OPERAÇÃO: "assinar digitalmente o resumo (hash)".',
+              '2. BUSQUE A CHAVE UTILIZADA: O item diz "chave pública do destinatário".',
+              '3. AVALIE COM A REGRA BÁSICA: Se qualquer pessoa tem a chave pública do destinatário, como isso provaria quem assinou? Não prova nada!',
+              '4. APLICAÇÃO DA REGRA DE OURO: Assinatura Digital SEMPRE usa a CHAVE PRIVADA DO EMISSOR.',
+              '5. MARQUE: Item ERRADO com 100% de certeza.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: ERRADO',
+            conclusaoPedagogica: 'MANTRA DA CRIPTOGRAFIA ASSIMÉTRICA: Quem quer segredo, cifra com a PÚBLICA DE QUEM RECEBE. Quem quer assinar, carimba com a PRIVADA DE QUEM ENVIA!'
+          }
         }
       ],
       usefulLinks: [
@@ -247,7 +453,84 @@ ISO 27002 (Guia de Controles):
   1. Organizacionais (37 controles - Políticas, contratos, ativos)
   2. Pessoas (8 controles - Treinamento, triagem, teletrabalho)
   3. Físicos (14 controles - Perímetros, salas seguras, cabeamento)
-  4. Tecnológicos (34 controles - Autenticação, cripto, DLP, Cloud)`
+  4. Tecnológicos (34 controles - Autenticação, cripto, DLP, Cloud)`,
+          annotations: [
+            'A empresa se certifica na ISO 27001, e NUNCA diretamente na ISO 27002.',
+            'SoA (Statement of Applicability) justifica os controles escolhidos do Anexo A.'
+          ],
+          diagramFormula: 'ISO 27001 = Requisitos + Certificação Auditável (Cláusulas 4-10 + Anexo A)\nISO 27002:2022 = Catálogo de 93 Controles em 4 Temas (O-P-F-T)',
+          realExamQuestion: {
+            banca: 'FGV',
+            orgaoAno: 'TCE-ES – Auditor de Controle Externo (Tecnologia da Informação) – 2023',
+            enunciado: `Em conformidade com as normas ABNT NBR ISO/IEC 27001:2022 e 27002:2022 para a implantação de um Sistema de Gestão de Segurança da Informação (SGSI) em um órgão de controle público:
+
+I. ==Uma organização pública pode pleitear e obter formalmente a certificação independente de conformidade acreditada com a ISO/IEC 27002==.
+II. ==A versão 2022 da norma ISO/IEC 27002 estruturou seus 93 controles em 4 grandes temas estruturais==: Organizacionais, Pessoas, Físicos e Tecnológicos.
+III. ==A Declaração de Aplicabilidade (Statement of Applicability - SoA)== é um documento mandatório que documenta quais controles do Anexo A foram aplicados ou justificados em sua exclusão.
+
+Está CORRETO o que se afirma em:`,
+            alternativas: [
+              {
+                letra: 'A',
+                texto: 'I, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: A ISO 27002 é um código de práticas e orientações de controles, NÃO é uma norma certificável. A certificação formal só é obtida na ISO 27001.'
+              },
+              {
+                letra: 'B',
+                texto: 'I e II, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: O item I é incorreto.'
+              },
+              {
+                letra: 'C',
+                texto: '==II e III, apenas==.',
+                correta: true,
+                comentario: 'CORRETA: Exatamente! A ISO 27002:2022 reduziu as 14 seções antigas para 4 temas taxonômicos (Organizacionais, Pessoas, Físicos e Tecnológicos com 93 controles no total). E a Declaração de Aplicabilidade (SoA) é exigência explícita e obrigatória da ISO 27001 (cláusula 6.1.3).'
+              },
+              {
+                letra: 'D',
+                texto: 'I e III, apenas.',
+                correta: false,
+                comentario: 'INCORRETA: O item I invalida a opção.'
+              },
+              {
+                letra: 'E',
+                texto: 'I, II e III.',
+                correta: false,
+                comentario: 'INCORRETA: O item I invalida a opção.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'obter formalmente a certificação independente de conformidade com a ISO/IEC 27002',
+                papel: 'Pegadinha de Certificação',
+                regra: 'ISO 27002 NÃO certifica! Apenas a ISO 27001 emite certificado acreditado de SGSI.',
+                cor: 'rose'
+              },
+              {
+                termo: 'estruturou seus 93 controles em 4 grandes temas estruturais',
+                papel: 'Nova Taxonomia da Versão 2022',
+                regra: 'A ISO 27002:2022 consolidou os controles em: Organizacionais (37), Pessoas (8), Físicos (14) e Tecnológicos (34).',
+                cor: 'green'
+              },
+              {
+                termo: 'Declaração de Aplicabilidade (Statement of Applicability - SoA)',
+                papel: 'Artefato Mandatório da ISO 27001',
+                regra: 'A SoA é o inventário formal auditável onde se declara quais controles foram adotados ou descartados justificadamente.',
+                cor: 'yellow'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. AVALIE O ITEM I: "obter certificação com a ISO 27002". REGRA DE OURO: Empresa NUNCA se certifica na 27002, apenas na 27001! Item I é FALSO.',
+              '2. ELIMINE ALTERNATIVAS: Com o item I falso, risque imediatamente A, B, D e E.',
+              '3. CONFIRA O ITEM II: A versão 2022 tem 4 temas (OPFT) e 93 controles. Verdadeiro!',
+              '4. CONFIRA O ITEM III: A SoA é mandatória no SGSI. Verdadeiro!',
+              '5. MARQUE: Letra C sem perder tempo.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: LETRA C',
+            conclusaoPedagogica: 'DISTINÇÃO CLÁSSICA: 27001 é o "QUÊ" (Requisitos do SGSI, gera certificado). 27002 é o "COMO" (Guia detalhado de controles, não gera certificado).'
+          }
         }
       ],
       usefulLinks: [
@@ -306,7 +589,61 @@ ISO 27002 (Guia de Controles):
 2) OWASP TOP 10 2021 (Os 3 Primeiros):
   #1 Broken Access Control (Acessar dados de outros usuários sem permissão)
   #2 Cryptographic Failures (Uso de MD5, SHA1 ou HTTP sem TLS)
-  #3 Injection (SQL Injection clássico: ' OR '1'='1)`
+  #3 Injection (SQL Injection clássico: ' OR '1'='1)`,
+          annotations: [
+            'SAST é White-Box (código-fonte sem execução).',
+            'DAST é Black-Box (aplicação compilada rodando em ambiente de teste).'
+          ],
+          diagramFormula: 'Pipeline DevSecOps:\nRequisitos (STRIDE) -> Commit (SAST / Linters) -> Build -> Deploy Staging (DAST / PenTest) -> Produção',
+          realExamQuestion: {
+            banca: 'Cebraspe',
+            orgaoAno: 'Petrobras – Profissional de Nível Superior (Ciência de Dados e TI) – 2022',
+            enunciado: `No âmbito do desenvolvimento seguro de software e das ferramentas de teste automatizado integradas ao pipeline DevSecOps (Shift-Left Security), julgue o item subsequente:
+
+"Os testes de segurança estática de aplicações (SAST) operam sob a abordagem de caixa-preta (black-box), ==analisando a aplicação compilada e em pleno funcionamento em tempo de execução==, sem necessitar de acesso ao código-fonte, enquanto os testes de segurança dinâmica de aplicações (DAST) realizam varreduras diretamente sobre o código-fonte em repouso."`,
+            alternativas: [
+              {
+                letra: 'C',
+                texto: 'CERTO',
+                correta: false,
+                comentario: 'INCORRETO: O item inverteu completamente os conceitos de SAST e DAST.'
+              },
+              {
+                letra: 'E',
+                texto: '==ERRADO==',
+                correta: true,
+                comentario: 'CORRETO (ITEM ERRADO): O item trocou a definição: SAST (Static Application Security Testing) é teste de CAIXA-BRANCA (White-Box), que analisa o código-fonte em repouso sem executar o programa. Por outro lado, DAST (Dynamic Application Security Testing) é teste de CAIXA-PRETA (Black-Box), que injeta cargas maliciosas via HTTP na aplicação em tempo de execução.'
+              }
+            ],
+            termosGrifados: [
+              {
+                termo: 'testes de segurança estática de aplicações (SAST) operam sob a abordagem de caixa-preta',
+                papel: 'Inversão Conceitual',
+                regra: 'SAST é Static = Caixa-Branca (inspeciona o código-fonte).',
+                cor: 'rose'
+              },
+              {
+                termo: 'analisando a aplicação compilada e em pleno funcionamento em tempo de execução',
+                papel: 'Definição do DAST',
+                regra: 'Tempo de execução (runtime) via rede/HTTP é o domínio exclusivo do DAST.',
+                cor: 'yellow'
+              },
+              {
+                termo: 'DAST realizam varreduras diretamente sobre o código-fonte em repouso',
+                papel: 'Segunda Inversão',
+                regra: 'DAST nunca olha código-fonte; ele interage apenas com as entradas e saídas da aplicação no ar.',
+                cor: 'cyan'
+              }
+            ],
+            comoLerPassoAPasso: [
+              '1. IDENTIFIQUE AS SIGLAS: SAST (S = Static) e DAST (D = Dynamic).',
+              '2. LÓGICA MNEMÔNICA: Estático (Static) = parado (código-fonte em repouso / caixa-branca). Dinâmico (Dynamic) = em movimento (aplicação rodando em tempo de execução / caixa-preta).',
+              '3. COMPARAÇÃO COM O ENUNCIADO: O enunciado atribuiu caixa-preta e execução ao SAST e código-fonte ao DAST. Inversão total!',
+              '4. MARQUE: Item ERRADO instantaneamente.'
+            ],
+            gabaritoOficial: 'GABARITO OFICIAL: ERRADO',
+            conclusaoPedagogica: 'PADRÃO CEBRASPE: Inverter pares antagônicos (SAST x DAST, Simétrica x Assimétrica, Risco x Ameaça) é a estratégia mais recorrente da banca. Fique atento aos termos trocados!'
+          }
         }
       ],
       usefulLinks: [

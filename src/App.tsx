@@ -13,6 +13,7 @@ import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { TermsModal } from './components/TermsModal';
 import { AboutModal } from './components/AboutModal';
 import { ContactModal } from './components/ContactModal';
+import { StaticPageView, StaticRoute } from './components/StaticPageView';
 import { useAuth } from './context/AuthContext';
 import { 
   PlusCircle, 
@@ -57,8 +58,52 @@ export default function App() {
 
   const isAuthenticated = !!user;
 
-  // Active View Mode: Flashcards practice or Detailed Study Guides
-  const [currentView, setCurrentView] = useState<'flashcards' | 'guides'>('flashcards');
+  // Active View Mode: Flashcards practice, Detailed Study Guides, or Static Institutional Routes
+  type ViewMode = 'flashcards' | 'guides' | StaticRoute;
+  const [currentView, setCurrentView] = useState<ViewMode>(() => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      if (path === 'sobre') return 'sobre';
+      if (path === 'privacidade') return 'privacidade';
+      if (path === 'termos') return 'termos';
+      if (path === 'contato') return 'contato';
+      if (path === 'guias' || path === 'cadernos') return 'guides';
+    }
+    return 'flashcards';
+  });
+
+  // Keep view in sync with browser URL and history
+  useEffect(() => {
+    const handleLocation = () => {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      if (path === 'sobre') setCurrentView('sobre');
+      else if (path === 'privacidade') setCurrentView('privacidade');
+      else if (path === 'termos') setCurrentView('termos');
+      else if (path === 'contato') setCurrentView('contato');
+      else if (path === 'guias' || path === 'cadernos') setCurrentView('guides');
+      else if (path === '' || path === 'index.html') setCurrentView('flashcards');
+    };
+    window.addEventListener('popstate', handleLocation);
+    return () => window.removeEventListener('popstate', handleLocation);
+  }, []);
+
+  const navigateToRoute = (route: StaticRoute) => {
+    window.history.pushState({}, '', `/${route}`);
+    setCurrentView(route);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateHome = () => {
+    window.history.pushState({}, '', '/');
+    setCurrentView('flashcards');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToGuides = () => {
+    window.history.pushState({}, '', '/guias');
+    setCurrentView('guides');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Load saved cards or default to seed data
   const [cards, setCards] = useState<Flashcard[]>(() => {
@@ -410,8 +455,11 @@ export default function App() {
       <header className="h-16 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-8 flex items-center justify-between shadow-lg">
         {/* Brand & Mode Switcher */}
         <div className="flex items-center gap-4 sm:gap-8">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30">
+          <div 
+            onClick={navigateHome}
+            className="flex items-center gap-3 cursor-pointer group"
+          >
+            <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform">
               <span className="font-black text-white text-sm">IT</span>
             </div>
             <div>
@@ -427,7 +475,7 @@ export default function App() {
           {/* View Toggle Tabs */}
           <div className="flex items-center p-1 bg-slate-950/80 rounded-full border border-slate-800">
             <button
-              onClick={() => setCurrentView('flashcards')}
+              onClick={navigateHome}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
                 currentView === 'flashcards'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
@@ -439,7 +487,7 @@ export default function App() {
             </button>
 
             <button
-              onClick={() => setCurrentView('guides')}
+              onClick={navigateToGuides}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
                 currentView === 'guides'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
@@ -526,7 +574,13 @@ export default function App() {
       )}
 
       {/* ================= VIEW CONTAINER ================= */}
-      {currentView === 'guides' ? (
+      {['sobre', 'privacidade', 'termos', 'contato'].includes(currentView) ? (
+        <StaticPageView
+          route={currentView as StaticRoute}
+          onNavigateHome={navigateHome}
+          onNavigateRoute={navigateToRoute}
+        />
+      ) : currentView === 'guides' ? (
         <StudyGuidesView onStartFlashcardTopic={handleStartFlashcardTopic} />
       ) : (
         /* ================= FLASHCARD WORKSPACE ================= */
@@ -828,11 +882,15 @@ export default function App() {
 
       {/* ================= FOOTER ================= */}
       <Footer
-        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
-        onOpenTerms={() => setIsTermsModalOpen(true)}
-        onOpenAbout={() => setIsAboutModalOpen(true)}
-        onOpenContact={() => setIsContactModalOpen(true)}
-        onSelectView={(v) => setCurrentView(v)}
+        onOpenPrivacy={() => navigateToRoute('privacidade')}
+        onOpenTerms={() => navigateToRoute('termos')}
+        onOpenAbout={() => navigateToRoute('sobre')}
+        onOpenContact={() => navigateToRoute('contato')}
+        onNavigateRoute={navigateToRoute}
+        onSelectView={(v) => {
+          if (v === 'flashcards') navigateHome();
+          else navigateToGuides();
+        }}
       />
 
       {/* ================= MODALS ================= */}

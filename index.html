@@ -26,9 +26,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1242153191500402"
-     crossorigin="anonymous"></script>
+    <!-- Google AdSense (carregamento síncrono no head para validação imediata do crawler e preview) -->
+    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-124215391500402" crossorigin="anonymous"></script>
+    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1242153191500402" crossorigin="anonymous"></script>
 
     <!-- Schema.org JSON-LD Structured Data for Educational Resource -->
     <script type="application/ld+json">
@@ -66,27 +66,153 @@
   <body>
     <div id="root"></div>
 
-    <!-- Semantic fallback for crawlers & search bots -->
-    <noscript>
-      <header>
-        <h1>DevConcursos TI - Plataforma Educacional de TI para Concursos Públicos</h1>
-        <p>Estude gratuitamente com nossa metodologia de repetição espaçada (SRS) e cadernos de estudo teóricos aprofundados.</p>
+    <!-- CONTEÚDO EM HTML PURO PARA CRAWLERS DO ADSENSE, INDEXADORES E PRÉ-RENDERIZAÇÃO -->
+    <article id="static-crawler-content" class="bg-slate-950 text-slate-300 border-t border-slate-800/80 py-16 px-6 sm:px-12 max-w-5xl mx-auto space-y-8 font-sans leading-relaxed">
+      <header class="space-y-4 border-b border-slate-800 pb-8">
+        <p class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Guia Educacional Oficial & Plataforma de Estudos</p>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Flash Concurso TI – Plataforma de Estudo Ativo com Flashcards e Repetição Espaçada (SRS) para Concursos Públicos de Tecnologia da Informação
+        </h1>
+        <p class="text-base text-slate-400">
+          O <strong>Flash Concurso TI (DevConcursos TI)</strong> é um portal educacional gratuito de alta performance, desenvolvido exclusivamente para concurseiros e profissionais de tecnologia que buscam a aprovação em cargos de TI em Tribunais (STJ, TSE, TRF, TRT), Carreiras Fiscais (Receita Federal e SEFAZ), Bancos Públicos (Banco do Brasil, Caixa Econômica Federal e BNDES), Órgãos Federais e Estaduais.
+        </p>
       </header>
-      <main>
-        <section>
-          <h2>Disciplinas e Conteúdo Programático</h2>
-          <ul>
-            <li><strong>Segurança da Informação:</strong> Criptografia simétrica e assimétrica, assinaturas digitais, MFA com 3 fatores, norma ABNT NBR ISO/IEC 27002:2022 (4 temas), OWASP Top 10:2021 (Broken Access Control) e testes de segurança SAST vs DAST.</li>
-            <li><strong>Governança de TI:</strong> ITIL v4 (Sistema de Valor de Serviço, Utilidade vs Garantia e os 7 Princípios Orientadores), COBIT 2019 (EDM, APO, BAI, DSS, MEA), BPMN 2.0 e Metodologias Ágeis (Scrum, XP e TDD).</li>
-            <li><strong>Inteligência de Negócios e Big Data:</strong> Data Warehouses (Inmon vs Kimball), Modelagem Dimensional (Star Schema vs Snowflake), Operações OLAP (Drill-down, Roll-up, Slice, Dice, Pivot) e Data Lakes (Schema-on-Read).</li>
-            <li><strong>Legislação e Proteção de Dados:</strong> Lei de Acesso à Informação (Lei 12.527/11 - LAI), Lei Geral de Proteção de Dados (Lei 13.709/18 - LGPD) e Marco Civil da Internet (Lei 12.965/14).</li>
-          </ul>
-        </section>
-      </main>
-      <footer>
-        <p>© DevConcursos TI - Política de Privacidade, Termos de Uso e Metodologia SRS.</p>
-      </footer>
-    </noscript>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white">1. O que é o Flash Concurso TI e qual a sua finalidade?</h2>
+        <p>
+          Os editais contemporâneos de concursos públicos na área de Tecnologia da Informação tornaram-se notórios pela extensão e profundidade exorbitantes de suas ementas. Um candidato aos cargos de Analista em Tecnologia da Informação ou Auditor de Controle e Fiscalização necessita dominar simultaneamente centenas de conceitos técnicos: normas de Segurança da Informação (como a ABNT NBR ISO/IEC 27002:2022), frameworks de governança e gestão (ITIL v4 e COBIT 2019), modelagem de processos com notação BPMN 2.0, engenharia de software com práticas ágeis e testes automatizados, inteligência de negócios, Data Warehousing, Data Lakes, arquiteturas modernas de Inteligência Artificial e Processamento de Linguagem Natural, além de uma rigorosa legislação de dados (LGPD, LAI e Marco Civil da Internet).
+        </p>
+        <p>
+          O <strong>Flash Concurso TI</strong> tem como finalidade primordial resolver o colapso cognitivo do concurseiro de TI. Através de um repositório curado de flashcards inteligentes e cadernos temáticos de resumos comentados, a plataforma transforma o estudo passivo e desestruturado em uma rotina de <em>Active Recall</em> (recordação ativa) com base científica, permitindo consolidar os detalhes minuciosos e as armadilhas mais cobradas pelas bancas examinadoras.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white">2. Por que estudar com Flashcards para Concursos de TI? A Ciência da Recordação Ativa</h2>
+        <p>
+          A maioria dos concurseiros comete o erro clássico de praticar o estudo passivo: ler apostilas volumosas em PDF, grifar páginas inteiras com marca-texto ou assistir a horas seguidas de videoaulas. Estudos consagrados na psicologia cognitiva demonstram que esse comportamento produz a chamada <strong>ilusão de competência</strong>: o estudante reconhece a informação quando ela está diante dos seus olhos, mas é incapaz de evocá-la espontaneamente no dia da prova quando confrontado com uma folha em branco ou com enunciados ardilosos.
+        </p>
+        <p>
+          O estudo com flashcards inverte essa lógica através do <strong>Active Recall</strong> (recuperação ativa). Ao visualizar apenas a pergunta ou a situação-problema no cartão (por exemplo: <em>"Quais são os 4 temas de controles da ISO/IEC 27002:2022?"</em> ou <em>"Qual a diferença entre Star Schema e Snowflake Schema no Data Warehouse?"</em>), o cérebro é forçado a reativar os circuitos neurais de longo prazo para formular a resposta antes de virar o cartão. Esse esforço de recuperação fortalece as conexões sinápticas e multiplica a taxa de retenção da memória em até 300% em relação à simples releitura.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white">3. A Ciência da Repetição Espaçada (SRS) e a Curva do Esquecimento</h2>
+        <p>
+          Em 1885, o pioneiro psicólogo alemão Hermann Ebbinghaus publicou sua pesquisa sobre a <strong>Curva do Esquecimento</strong>, demonstrando que o cérebro humano descarta naturalmente cerca de 50% a 70% das novas informações aprendidas nas primeiras 24 horas caso não haja um reforço deliberado. Em poucos dias, a retenção residual pode cair para menos de 20%.
+        </p>
+        <p>
+          O <strong>Sistema de Repetição Espaçada (Spaced Repetition System - SRS)</strong> utilizado no Flash Concurso TI combate esse decaimento calculando os momentos matematicamente ótimos para a revisão. Sempre que o estudante revisa um cartão imediatamente antes do ponto em que ele seria esquecido, a curva se reinicia com um declínio muito mais suave, transferindo gradativamente a informação da memória de trabalho (curto prazo) para a memória declarativa de longo prazo.
+        </p>
+        <p>
+          Na nossa plataforma, o concurseiro avalia seu domínio em cada cartão através de 4 níveis objetivos de feedback:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Errei:</strong> Reinserção imediata do cartão na fila da sessão ativa para consolidação cognitiva obrigatória antes da conclusão do bloco.</li>
+          <li><strong>Difícil:</strong> O intervalo é encurtado, programando uma revisão rápida (em 24 a 48 horas) para reforçar conceitos que geraram dúvida ou hesitação.</li>
+          <li><strong>Bom:</strong> Progressão normal do intervalo de revisão espaçada, poupando seu tempo para outros tópicos do edital.</li>
+          <li><strong>Fácil:</strong> Grande salto temporal no agendamento da próxima repetição, garantindo que você não gaste energia revisando temas já perfeitamente assimilados.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white">4. Como Estudar com Flashcards para Concursos de TI: Guia Prático</h2>
+        <p>
+          Para extrair o rendimento máximo da nossa plataforma e acelerar a sua aprovação, recomendamos o seguinte fluxo de estudos:
+        </p>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li><strong>Consistência sobre Intensidade:</strong> Pratique diariamente de 20 a 30 minutos de flashcards. Sessões curtas e constantes todos os dias produzem resultados infinitamente superiores a maratonas esporádicas de 8 horas no final de semana.</li>
+          <li><strong>Honestidade Rigorosa no Feedback:</strong> Nunca assinale "Fácil" se você titubeou ou se precisou 'chutar'. A eficácia do algoritmo SRS depende integralmente da sua honestidade cognitiva ao admitir quando um cartão necessita de reforço.</li>
+          <li><strong>Leitura Ativa do Comentário Pedagógico:</strong> Após virar o cartão, dedique alguns segundos para ler o comentário explicativo, a base normativa e a dica de banca inclusa no verso do flashcard.</li>
+          <li><strong>Integração com os Cadernos Teóricos:</strong> Utilize nossa aba de <em>Cadernos e Guias Teóricos</em> para compreender a teoria global da disciplina antes de iniciar as rodadas intensivas de memorização por flashcards.</li>
+        </ol>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white">5. Disciplinas e Conteúdo Programático Especializado em TI</h2>
+        <p>
+          O acervo pedagógico do Flash Concurso TI cobre de forma aprofundada os tópicos de maior peso nos editais das principais carreiras de TI:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl space-y-2">
+            <h3 class="text-lg font-bold text-indigo-400">Segurança da Informação & Criptografia</h3>
+            <p class="text-xs text-slate-400">
+              ABNT NBR ISO/IEC 27002:2022 estruturada nos 4 novos temas (Organizacionais, Pessoas, Físicos e Tecnológicos); OWASP Top 10:2021 com ênfase em Broken Access Control, Injection e Cryptographic Failures; Criptografia simétrica (AES, DES), assimétrica (RSA, Curvas Elípticas), funções hash seguras (SHA-256) e Autenticação Multifator (MFA) baseada em algo que você sabe, tem ou é.
+            </p>
+          </div>
+
+          <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl space-y-2">
+            <h3 class="text-lg font-bold text-indigo-400">Governança e Gestão de TI</h3>
+            <p class="text-xs text-slate-400">
+              ITIL v4 detalhando o Sistema de Valor de Serviço (SVS), as 4 Dimensões do Gerenciamento de Serviços, a distinção entre Utilidade ('fit for purpose') e Garantia ('fit for use'), além dos 7 Princípios Orientadores; COBIT 2019 com a separação rígida entre Governança (domínio EDM) e Gestão (domínios APO, BAI, DSS e MEA); e Modelagem de Processos com a notação BPMN 2.0.
+            </p>
+          </div>
+
+          <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl space-y-2">
+            <h3 class="text-lg font-bold text-indigo-400">Banco de Dados, BI e Big Data</h3>
+            <p class="text-xs text-slate-400">
+              Modelagem Dimensional com Esquema Estrela (Star Schema desnormalizado) versus Floco de Neve (Snowflake normalizado); Data Warehouse comparando a visão corporativa top-down de Inmon com a visão por Data Marts bottom-up de Kimball; Operações multidimensionais OLAP (Drill-down, Roll-up, Slice, Dice e Pivot); e arquiteturas de Data Lake baseadas em Schema-on-Read.
+            </p>
+          </div>
+
+          <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl space-y-2">
+            <h3 class="text-lg font-bold text-indigo-400">Legislação e Proteção de Dados</h3>
+            <p class="text-xs text-slate-400">
+              Lei Geral de Proteção de Dados (LGPD - Lei 13.709/18) cobrindo os 10 princípios fundamentais (finalidade, adequação, necessidade, transparência), bases legais de tratamento e atribuições da ANPD; Lei de Acesso à Informação (LAI - Lei 12.527/11) com prazos de resposta (20 + 10 dias) e graus de sigilo (Reservada por 5 anos, Secreta por 15 anos, Ultrassecreta por 25 anos); e Marco Civil da Internet (Lei 12.965/14).
+            </p>
+          </div>
+
+          <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl space-y-2">
+            <h3 class="text-lg font-bold text-indigo-400">Inteligência Artificial & Arquiteturas Modernas</h3>
+            <p class="text-xs text-slate-400">
+              Conceitos avançados de Redes Neurais Artificiais, arquitetura Transformer e mecanismo de Autoatenção (Self-Attention); abordagens de RAG (Retrieval-Augmented Generation) versus Fine-Tuning de LLMs; e vulnerabilidades em sistemas de IA gerativa como Prompt Injection e mitigação de alucinações.
+            </p>
+          </div>
+
+          <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl space-y-2">
+            <h3 class="text-lg font-bold text-indigo-400">Engenharia de Software & Métodos Ágeis</h3>
+            <p class="text-xs text-slate-400">
+              Práticas ágeis de Scrum (Sprint, Product Backlog, Daily Scrum, Retrospectiva) e Extreme Programming (XP: Programação em Par, Integração Contínua); ciclo do Test-Driven Development (TDD: Red, Green, Refactor); princípios SOLID de design orientado a objetos; e arquiteturas de Microsserviços com APIs RESTful.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white">6. Análise Estratégica das Principais Bancas Examinadoras</h2>
+        <p>
+          O Flash Concurso TI organiza questões e mnemônicos mapeados para as particularidades das bancas mais atuantes:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Cebraspe (Cespe):</strong> Modelo característico de itens Certo/Errado com penalização por erro (uma errada anula uma certa). A banca é mestre em alterar uma única palavra na definição de um controle da ISO 27002 ou inverter os papéis de governança e gestão no COBIT 2019. Nossos flashcards treinam o olho do estudante para identificar essas pegadinhas com precisão cirúrgica.</li>
+          <li><strong>FGV (Fundação Getulio Vargas):</strong> Notória por enunciados longos e contextualizados que simulam situações corporativas complexas (por exemplo, falhas de segurança após deploy ou implementação de incidentes na ITIL). Os flashcards para FGV estimulam o raciocínio prático e a identificação rápida do princípio subjacente.</li>
+          <li><strong>Fundação Cesgranrio:</strong> Predominante em concursos da área bancária (Caixa, Banco do Brasil) e estatais de energia e petróleo. A banca prioriza a literalidade das normas e conceitos de arquitetura de dados e transações seguras.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-4 border-t border-slate-800 pt-6">
+        <h2 class="text-xl font-bold text-white">7. Navegação Rápida & Páginas Institucionais</h2>
+        <p class="text-sm text-slate-400">
+          Para garantir total transparência, conformidade com a LGPD e termos de serviço, você pode acessar diretamente nossas páginas públicas:
+        </p>
+        <div class="flex flex-wrap gap-4 text-xs">
+          <a href="/sobre" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/50 rounded-xl text-indigo-400 font-semibold transition-colors">
+            Sobre Nós & Metodologia SRS
+          </a>
+          <a href="/privacidade" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/50 rounded-xl text-indigo-400 font-semibold transition-colors">
+            Política de Privacidade & Cookies
+          </a>
+          <a href="/termos" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/50 rounded-xl text-indigo-400 font-semibold transition-colors">
+            Termos de Uso do Serviço
+          </a>
+          <a href="/contato" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/50 rounded-xl text-indigo-400 font-semibold transition-colors">
+            Fale Conosco & Suporte Técnico
+          </a>
+        </div>
+      </section>
+    </article>
 
     <script type="module" src="/src/main.tsx"></script>
   </body>

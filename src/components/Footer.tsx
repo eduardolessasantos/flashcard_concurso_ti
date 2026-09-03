@@ -2,10 +2,11 @@ import React from 'react';
 import { Shield, FileText, Info, Mail, Layers, BookOpen, Heart, Sparkles } from 'lucide-react';
 
 interface FooterProps {
-  onOpenPrivacy: () => void;
-  onOpenTerms: () => void;
-  onOpenAbout: () => void;
-  onOpenContact: () => void;
+  onOpenPrivacy?: () => void;
+  onOpenTerms?: () => void;
+  onOpenAbout?: () => void;
+  onOpenContact?: () => void;
+  onNavigateRoute?: (route: 'sobre' | 'privacidade' | 'termos' | 'contato') => void;
   onSelectView?: (view: 'flashcards' | 'guides') => void;
 }
 
@@ -14,8 +15,17 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenTerms,
   onOpenAbout,
   onOpenContact,
+  onNavigateRoute,
   onSelectView
 }) => {
+  const handleNav = (e: React.MouseEvent, route: 'sobre' | 'privacidade' | 'termos' | 'contato', fallbackModal?: () => void) => {
+    e.preventDefault();
+    if (onNavigateRoute) {
+      onNavigateRoute(route);
+    } else if (fallbackModal) {
+      fallbackModal();
+    }
+  };
   return (
     <footer id="main-footer" className="bg-slate-950 border-t border-slate-800/80 text-slate-400 py-10 px-4 sm:px-8 mt-auto">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -70,40 +80,44 @@ export const Footer: React.FC<FooterProps> = ({
           <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">Legal & Transparência</h4>
           <ul className="space-y-2 text-xs">
             <li>
-              <button 
-                onClick={onOpenPrivacy}
+              <a 
+                href="/privacidade"
+                onClick={(e) => handleNav(e, 'privacidade', onOpenPrivacy)}
                 className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
               >
                 <Shield className="w-3.5 h-3.5 text-indigo-400" />
-                Política de Privacidade & Cookies
-              </button>
+                <span>Política de Privacidade & Cookies</span>
+              </a>
             </li>
             <li>
-              <button 
-                onClick={onOpenTerms}
+              <a 
+                href="/termos"
+                onClick={(e) => handleNav(e, 'termos', onOpenTerms)}
                 className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
               >
                 <FileText className="w-3.5 h-3.5 text-indigo-400" />
-                Termos de Uso do Serviço
-              </button>
+                <span>Termos de Uso do Serviço</span>
+              </a>
             </li>
             <li>
-              <button 
-                onClick={onOpenAbout}
+              <a 
+                href="/sobre"
+                onClick={(e) => handleNav(e, 'sobre', onOpenAbout)}
                 className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
               >
                 <Info className="w-3.5 h-3.5 text-indigo-400" />
-                Sobre Nós & Metodologia SRS
-              </button>
+                <span>Sobre Nós & Metodologia SRS</span>
+              </a>
             </li>
             <li>
-              <button 
-                onClick={onOpenContact}
+              <a 
+                href="/contato"
+                onClick={(e) => handleNav(e, 'contato', onOpenContact)}
                 className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
               >
                 <Mail className="w-3.5 h-3.5 text-indigo-400" />
-                Fale Conosco & Suporte
-              </button>
+                <span>Fale Conosco & Suporte</span>
+              </a>
             </li>
           </ul>
         </div>

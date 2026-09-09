@@ -1,11 +1,12 @@
 import React from 'react';
-import { Shield, FileText, Info, Mail, Layers, BookOpen, Heart, Sparkles } from 'lucide-react';
+import { Shield, FileText, Info, Mail, Layers, BookOpen, Heart, Sparkles, GraduationCap, ArrowRight } from 'lucide-react';
 
 interface FooterProps {
   onOpenPrivacy?: () => void;
   onOpenTerms?: () => void;
   onOpenAbout?: () => void;
   onOpenContact?: () => void;
+  onOpenEducationalGuide?: () => void;
   onNavigateRoute?: (route: 'sobre' | 'privacidade' | 'termos' | 'contato') => void;
   onSelectView?: (view: 'flashcards' | 'guides') => void;
 }
@@ -15,6 +16,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenTerms,
   onOpenAbout,
   onOpenContact,
+  onOpenEducationalGuide,
   onNavigateRoute,
   onSelectView
 }) => {
@@ -28,6 +30,38 @@ export const Footer: React.FC<FooterProps> = ({
   };
   return (
     <footer id="main-footer" className="bg-slate-950 border-t border-slate-800/80 text-slate-400 py-10 px-4 sm:px-8 mt-auto">
+      {/* Banner / Botão de Abertura do Guia Educacional Oficial */}
+      {onOpenEducationalGuide && (
+        <div className="max-w-7xl mx-auto mb-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-indigo-950/70 via-slate-900 to-slate-950 border border-indigo-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl shadow-indigo-950/20">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 shrink-0 shadow-inner">
+              <GraduationCap className="w-6 h-6" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  Metodologia & Diretrizes Oficiais
+                </span>
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mt-1">
+                Guia Educacional Oficial & Plataforma de Estudos
+              </h3>
+              <p className="text-xs text-slate-400 mt-0.5 max-w-3xl">
+                Acesse o guia completo sobre a ciência da recordação ativa (Active Recall), repetição espaçada (SRS), curva do esquecimento e análise estratégica de bancas (Cebraspe, FGV e Cesgranrio).
+              </p>
+            </div>
+          </div>
+          <button 
+            onClick={onOpenEducationalGuide}
+            className="w-full sm:w-auto whitespace-nowrap px-5 py-3 bg-indigo-600 hover:bg-indigo-500 active:scale-98 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Abrir Guia Educacional</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         {/* Coluna 1: Sobre a Plataforma */}
         <div className="space-y-3 md:col-span-1">
@@ -53,7 +87,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button 
                 onClick={() => onSelectView && onSelectView('flashcards')}
-                className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
+                className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left cursor-pointer"
               >
                 <Layers className="w-3.5 h-3.5 text-indigo-400" />
                 Treino de Flashcards (SRS)
@@ -62,12 +96,23 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button 
                 onClick={() => onSelectView && onSelectView('guides')}
-                className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
+                className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left cursor-pointer"
               >
                 <BookOpen className="w-3.5 h-3.5 text-emerald-400" />
                 Cadernos & Guias Teóricos
               </button>
             </li>
+            {onOpenEducationalGuide && (
+              <li>
+                <button 
+                  onClick={onOpenEducationalGuide}
+                  className="hover:text-indigo-300 text-indigo-400 font-semibold transition-colors flex items-center gap-1.5 text-left cursor-pointer"
+                >
+                  <GraduationCap className="w-3.5 h-3.5 text-indigo-400" />
+                  Guia Educacional Oficial (Modal)
+                </button>
+              </li>
+            )}
             <li className="text-slate-500">Segurança da Informação & ISO 27002</li>
             <li className="text-slate-500">Governança (ITIL v4 & COBIT 2019)</li>
             <li className="text-slate-500">Banco de Dados, BI & Big Data</li>

@@ -13,6 +13,7 @@ import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { TermsModal } from './components/TermsModal';
 import { AboutModal } from './components/AboutModal';
 import { ContactModal } from './components/ContactModal';
+import { EducationalGuideModal } from './components/EducationalGuideModal';
 import { StaticPageView, StaticRoute } from './components/StaticPageView';
 import { useAuth } from './context/AuthContext';
 import { 
@@ -134,6 +135,7 @@ export default function App() {
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isEducationalGuideOpen, setIsEducationalGuideOpen] = useState(false);
 
   // Cloud Sync notification toast
   const [cloudSynced, setCloudSynced] = useState(false);
@@ -886,6 +888,7 @@ export default function App() {
         onOpenTerms={() => navigateToRoute('termos')}
         onOpenAbout={() => navigateToRoute('sobre')}
         onOpenContact={() => navigateToRoute('contato')}
+        onOpenEducationalGuide={() => setIsEducationalGuideOpen(true)}
         onNavigateRoute={navigateToRoute}
         onSelectView={(v) => {
           if (v === 'flashcards') navigateHome();
@@ -942,6 +945,16 @@ export default function App() {
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
+      />
+
+      <EducationalGuideModal
+        isOpen={isEducationalGuideOpen}
+        onClose={() => setIsEducationalGuideOpen(false)}
+        onNavigateRoute={navigateToRoute}
+        onSelectView={(v) => {
+          if (v === 'flashcards') navigateHome();
+          else navigateToGuides();
+        }}
       />
     </div>
   );

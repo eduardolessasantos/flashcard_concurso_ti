@@ -586,7 +586,7 @@ export default function App() {
         <StudyGuidesView onStartFlashcardTopic={handleStartFlashcardTopic} />
       ) : (
         /* ================= FLASHCARD WORKSPACE ================= */
-        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        <div className="flex-1 flex flex-col lg:flex-row min-h-[680px]">
           {/* Sidebar */}
           <aside className="w-full lg:w-80 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800 flex flex-col p-5 sm:p-6 shadow-2xl shrink-0 overflow-y-auto">
             {/* Sidebar Sections */}

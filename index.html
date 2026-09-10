@@ -63,19 +63,19 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
-
-    <!-- CONTEÚDO EM HTML PURO PARA CRAWLERS DO ADSENSE, INDEXADORES E PRÉ-RENDERIZAÇÃO (Visivelmente gerenciado pelo modal no React) -->
-    <article id="static-crawler-content" class="hidden">
-      <header class="space-y-4 border-b border-slate-800 pb-8">
-        <p class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Guia Educacional Oficial & Plataforma de Estudos</p>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Flash Concurso TI – Plataforma de Estudo Ativo com Flashcards e Repetição Espaçada (SRS) para Concursos Públicos de Tecnologia da Informação
-        </h1>
-        <p class="text-base text-slate-400">
-          O <strong>Flash Concurso TI (DevConcursos TI)</strong> é um portal educacional gratuito de alta performance, desenvolvido exclusivamente para concurseiros e profissionais de tecnologia que buscam a aprovação em cargos de TI em Tribunais (STJ, TSE, TRF, TRT), Carreiras Fiscais (Receita Federal e SEFAZ), Bancos Públicos (Banco do Brasil, Caixa Econômica Federal e BNDES), Órgãos Federais e Estaduais.
-        </p>
-      </header>
+    <div id="root">
+      <!-- CONTEÚDO EDUCACIONAL PRÉ-RENDERIZADO PARA CRAWLERS DO ADSENSE, ROBÔS DE BUSCA E AMBIENTES SEM JAVASCRIPT
+           O React substitui este conteúdo dinamicamente na inicialização do bundle client-side -->
+      <article id="static-crawler-content" class="max-w-4xl mx-auto px-6 py-12 space-y-8 text-slate-300">
+        <header class="space-y-4 border-b border-slate-800 pb-8">
+          <p class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Guia Educacional Oficial & Plataforma de Estudos</p>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Flash Concurso TI – Plataforma de Estudo Ativo com Flashcards e Repetição Espaçada (SRS) para Concursos Públicos de Tecnologia da Informação
+          </h1>
+          <p class="text-base text-slate-400 leading-relaxed">
+            O <strong>Flash Concurso TI (DevConcursos TI)</strong> é um portal educacional gratuito de alta performance, desenvolvido exclusivamente para concurseiros e profissionais de tecnologia que buscam a aprovação em cargos de TI em Tribunais (STJ, TSE, TRF, TRT), Carreiras Fiscais (Receita Federal e SEFAZ), Bancos Públicos (Banco do Brasil, Caixa Econômica Federal e BNDES), Órgãos Federais e Estaduais.
+          </p>
+        </header>
 
       <section class="space-y-4">
         <h2 class="text-2xl font-bold text-white">1. O que é o Flash Concurso TI e qual a sua finalidade?</h2>
@@ -212,8 +212,9 @@
         </div>
       </section>
     </article>
+  </div>
 
-    <script type="module" src="/src/main.tsx"></script>
+  <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
 

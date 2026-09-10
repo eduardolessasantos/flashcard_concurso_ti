@@ -14,6 +14,7 @@ import { TermsModal } from './components/TermsModal';
 import { AboutModal } from './components/AboutModal';
 import { ContactModal } from './components/ContactModal';
 import { EducationalGuideModal } from './components/EducationalGuideModal';
+import { EducationalSection } from './components/EducationalSection';
 import { StaticPageView, StaticRoute } from './components/StaticPageView';
 import { useAuth } from './context/AuthContext';
 import { 
@@ -880,6 +881,18 @@ export default function App() {
             )}
           </main>
         </div>
+      )}
+
+      {/* ================= PORTAL EDUCACIONAL & EMENTA TI (ALTO VALOR PEDAGÓGICO) ================= */}
+      {currentView === 'flashcards' && (
+        <EducationalSection
+          onSelectTopic={(topic) => {
+            setSelectedTopico(topic);
+            handleResetSession();
+          }}
+          onOpenEducationalGuideModal={() => setIsEducationalGuideOpen(true)}
+          onNavigateToGuides={navigateToGuides}
+        />
       )}
 
       {/* ================= FOOTER ================= */}

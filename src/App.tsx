@@ -16,6 +16,16 @@ import { ContactModal } from './components/ContactModal';
 import { EducationalGuideModal } from './components/EducationalGuideModal';
 import { EducationalSection } from './components/EducationalSection';
 import { StaticPageView, StaticRoute } from './components/StaticPageView';
+import { ConcursosAbertosView } from './components/ConcursosAbertosView';
+import { GuiaCarreiraView } from './components/GuiaCarreiraView';
+import { GamificationDashboardModal } from './components/GamificationDashboardModal';
+import { 
+  loadGamificationState, 
+  saveGamificationState, 
+  registerCardAnswer, 
+  getLevelInfo, 
+  GamificationState 
+} from './services/gamification';
 import { useAuth } from './context/AuthContext';
 import { 
   PlusCircle, 
@@ -29,21 +39,21 @@ import {
   Sparkles,
   BookOpen,
   LogIn,
-  UserCheck,
-  GraduationCap,
   Cloud,
-  Check,
-  BookMarked,
-  Calculator,
-  Globe,
-  Database,
-  Layout,
-  Server,
-  Code
+  GraduationCap,
+  Briefcase,
+  TrendingUp,
+  Flame,
+  Crown,
+  Trophy,
+  ChevronRight,
+  Zap
 } from 'lucide-react';
 
 const STORAGE_KEY_CARDS = 'flashcards_ti_cards_v2';
 const STORAGE_KEY_STATS = 'flashcards_ti_stats_v2';
+
+export type ExtendedViewMode = 'flashcards' | 'guides' | 'concursos-abertos' | 'guia-carreira-ti' | StaticRoute;
 
 export default function App() {
   const { 
@@ -60,15 +70,16 @@ export default function App() {
 
   const isAuthenticated = !!user;
 
-  // Active View Mode: Flashcards practice, Detailed Study Guides, or Static Institutional Routes
-  type ViewMode = 'flashcards' | 'guides' | StaticRoute;
-  const [currentView, setCurrentView] = useState<ViewMode>(() => {
+  // Active View Mode: Flashcards, Study Guides, Concursos Abertos, Guia de Carreira, or Institutional Static
+  const [currentView, setCurrentView] = useState<ExtendedViewMode>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       if (path === 'sobre') return 'sobre';
       if (path === 'privacidade') return 'privacidade';
       if (path === 'termos') return 'termos';
       if (path === 'contato') return 'contato';
+      if (path === 'concursos-abertos') return 'concursos-abertos';
+      if (path === 'guia-carreira-ti') return 'guia-carreira-ti';
       if (path === 'guias' || path === 'cadernos') return 'guides';
     }
     return 'flashcards';
@@ -82,6 +93,8 @@ export default function App() {
       else if (path === 'privacidade') setCurrentView('privacidade');
       else if (path === 'termos') setCurrentView('termos');
       else if (path === 'contato') setCurrentView('contato');
+      else if (path === 'concursos-abertos') setCurrentView('concursos-abertos');
+      else if (path === 'guia-carreira-ti') setCurrentView('guia-carreira-ti');
       else if (path === 'guias' || path === 'cadernos') setCurrentView('guides');
       else if (path === '' || path === 'index.html') setCurrentView('flashcards');
     };
@@ -89,23 +102,22 @@ export default function App() {
     return () => window.removeEventListener('popstate', handleLocation);
   }, []);
 
-  const navigateToRoute = (route: StaticRoute) => {
-    window.history.pushState({}, '', `/${route}`);
-    setCurrentView(route);
+  const navigateToView = (view: ExtendedViewMode) => {
+    const url = view === 'flashcards' ? '/' : `/${view}`;
+    window.history.pushState({}, '', url);
+    setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navigateHome = () => {
-    window.history.pushState({}, '', '/');
-    setCurrentView('flashcards');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const navigateHome = () => navigateToView('flashcards');
+  const navigateToGuides = () => navigateToView('guides');
+  const navigateToConcursos = () => navigateToView('concursos-abertos');
+  const navigateToCarreira = () => navigateToView('guia-carreira-ti');
 
-  const navigateToGuides = () => {
-    window.history.pushState({}, '', '/guias');
-    setCurrentView('guides');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // Gamification state from localStorage: devconcursos_gamification_v2
+  const [gamification, setGamification] = useState<GamificationState>(() => loadGamificationState());
+  const [isGamificationModalOpen, setIsGamificationModalOpen] = useState(false);
+  const [gamificationNotification, setGamificationNotification] = useState<{ message: string; type: 'xp' | 'badge' | 'level' } | null>(null);
 
   // Load saved cards or default to seed data
   const [cards, setCards] = useState<Flashcard[]>(() => {
@@ -265,7 +277,7 @@ export default function App() {
     }
   }, [stats, user]);
 
-  // SRS Feedback Handler
+  // SRS Feedback Handler with Gamification XP & Badges
   const handleFeedback = (feedback: FeedbackType) => {
     if (activeQueue.length === 0) return;
 
@@ -338,7 +350,31 @@ export default function App() {
       };
     });
 
-    // 3. Apply Spaced Repetition queue re-ordering
+    // 3. Register Gamification Result (XP, Badges, Level, Streak)
+    const gamificationResult = registerCardAnswer(
+      gamification,
+      feedback,
+      currentCard.topico,
+      currentCard.banca
+    );
+    setGamification(gamificationResult.newState);
+
+    // Check level up or new badges notification
+    if (gamificationResult.leveledUp) {
+      setGamificationNotification({
+        message: `Parabéns! Você subiu para ${gamificationResult.currentLevel}! 🎉`,
+        type: 'level'
+      });
+      setTimeout(() => setGamificationNotification(null), 4500);
+    } else if (gamificationResult.newBadgesUnlocked.length > 0) {
+      setGamificationNotification({
+        message: `Nova Conquista Desbloqueada: ${gamificationResult.newBadgesUnlocked[0].title}! 🏆`,
+        type: 'badge'
+      });
+      setTimeout(() => setGamificationNotification(null), 4000);
+    }
+
+    // 4. Apply Spaced Repetition queue re-ordering
     const updatedQueue = [...activeQueue];
 
     if (feedback === 'errei') {
@@ -358,50 +394,46 @@ export default function App() {
       }
     } else if (feedback === 'bom') {
       if (updatedQueue.length > 1) {
-        setCurrentIndex((prev) => (prev + 1) % updatedQueue.length);
+        updatedQueue.splice(currentIndex, 1);
+        const reinsertPos = Math.min(currentIndex + 8, updatedQueue.length);
+        updatedQueue.splice(reinsertPos, 0, currentCard);
+        setActiveQueue(updatedQueue);
+        if (currentIndex >= updatedQueue.length) {
+          setCurrentIndex(0);
+        }
       }
     } else if (feedback === 'facil') {
       updatedQueue.splice(currentIndex, 1);
       setActiveQueue(updatedQueue);
-      if (currentIndex >= updatedQueue.length && updatedQueue.length > 0) {
+      if (currentIndex >= updatedQueue.length) {
         setCurrentIndex(0);
       }
     }
   };
 
-  // Shuffle Queue
+  const handleResetSession = () => {
+    setActiveQueue([...filteredCards]);
+    setCurrentIndex(0);
+  };
+
   const handleShuffle = () => {
     const shuffled = [...activeQueue].sort(() => Math.random() - 0.5);
     setActiveQueue(shuffled);
     setCurrentIndex(0);
   };
 
-  // Reset Session
-  const handleResetSession = () => {
-    setActiveQueue([...filteredCards]);
-    setCurrentIndex(0);
-    setStats({
-      totalRevisados: 0,
-      erreiCount: 0,
-      dificilCount: 0,
-      bomCount: 0,
-      facilCount: 0,
-      cardsDominados: 0,
-      historicoRespostas: [],
-    });
-    setSessionSeconds(0);
-  };
+  const handleAddCard = async (newCardData: Omit<Flashcard, 'id'>) => {
+    const newCard: Flashcard = {
+      ...newCardData,
+      id: `custom-${Date.now()}`,
+    };
+    setCards([newCard, ...cards]);
 
-  // Add Card
-  const handleAddCard = async (newCard: Flashcard) => {
-    const updated = [newCard, ...cards];
-    setCards(updated);
     if (user) {
       await addCustomCardToCloud(newCard);
     }
   };
 
-  // Select card directly from list
   const handleSelectCardToStudy = (cardId: string) => {
     const target = cards.find((c) => c.id === cardId);
     if (target) {
@@ -411,10 +443,10 @@ export default function App() {
     }
   };
 
-  // Jump from Study Guide to Flashcards with filtered Topic
   const handleStartFlashcardTopic = (topic: Topico) => {
     setSelectedTopico(topic);
     setCurrentView('flashcards');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const acertos = stats.bomCount + stats.facilCount + stats.dificilCount * 0.5;
@@ -422,6 +454,7 @@ export default function App() {
     stats.totalRevisados > 0 ? Math.round((acertos / stats.totalRevisados) * 100) : 0;
 
   const currentCard = activeQueue[currentIndex];
+  const levelInfo = getLevelInfo(gamification.totalXp);
 
   const bancas: (Banca | 'TODAS')[] = ['TODAS', 'FGV', 'Cebraspe', 'Cesgranrio'];
   const topicosGerais: Topico[] = [
@@ -446,7 +479,7 @@ export default function App() {
       <div className="min-h-screen bg-slate-950 text-slate-200 font-sans flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="w-9 h-9 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs text-slate-400 font-medium tracking-wide">Carregando DevConcursos...</span>
+          <span className="text-xs text-slate-400 font-medium tracking-wide">Carregando Flash Concurso TI...</span>
         </div>
       </div>
     );
@@ -454,32 +487,90 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans flex flex-col antialiased selection:bg-indigo-600 selection:text-white">
-      {/* ================= TOP NAVIGATION BAR ================= */}
-      <header className="h-16 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-8 flex items-center justify-between shadow-lg">
+      
+      {/* ================= BARRA SUPERIOR DE PROGRESSO FIXA (GAMIFICAÇÃO ADSENSE) ================= */}
+      <div className="bg-slate-900 border-b border-slate-800 text-xs px-3 sm:px-6 py-2 sticky top-0 z-50 shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
+          
+          {/* Nível do Usuário */}
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xs border border-indigo-500/30">
+              <Crown className="w-3.5 h-3.5" />
+            </div>
+            <div className="leading-tight">
+              <div className="font-bold text-white text-xs flex items-center gap-1.5">
+                <span>{levelInfo.level}</span>
+              </div>
+              <div className="text-[10px] text-slate-400 hidden sm:block">
+                {gamification.totalXp} XP Acumulados
+              </div>
+            </div>
+          </div>
+
+          {/* Barra de XP com progresso para o próximo nível */}
+          <div className="flex-1 max-w-xs sm:max-w-md mx-2 sm:mx-4">
+            <div className="flex justify-between items-center text-[10px] mb-1 font-semibold">
+              <span className="text-slate-400 hidden xs:inline">{levelInfo.minXp} XP</span>
+              <span className="text-indigo-400 font-bold">{levelInfo.progressPercent}% para o próx. nível</span>
+              <span className="text-slate-400 hidden xs:inline">{levelInfo.maxXp} XP</span>
+            </div>
+            <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700/60">
+              <div 
+                className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-sky-400 to-emerald-400 transition-all duration-300"
+                style={{ width: `${Math.max(4, levelInfo.progressPercent)}%` }}
+              />
+            </div>
+          </div>
+
+          {/* Streak Counter & Conquistas Modal Trigger */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Streak com tooltip nativo e visual de fogo */}
+            <div 
+              className="flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/10 border border-amber-500/25 rounded-full text-amber-400 font-bold cursor-default"
+              title={`Ofensiva de ${gamification.currentStreak} dias consecutivos de estudo! Estude diariamente para manter seu bônus de +50 XP.`}
+            >
+              <Flame className="w-4 h-4 fill-amber-500 text-amber-500 animate-pulse" />
+              <span className="text-xs">{gamification.currentStreak}d</span>
+            </div>
+
+            {/* Botão Ver Conquistas */}
+            <button
+              onClick={() => setIsGamificationModalOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1 bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 rounded-full font-bold text-xs transition-all shadow-sm active:scale-98"
+              title="Abrir painel de conquistas, badges e ranking semanal"
+            >
+              <Trophy className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden md:inline">Ver Conquistas</span>
+              <span className="md:hidden">Badges</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ================= TOP BRAND & NAV BAR ================= */}
+      <header className="h-16 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md px-4 sm:px-8 flex items-center justify-between shadow-lg">
         {/* Brand & Mode Switcher */}
-        <div className="flex items-center gap-4 sm:gap-8">
+        <div className="flex items-center gap-3 sm:gap-6">
           <div 
             onClick={navigateHome}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-2.5 cursor-pointer group"
           >
             <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform">
-              <span className="font-black text-white text-sm">IT</span>
+              <span className="font-black text-white text-sm">FC</span>
             </div>
             <div>
               <h1 className="text-base sm:text-lg font-bold tracking-tight text-white flex items-center gap-2">
-                DevConcursos
-                <span className="text-[10px] hidden sm:inline-block px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-normal">
-                  Área do Aluno
-                </span>
+                Flash Concurso TI
               </h1>
             </div>
           </div>
 
-          {/* View Toggle Tabs */}
-          <div className="flex items-center p-1 bg-slate-950/80 rounded-full border border-slate-800">
+          {/* View Navigation Tabs */}
+          <nav className="hidden lg:flex items-center p-1 bg-slate-950/80 rounded-full border border-slate-800 text-xs">
             <button
               onClick={navigateHome}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all ${
                 currentView === 'flashcards'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
                   : 'text-slate-400 hover:text-slate-200'
@@ -490,20 +581,44 @@ export default function App() {
             </button>
 
             <button
+              onClick={navigateToConcursos}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all ${
+                currentView === 'concursos-abertos'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Briefcase className="w-3.5 h-3.5 text-amber-400" />
+              <span>Concursos Abertos</span>
+              <span className="text-[9px] px-1.5 py-0.2 bg-amber-500/20 text-amber-300 rounded-full border border-amber-500/30">
+                2026
+              </span>
+            </button>
+
+            <button
+              onClick={navigateToCarreira}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all ${
+                currentView === 'guia-carreira-ti'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Guia de Carreira</span>
+            </button>
+
+            <button
               onClick={navigateToGuides}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all ${
                 currentView === 'guides'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <BookOpen className="w-3.5 h-3.5" />
-              <span>Estudo Teórico</span>
-              <span className="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded-full border border-emerald-500/30">
-                Caderno
-              </span>
+              <span>Cadernos Teóricos</span>
             </button>
-          </div>
+          </nav>
         </div>
 
         {/* User Auth & Actions */}
@@ -559,20 +674,49 @@ export default function App() {
         </div>
       </header>
 
-      {/* Guest Mode Notice Banner */}
-      {!isAuthenticated && (
-        <div className="bg-gradient-to-r from-indigo-950/70 via-slate-900 to-indigo-950/70 border-b border-indigo-500/20 px-4 py-2 text-xs text-slate-300 flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span><strong>Acesso Aberto:</strong> Você pode estudar todos os cadernos teóricos e praticar flashcards livremente.</span>
+      {/* Mobile Sub-Navigation Bar */}
+      <div className="lg:hidden bg-slate-900/90 border-b border-slate-800 px-4 py-2 flex items-center gap-1 overflow-x-auto text-xs scrollbar-none">
+        <button
+          onClick={navigateHome}
+          className={`px-3 py-1 rounded-full whitespace-nowrap font-medium ${
+            currentView === 'flashcards' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          Flashcards (SRS)
+        </button>
+        <button
+          onClick={navigateToConcursos}
+          className={`px-3 py-1 rounded-full whitespace-nowrap font-medium ${
+            currentView === 'concursos-abertos' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          Concursos Abertos
+        </button>
+        <button
+          onClick={navigateToCarreira}
+          className={`px-3 py-1 rounded-full whitespace-nowrap font-medium ${
+            currentView === 'guia-carreira-ti' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          Guia de Carreira
+        </button>
+        <button
+          onClick={navigateToGuides}
+          className={`px-3 py-1 rounded-full whitespace-nowrap font-medium ${
+            currentView === 'guides' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          Cadernos Teóricos
+        </button>
+      </div>
+
+      {/* Gamification Floating Toast Notification */}
+      {gamificationNotification && (
+        <div className="fixed bottom-6 right-6 z-50 bg-slate-900 border border-indigo-500/50 shadow-2xl rounded-2xl px-4 py-3 text-xs text-white font-bold flex items-center gap-3 animate-in slide-in-from-bottom-4 duration-300">
+          <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center shrink-0">
+            <Trophy className="w-4 h-4 text-amber-300" />
           </div>
-          <button
-            onClick={() => setIsAuthModalOpen(true)}
-            className="text-indigo-400 hover:text-indigo-300 underline font-semibold flex items-center gap-1"
-          >
-            <Cloud className="w-3 h-3" />
-            <span>Fazer login para salvar progresso na nuvem</span>
-          </button>
+          <span>{gamificationNotification.message}</span>
         </div>
       )}
 
@@ -581,7 +725,17 @@ export default function App() {
         <StaticPageView
           route={currentView as StaticRoute}
           onNavigateHome={navigateHome}
-          onNavigateRoute={navigateToRoute}
+          onNavigateRoute={(r) => navigateToView(r as ExtendedViewMode)}
+        />
+      ) : currentView === 'concursos-abertos' ? (
+        <ConcursosAbertosView
+          onSelectTopicForStudy={handleStartFlashcardTopic}
+          onNavigateHome={navigateHome}
+        />
+      ) : currentView === 'guia-carreira-ti' ? (
+        <GuiaCarreiraView
+          onSelectTopicForStudy={handleStartFlashcardTopic}
+          onNavigateHome={navigateHome}
         />
       ) : currentView === 'guides' ? (
         <StudyGuidesView onStartFlashcardTopic={handleStartFlashcardTopic} />
@@ -590,19 +744,17 @@ export default function App() {
         <div className="flex-1 flex flex-col lg:flex-row min-h-[680px]">
           {/* Sidebar */}
           <aside className="w-full lg:w-80 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800 flex flex-col p-5 sm:p-6 shadow-2xl shrink-0 overflow-y-auto">
-            {/* Sidebar Sections */}
             <div className="space-y-6 flex-1">
+              
               {/* Section: Seu Desempenho */}
               <section>
                 <div className="flex items-center justify-between mb-3">
                   <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
                     Seu Desempenho
                   </h2>
-                  {user && (
-                    <span className="text-[10px] text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20">
-                      Cloud Sync
-                    </span>
-                  )}
+                  <span className="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20 font-bold">
+                    {gamification.totalXp} XP
+                  </span>
                 </div>
                 <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700/50 shadow-sm">
                   <div className="flex justify-between items-end mb-2">
@@ -759,16 +911,37 @@ export default function App() {
                 </div>
               </section>
 
-              {/* Promo Banner / Info Box */}
-              <div className="p-4 rounded-2xl bg-indigo-950/20 border border-indigo-800/30 text-xs text-indigo-300 space-y-2">
-                <div className="flex items-center gap-2 font-bold text-indigo-200">
-                  <GraduationCap className="w-4 h-4 text-indigo-400" />
-                  <span>Dica de Estudo Ativo</span>
-                </div>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
-                  Consulte a aba <strong>Estudo Teórico</strong> para revisar anotações à mão e links úteis antes de iniciar baterias de flashcards.
-                </p>
+              {/* Promo Banners for New Sections */}
+              <div className="space-y-2">
+                <button
+                  onClick={navigateToConcursos}
+                  className="w-full p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-left hover:border-amber-500/40 transition-colors flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-2">
+                    <Briefcase className="w-4 h-4 text-amber-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white group-hover:text-amber-300">Concursos Abertos</div>
+                      <div className="text-[10px] text-slate-400">TRT, Bacen, TCU e Dataprev</div>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                </button>
+
+                <button
+                  onClick={navigateToCarreira}
+                  className="w-full p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-left hover:border-indigo-500/40 transition-colors flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-indigo-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white group-hover:text-indigo-300">Guia de Carreira & Salários</div>
+                      <div className="text-[10px] text-slate-400">Tabela salarial até R$ 35 mil</div>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                </button>
               </div>
+
             </div>
 
             {/* Bottom Actions inside Sidebar */}
@@ -799,16 +972,16 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Sidebar Footer Copyright & Version */}
+              {/* Sidebar Footer Copyright */}
               <div className="pt-3.5 mt-2 border-t border-slate-800/80 text-center space-y-1">
                 <p className="text-[11px] text-slate-400 font-medium tracking-wide">
                   Developed by <span className="text-slate-200 font-semibold">Eduardo Lessa</span>
                 </p>
                 <div className="flex items-center justify-center gap-2 text-[10px] text-slate-500">
-                  <span>DevConcursos</span>
+                  <span>Flash Concurso TI</span>
                   <span>•</span>
                   <span className="px-2 py-0.5 rounded-full bg-slate-800/80 text-indigo-300 border border-slate-700/80 font-mono font-bold">
-                    v1.0.0
+                    v2.0
                   </span>
                 </div>
               </div>
@@ -897,19 +1070,23 @@ export default function App() {
 
       {/* ================= FOOTER ================= */}
       <Footer
-        onOpenPrivacy={() => navigateToRoute('privacidade')}
-        onOpenTerms={() => navigateToRoute('termos')}
-        onOpenAbout={() => navigateToRoute('sobre')}
-        onOpenContact={() => navigateToRoute('contato')}
+        onOpenPrivacy={() => navigateToView('privacidade')}
+        onOpenTerms={() => navigateToView('termos')}
+        onOpenAbout={() => navigateToView('sobre')}
+        onOpenContact={() => navigateToView('contato')}
         onOpenEducationalGuide={() => setIsEducationalGuideOpen(true)}
-        onNavigateRoute={navigateToRoute}
-        onSelectView={(v) => {
-          if (v === 'flashcards') navigateHome();
-          else navigateToGuides();
-        }}
+        onNavigateRoute={(route) => navigateToView(route as ExtendedViewMode)}
+        onSelectView={(v) => navigateToView(v as ExtendedViewMode)}
       />
 
       {/* ================= MODALS ================= */}
+      <GamificationDashboardModal
+        isOpen={isGamificationModalOpen}
+        onClose={() => setIsGamificationModalOpen(false)}
+        gamification={gamification}
+        userName={userProfile?.displayName || user?.email?.split('@')[0] || 'Eduardo Lessa'}
+      />
+
       <CardListModal
         isOpen={isListModalOpen}
         onClose={() => setIsListModalOpen(false)}
@@ -963,11 +1140,8 @@ export default function App() {
       <EducationalGuideModal
         isOpen={isEducationalGuideOpen}
         onClose={() => setIsEducationalGuideOpen(false)}
-        onNavigateRoute={navigateToRoute}
-        onSelectView={(v) => {
-          if (v === 'flashcards') navigateHome();
-          else navigateToGuides();
-        }}
+        onNavigateRoute={(r) => navigateToView(r as ExtendedViewMode)}
+        onSelectView={(v) => navigateToView(v as ExtendedViewMode)}
       />
     </div>
   );

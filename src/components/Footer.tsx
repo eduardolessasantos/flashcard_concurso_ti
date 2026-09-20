@@ -1,5 +1,18 @@
 import React from 'react';
-import { Shield, FileText, Info, Mail, Layers, BookOpen, Heart, Sparkles, GraduationCap, ArrowRight } from 'lucide-react';
+import { 
+  Shield, 
+  FileText, 
+  Info, 
+  Mail, 
+  Layers, 
+  BookOpen, 
+  Heart, 
+  Sparkles, 
+  GraduationCap, 
+  ArrowRight,
+  Briefcase,
+  TrendingUp
+} from 'lucide-react';
 
 interface FooterProps {
   onOpenPrivacy?: () => void;
@@ -7,8 +20,8 @@ interface FooterProps {
   onOpenAbout?: () => void;
   onOpenContact?: () => void;
   onOpenEducationalGuide?: () => void;
-  onNavigateRoute?: (route: 'sobre' | 'privacidade' | 'termos' | 'contato') => void;
-  onSelectView?: (view: 'flashcards' | 'guides') => void;
+  onNavigateRoute?: (route: 'sobre' | 'privacidade' | 'termos' | 'contato' | 'concursos-abertos' | 'guia-carreira-ti') => void;
+  onSelectView?: (view: 'flashcards' | 'guides' | 'concursos-abertos' | 'guia-carreira-ti') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -20,7 +33,11 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateRoute,
   onSelectView
 }) => {
-  const handleNav = (e: React.MouseEvent, route: 'sobre' | 'privacidade' | 'termos' | 'contato', fallbackModal?: () => void) => {
+  const handleNav = (
+    e: React.MouseEvent, 
+    route: 'sobre' | 'privacidade' | 'termos' | 'contato' | 'concursos-abertos' | 'guia-carreira-ti', 
+    fallbackModal?: () => void
+  ) => {
     e.preventDefault();
     if (onNavigateRoute) {
       onNavigateRoute(route);
@@ -28,6 +45,7 @@ export const Footer: React.FC<FooterProps> = ({
       fallbackModal();
     }
   };
+
   return (
     <footer id="main-footer" className="bg-slate-950 border-t border-slate-800/80 text-slate-400 py-10 px-4 sm:px-8 mt-auto">
       {/* Banner / Botão de Abertura do Guia Educacional Oficial */}
@@ -67,12 +85,12 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="space-y-3 md:col-span-1">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-md shadow-indigo-600/30">
-              <span className="font-black text-white text-xs">IT</span>
+              <span className="font-black text-white text-xs">FC</span>
             </div>
-            <span className="font-bold text-white text-base tracking-tight">DevConcursos TI</span>
+            <span className="font-bold text-white text-base tracking-tight">Flash Concurso TI</span>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Plataforma educacional livre com flashcards inteligentes baseados em Repetição Espaçada (SRS) e cadernos de estudo teórico completos para concursos públicos de Tecnologia da Informação.
+            Plataforma educacional livre com flashcards inteligentes baseados em Repetição Espaçada (SRS), cadernos de estudo teórico e monitoramento contínuo de concursos abertos de Tecnologia da Informação.
           </p>
           <div className="flex items-center gap-2 text-[11px] text-slate-500">
             <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
@@ -82,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Coluna 2: Módulos de Estudo */}
         <div className="space-y-3">
-          <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">Navegação de Estudo</h4>
+          <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">Navegação & Conteúdo</h4>
           <ul className="space-y-2 text-xs">
             <li>
               <button 
@@ -102,6 +120,26 @@ export const Footer: React.FC<FooterProps> = ({
                 Cadernos & Guias Teóricos
               </button>
             </li>
+            <li>
+              <a 
+                href="/concursos-abertos"
+                onClick={(e) => handleNav(e, 'concursos-abertos')}
+                className="hover:text-indigo-400 text-slate-300 transition-colors flex items-center gap-1.5 text-left"
+              >
+                <Briefcase className="w-3.5 h-3.5 text-amber-400" />
+                <span>Concursos Abertos & Editais 2026</span>
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/guia-carreira-ti"
+                onClick={(e) => handleNav(e, 'guia-carreira-ti')}
+                className="hover:text-indigo-400 text-slate-300 transition-colors flex items-center gap-1.5 text-left"
+              >
+                <TrendingUp className="w-3.5 h-3.5 text-sky-400" />
+                <span>Guia de Carreira & Tabela Salarial</span>
+              </a>
+            </li>
             {onOpenEducationalGuide && (
               <li>
                 <button 
@@ -113,10 +151,6 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
             )}
-            <li className="text-slate-500">Segurança da Informação & ISO 27002</li>
-            <li className="text-slate-500">Governança (ITIL v4 & COBIT 2019)</li>
-            <li className="text-slate-500">Banco de Dados, BI & Big Data</li>
-            <li className="text-slate-500">Legislação (LGPD, LAI e Marco Civil)</li>
           </ul>
         </div>
 
@@ -124,6 +158,16 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="space-y-3">
           <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">Legal & Transparência</h4>
           <ul className="space-y-2 text-xs">
+            <li>
+              <a 
+                href="/sobre"
+                onClick={(e) => handleNav(e, 'sobre', onOpenAbout)}
+                className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
+              >
+                <Info className="w-3.5 h-3.5 text-indigo-400" />
+                <span>Sobre Nós & Metodologia SRS</span>
+              </a>
+            </li>
             <li>
               <a 
                 href="/privacidade"
@@ -146,16 +190,6 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a 
-                href="/sobre"
-                onClick={(e) => handleNav(e, 'sobre', onOpenAbout)}
-                className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
-              >
-                <Info className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Sobre Nós & Metodologia SRS</span>
-              </a>
-            </li>
-            <li>
-              <a 
                 href="/contato"
                 onClick={(e) => handleNav(e, 'contato', onOpenContact)}
                 className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left"
@@ -174,16 +208,16 @@ export const Footer: React.FC<FooterProps> = ({
             Transparência & LGPD
           </h4>
           <p className="text-[11px] text-slate-400 leading-relaxed">
-            Este site respeita a sua privacidade nos termos da LGPD (Lei 13.709/18). Utilizamos cookies e identificadores para personalizar conteúdos e veicular anúncios através do programa Google AdSense.
+            Este site respeita a sua privacidade nos termos da LGPD (Lei 13.709/18). Utilizamos cookies e identificadores para veicular anúncios através do Google AdSense (pub-124215391500402).
           </p>
           <p className="text-[11px] text-slate-500">
-            Você pode gerenciar as preferências de cookies e anúncios a qualquer momento na nossa Política de Privacidade.
+            Você pode gerenciar preferências de cookies a qualquer momento em nossa Política de Privacidade.
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-        <p>© {new Date().getFullYear()} DevConcursos TI. Todos os direitos reservados. Plataforma educacional aberta.</p>
+        <p>© 2026 Flash Concurso TI. Todos os direitos reservados. Plataforma educacional aberta.</p>
         <p className="flex items-center gap-1">
           Feito com <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> para concurseiros de TI
         </p>

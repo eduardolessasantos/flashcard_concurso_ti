@@ -1,6 +1,4 @@
-/ads.txt             /ads.txt                  200
-/sitemap.xml         /sitemap.xml              200
-/robots.txt          /robots.txt               200
+# Static directories with pre-rendered SEO content
 /guias               /guias/index.html         200
 /guias/*             /guias/index.html         200
 /concursos-abertos   /concursos-abertos/index.html 200
@@ -15,4 +13,6 @@
 /termos/*            /termos/index.html        200
 /contato             /contato/index.html       200
 /contato/*           /contato/index.html       200
+
+# SPA fallback (static files like /ads.txt, /robots.txt, /sitemap.xml are served automatically before this rule)
 /*                   /index.html               200

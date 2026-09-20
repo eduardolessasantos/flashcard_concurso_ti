@@ -1,0 +1,52 @@
+{
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/ads.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/guias",
+      "destination": "/guias/index.html"
+    },
+    {
+      "source": "/concursos-abertos",
+      "destination": "/concursos-abertos/index.html"
+    },
+    {
+      "source": "/guia-carreira-ti",
+      "destination": "/guia-carreira-ti/index.html"
+    },
+    {
+      "source": "/sobre",
+      "destination": "/sobre/index.html"
+    },
+    {
+      "source": "/privacidade",
+      "destination": "/privacidade/index.html"
+    },
+    {
+      "source": "/termos",
+      "destination": "/termos/index.html"
+    },
+    {
+      "source": "/contato",
+      "destination": "/contato/index.html"
+    },
+    {
+      "source": "/((?!api/|_next/|_static/|[\\w-]+\\.\\w+).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -11,7 +11,8 @@ import {
   GraduationCap, 
   ArrowRight,
   Briefcase,
-  TrendingUp
+  TrendingUp,
+  ExternalLink
 } from 'lucide-react';
 
 interface FooterProps {
@@ -213,6 +214,35 @@ export const Footer: React.FC<FooterProps> = ({
           <p className="text-[11px] text-slate-500">
             Você pode gerenciar preferências de cookies a qualquer momento em nossa Política de Privacidade.
           </p>
+          <div className="pt-2 border-t border-slate-800 flex items-center flex-wrap gap-2.5 text-[11px]">
+            <a 
+              href="/ads.txt" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1 font-mono font-medium"
+            >
+              <span>ads.txt</span>
+              <ExternalLink className="w-2.5 h-2.5" />
+            </a>
+            <span className="text-slate-700">•</span>
+            <a 
+              href="/robots.txt" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-slate-400 hover:text-slate-300 transition-colors font-mono"
+            >
+              robots.txt
+            </a>
+            <span className="text-slate-700">•</span>
+            <a 
+              href="/sitemap.xml" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-slate-400 hover:text-slate-300 transition-colors font-mono"
+            >
+              sitemap.xml
+            </a>
+          </div>
         </div>
       </div>
 

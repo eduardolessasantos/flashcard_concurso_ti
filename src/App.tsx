@@ -18,6 +18,7 @@ import { EducationalSection } from './components/EducationalSection';
 import { StaticPageView, StaticRoute } from './components/StaticPageView';
 import { ConcursosAbertosView } from './components/ConcursosAbertosView';
 import { GuiaCarreiraView } from './components/GuiaCarreiraView';
+import { HomePageLanding } from './components/HomePageLanding';
 import { GamificationDashboardModal } from './components/GamificationDashboardModal';
 import { 
   loadGamificationState, 
@@ -47,13 +48,14 @@ import {
   Crown,
   Trophy,
   ChevronRight,
-  Zap
+  Zap,
+  Home
 } from 'lucide-react';
 
 const STORAGE_KEY_CARDS = 'flashcards_ti_cards_v2';
 const STORAGE_KEY_STATS = 'flashcards_ti_stats_v2';
 
-export type ExtendedViewMode = 'flashcards' | 'guides' | 'concursos-abertos' | 'guia-carreira-ti' | StaticRoute;
+export type ExtendedViewMode = 'home' | 'flashcards' | 'guides' | 'concursos-abertos' | 'guia-carreira-ti' | StaticRoute;
 
 export default function App() {
   const { 
@@ -70,7 +72,7 @@ export default function App() {
 
   const isAuthenticated = !!user;
 
-  // Active View Mode: Flashcards, Study Guides, Concursos Abertos, Guia de Carreira, or Institutional Static
+  // Active View Mode: Home Landing, Flashcards, Study Guides, Concursos Abertos, Guia de Carreira, or Institutional Static
   const [currentView, setCurrentView] = useState<ExtendedViewMode>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
@@ -81,8 +83,10 @@ export default function App() {
       if (path === 'concursos-abertos') return 'concursos-abertos';
       if (path === 'guia-carreira-ti') return 'guia-carreira-ti';
       if (path === 'guias' || path === 'cadernos') return 'guides';
+      if (path === 'flashcards' || path === 'estudar' || path === 'praticar') return 'flashcards';
+      if (path === '' || path === 'index.html' || path === 'home') return 'home';
     }
-    return 'flashcards';
+    return 'home';
   });
 
   // Keep view in sync with browser URL and history
@@ -96,20 +100,27 @@ export default function App() {
       else if (path === 'concursos-abertos') setCurrentView('concursos-abertos');
       else if (path === 'guia-carreira-ti') setCurrentView('guia-carreira-ti');
       else if (path === 'guias' || path === 'cadernos') setCurrentView('guides');
-      else if (path === '' || path === 'index.html') setCurrentView('flashcards');
+      else if (path === 'flashcards' || path === 'estudar' || path === 'praticar') setCurrentView('flashcards');
+      else if (path === '' || path === 'index.html' || path === 'home') setCurrentView('home');
     };
     window.addEventListener('popstate', handleLocation);
     return () => window.removeEventListener('popstate', handleLocation);
   }, []);
 
   const navigateToView = (view: ExtendedViewMode) => {
-    const url = view === 'flashcards' ? '/' : `/${view}`;
+    const url = view === 'home' ? '/' : `/${view}`;
     window.history.pushState({}, '', url);
     setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navigateHome = () => navigateToView('flashcards');
+  const navigateHome = () => navigateToView('home');
+  const navigateToFlashcards = (topic?: Topico) => {
+    if (topic) {
+      setSelectedTopico(topic);
+    }
+    navigateToView('flashcards');
+  };
   const navigateToGuides = () => navigateToView('guides');
   const navigateToConcursos = () => navigateToView('concursos-abertos');
   const navigateToCarreira = () => navigateToView('guia-carreira-ti');
@@ -571,6 +582,18 @@ export default function App() {
             <button
               onClick={navigateHome}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all ${
+                currentView === 'home'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Home className="w-3.5 h-3.5" />
+              <span>Início</span>
+            </button>
+
+            <button
+              onClick={() => navigateToFlashcards()}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all ${
                 currentView === 'flashcards'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
                   : 'text-slate-400 hover:text-slate-200'
@@ -679,6 +702,14 @@ export default function App() {
         <button
           onClick={navigateHome}
           className={`px-3 py-1 rounded-full whitespace-nowrap font-medium ${
+            currentView === 'home' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          Início
+        </button>
+        <button
+          onClick={() => navigateToFlashcards()}
+          className={`px-3 py-1 rounded-full whitespace-nowrap font-medium ${
             currentView === 'flashcards' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -721,7 +752,21 @@ export default function App() {
       )}
 
       {/* ================= VIEW CONTAINER ================= */}
-      {['sobre', 'privacidade', 'termos', 'contato'].includes(currentView) ? (
+      {currentView === 'home' ? (
+        <HomePageLanding
+          onStartStudy={(topic) => {
+            if (topic) {
+              setSelectedTopico(topic);
+            }
+            navigateToFlashcards(topic);
+          }}
+          onNavigateToConcursos={navigateToConcursos}
+          onNavigateToCarreira={navigateToCarreira}
+          onNavigateToGuides={navigateToGuides}
+          onNavigateToStatic={(route) => navigateToView(route as ExtendedViewMode)}
+          onOpenAuthModal={() => setIsAuthModalOpen(true)}
+        />
+      ) : ['sobre', 'privacidade', 'termos', 'contato'].includes(currentView) ? (
         <StaticPageView
           route={currentView as StaticRoute}
           onNavigateHome={navigateHome}

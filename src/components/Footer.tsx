@@ -22,7 +22,7 @@ interface FooterProps {
   onOpenContact?: () => void;
   onOpenEducationalGuide?: () => void;
   onNavigateRoute?: (route: 'sobre' | 'privacidade' | 'termos' | 'contato' | 'concursos-abertos' | 'guia-carreira-ti') => void;
-  onSelectView?: (view: 'flashcards' | 'guides' | 'concursos-abertos' | 'guia-carreira-ti') => void;
+  onSelectView?: (view: 'home' | 'flashcards' | 'guides' | 'concursos-abertos' | 'guia-carreira-ti') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -103,6 +103,15 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="space-y-3">
           <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">Navegação & Conteúdo</h4>
           <ul className="space-y-2 text-xs">
+            <li>
+              <button 
+                onClick={() => onSelectView && onSelectView('home')}
+                className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 text-left cursor-pointer"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+                Página Inicial (Home)
+              </button>
+            </li>
             <li>
               <button 
                 onClick={() => onSelectView && onSelectView('flashcards')}

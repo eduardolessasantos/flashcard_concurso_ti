@@ -1,6 +1,6 @@
 {
   "name": "Flashcards TI Concursos",
-  "description": "Aplicativo de flashcards interativo com repetição espaçada (SRS) focado em concursos públicos de TI (FGV, Cebraspe, Cesgranrio) e tópicos de Desenvolvimento de Software.",
+  "description": "Plataforma educacional com repetição espaçada (SRS), simulador interativo de questões de TI, radar de concursos abertos e guias de carreira de Tecnologia da Informação para o serviço público.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

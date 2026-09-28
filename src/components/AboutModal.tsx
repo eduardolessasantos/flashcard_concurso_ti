@@ -19,7 +19,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
               <Info className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Sobre o DevConcursos TI</h2>
+              <h2 className="text-lg font-bold text-white">Sobre o Flash Concurso TI</h2>
               <p className="text-xs text-slate-400">Missão, Metodologia de Estudo Ativo e Repetição Espaçada</p>
             </div>
           </div>
@@ -39,7 +39,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
               Nossa Missão
             </h3>
             <p className="text-xs text-slate-300">
-              O <strong>DevConcursos TI</strong> nasceu para transformar a preparação de candidatos e profissionais de Tecnologia da Informação para concursos públicos de alto nível (Tribunais, Carreiras Fiscais, Bancárias, Policiais e Órgãos Federais/Estaduais).
+              O <strong>Flash Concurso TI</strong> nasceu para transformar a preparação de candidatos e profissionais de Tecnologia da Informação para concursos públicos de alto nível (Tribunais, Carreiras Fiscais, Bancárias, Policiais e Órgãos Federais/Estaduais).
             </p>
             <p className="text-xs text-slate-300">
               Combinamos teoria aprofundada estruturada em tópicos de editais com a mais eficiente técnica de memorização científica: o <strong>Spaced Repetition System (SRS)</strong>.

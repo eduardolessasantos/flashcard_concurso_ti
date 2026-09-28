@@ -101,7 +101,7 @@ export const EducationalGuideModal: React.FC<EducationalGuideModalProps> = ({
               Flash Concurso TI – Metodologia Científica para a sua Aprovação
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              O <strong>Flash Concurso TI (DevConcursos TI)</strong> é um portal educacional gratuito de alta performance, desenvolvido exclusivamente para concurseiros e profissionais de tecnologia que buscam a aprovação em cargos de TI em Tribunais (STJ, TSE, TRF, TRT), Carreiras Fiscais (Receita Federal e SEFAZ), Bancos Públicos (Banco do Brasil, Caixa Econômica Federal e BNDES), Órgãos Federais e Estaduais.
+              O <strong>Flash Concurso TI</strong> é um portal educacional gratuito de alta performance, desenvolvido exclusivamente para concurseiros e profissionais de tecnologia que buscam a aprovação em cargos de TI em Tribunais (STJ, TSE, TRF, TRT), Carreiras Fiscais (Receita Federal e SEFAZ), Bancos Públicos (Banco do Brasil, Caixa Econômica Federal e BNDES), Órgãos Federais e Estaduais.
             </p>
           </div>
 
@@ -339,7 +339,7 @@ export const EducationalGuideModal: React.FC<EducationalGuideModalProps> = ({
               7. Navegação Rápida & Páginas Institucionais
             </h3>
             <p className="text-xs text-slate-400">
-              Acesse diretamente os documentos oficiais de conformidade e suporte do DevConcursos TI:
+              Acesse diretamente os documentos oficiais de conformidade e suporte do Flash Concurso TI:
             </p>
             <div className="flex flex-wrap gap-2.5 pt-1">
               <button
@@ -390,7 +390,7 @@ export const EducationalGuideModal: React.FC<EducationalGuideModalProps> = ({
         <div className="p-4 sm:p-5 border-t border-slate-800 bg-slate-950/70 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
           <div className="text-xs text-slate-400 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-            <span>DevConcursos TI – Estudo com repetição espaçada e alto rendimento</span>
+            <span>Flash Concurso TI – Estudo com repetição espaçada e alto rendimento</span>
           </div>
           <div className="flex items-center gap-2.5 w-full sm:w-auto">
             {onSelectView && (

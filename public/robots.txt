@@ -1,4 +1,4 @@
-# robots.txt para DevConcursos TI (Flash Concurso TI)
+# robots.txt para Flash Concurso TI
 # Permite a indexação completa por Googlebot e crawlers do Google AdSense
 
 User-agent: *

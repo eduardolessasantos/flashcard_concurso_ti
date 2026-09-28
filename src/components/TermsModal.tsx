@@ -20,7 +20,7 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
             </div>
             <div>
               <h2 className="text-lg font-bold text-white">Termos de Uso do Serviço</h2>
-              <p className="text-xs text-slate-400">Diretrizes de utilização da plataforma educacional DevConcursos TI</p>
+              <p className="text-xs text-slate-400">Diretrizes de utilização da plataforma educacional Flash Concurso TI</p>
             </div>
           </div>
           <button
@@ -39,7 +39,7 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
               1. Aceitação dos Termos
             </h3>
             <p className="text-xs text-slate-300">
-              Ao acessar ou utilizar a plataforma <strong>DevConcursos TI</strong>, você concorda expressamente em cumprir estes Termos de Uso e todas as leis e regulamentos aplicáveis. Se você não concordar com algum destes termos, está proibido de usar ou acessar este site.
+              Ao acessar ou utilizar a plataforma <strong>Flash Concurso TI</strong>, você concorda expressamente em cumprir estes Termos de Uso e todas as leis e regulamentos aplicáveis. Se você não concordar com algum destes termos, está proibido de usar ou acessar este site.
             </p>
           </section>
 
@@ -49,7 +49,7 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
               2. Finalidade Educacional e Licença de Uso
             </h3>
             <p className="text-xs text-slate-300">
-              O DevConcursos TI é uma ferramenta educacional voltada para o aprendizado ativo, memorização e estudo para concursos públicos nas áreas de Tecnologia da Informação, Governança, Segurança e Conhecimentos Gerais.
+              O Flash Concurso TI é uma ferramenta educacional voltada para o aprendizado ativo, memorização e estudo para concursos públicos nas áreas de Tecnologia da Informação, Governança, Segurança e Conhecimentos Gerais.
             </p>
             <p className="text-xs text-slate-300">
               É concedida permissão para usar e estudar os materiais disponibilizados na plataforma para uso estritamente pessoal, não comercial e preparatório.
@@ -62,14 +62,14 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
               3. Isenção de Responsabilidade
             </h3>
             <p className="text-xs text-slate-300">
-              Os materiais no site do DevConcursos TI são fornecidos "como estão". Embora todo o conteúdo seja elaborado e revisado com base nas principais bancas examinadoras (Cebraspe, FGV, Cesgranrio) e normas oficiais (ISO, ITIL, COBIT, Leis Federais), não garantimos a aprovação em concursos nem a ausência de divergências doutrinárias ou jurisprudenciais futuras.
+              Os materiais no site do Flash Concurso TI são fornecidos "como estão". Embora todo o conteúdo seja elaborado e revisado com base nas principais bancas examinadoras (Cebraspe, FGV, Cesgranrio) e normas oficiais (ISO, ITIL, COBIT, Leis Federais), não garantimos a aprovação em concursos nem a ausência de divergências doutrinárias ou jurisprudenciais futuras.
             </p>
           </section>
 
           <section className="space-y-2">
             <h3 className="text-base font-bold text-white">4. Modificações e Atualizações</h3>
             <p className="text-xs text-slate-300">
-              O DevConcursos TI pode revisar estes termos de serviço a qualquer momento, sem aviso prévio. Ao usar este site, você concorda em ficar vinculado à versão atualizada destes Termos de Uso.
+              O Flash Concurso TI pode revisar estes termos de serviço a qualquer momento, sem aviso prévio. Ao usar este site, você concorda em ficar vinculado à versão atualizada destes Termos de Uso.
             </p>
           </section>
         </div>

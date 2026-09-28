@@ -80,7 +80,7 @@ export const StaticPageView: React.FC<StaticPageViewProps> = ({
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-white">1. Propósito e Metodologia</h2>
             <p className="text-sm">
-              O <strong>Flash Concurso TI (DevConcursos TI)</strong> foi estruturado para resolver um dos maiores desafios de concurseiros da área de Tecnologia da Informação: a retenção a longo prazo de conteúdos extensos, incluindo normas internacionais (ISO 27002), frameworks de gestão e governança (ITIL v4, COBIT 2019), arquiteturas de Big Data, inteligência artificial e legislação federal (LGPD, LAI e Marco Civil).
+              O <strong>Flash Concurso TI</strong> foi estruturado para resolver um dos maiores desafios de concurseiros da área de Tecnologia da Informação: a retenção a longo prazo de conteúdos extensos, incluindo normas internacionais (ISO 27002), frameworks de gestão e governança (ITIL v4, COBIT 2019), arquiteturas de Big Data, inteligência artificial e legislação federal (LGPD, LAI e Marco Civil).
             </p>
             <p className="text-sm">
               Diferente de métodos passivos de leitura ou resumo linear, nossa plataforma emprega o sistema de <strong>Repetição Espaçada (SRS - Spaced Repetition System)</strong>, inspirado nos estudos da Curva do Esquecimento de Hermann Ebbinghaus. Ao intercalar revisões com base no grau de dificuldade assinalado pelo estudante, a curva de retenção é continuamente reiniciada e consolidada.
@@ -143,7 +143,7 @@ export const StaticPageView: React.FC<StaticPageViewProps> = ({
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-white">1. Informações Coletadas</h2>
             <p className="text-sm">
-              A navegação, resolução de flashcards e leitura de cadernos teóricos no DevConcursos TI são totalmente acessíveis sem necessidade de identificação. Caso o usuário decida vincular uma conta de autenticação (Firebase Auth com Google ou e-mail/senha), coletamos apenas nome público e e-mail para viabilizar a sincronização de estatísticas no banco de dados Firestore.
+              A navegação, resolução de flashcards e leitura de cadernos teóricos no Flash Concurso TI são totalmente acessíveis sem necessidade de identificação. Caso o usuário decida vincular uma conta de autenticação (Firebase Auth com Google ou e-mail/senha), coletamos apenas nome público e e-mail para viabilizar a sincronização de estatísticas no banco de dados Firestore.
             </p>
           </section>
 
@@ -185,7 +185,7 @@ export const StaticPageView: React.FC<StaticPageViewProps> = ({
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-white">1. Condições de Uso</h2>
             <p className="text-sm">
-              Ao acessar a plataforma DevConcursos TI, você concorda em utilizar seus recursos exclusivamente para fins de preparação pessoal e educacional. É expressamente vedada a revenda de materiais didáticos, bem como a extração automatizada de dados em massa sem autorização prévia por escrito.
+              Ao acessar a plataforma Flash Concurso TI, você concorda em utilizar seus recursos exclusivamente para fins de preparação pessoal e educacional. É expressamente vedada a revenda de materiais didáticos, bem como a extração automatizada de dados em massa sem autorização prévia por escrito.
             </p>
           </section>
 

@@ -94,7 +94,7 @@ export const EducationalSection: React.FC<EducationalSectionProps> = ({
     },
     {
       question: 'Como funciona a Repetição Espaçada (SRS) contra a Curva do Esquecimento?',
-      answer: 'Descoberta por Hermann Ebbinghaus, a Curva do Esquecimento mostra que o cérebro descarta até 70% das novas informações em menos de 48 horas se não houver revisão calculada. O algoritmo SRS do DevConcursos TI programa repetições em intervalos progressivos (Errei, Difícil, Bom, Fácil), restabelecendo a curva no momento exato antes do esquecimento e movendo os conteúdos para a memória de longo prazo.'
+      answer: 'Descoberta por Hermann Ebbinghaus, a Curva do Esquecimento mostra que o cérebro descarta até 70% das novas informações em menos de 48 horas se não houver revisão calculada. O algoritmo SRS do Flash Concurso TI programa repetições em intervalos progressivos (Errei, Difícil, Bom, Fácil), restabelecendo a curva no momento exato antes do esquecimento e movendo os conteúdos para a memória de longo prazo.'
     },
     {
       question: 'Os flashcards e guias cobrem os editais das principais bancas de concurso?',

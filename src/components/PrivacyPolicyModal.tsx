@@ -34,7 +34,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
         {/* Content */}
         <div className="p-6 overflow-y-auto space-y-6 text-sm text-slate-300 leading-relaxed">
           <div className="bg-indigo-950/30 border border-indigo-500/20 p-4 rounded-xl text-xs text-indigo-200">
-            <strong>Última atualização:</strong> {new Date().toLocaleDateString('pt-BR')} — A sua privacidade é de extrema importância para nós. Esta política descreve como o <strong>DevConcursos TI</strong> coleta, utiliza, armazena e protege suas informações.
+            <strong>Última atualização:</strong> {new Date().toLocaleDateString('pt-BR')} — A sua privacidade é de extrema importância para nós. Esta política descreve como o <strong>Flash Concurso TI</strong> coleta, utiliza, armazena e protege suas informações.
           </div>
 
           {/* 1. Informações Coletadas */}
@@ -44,7 +44,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
               1. Informações que Coletamos
             </h3>
             <p>
-              O <strong>DevConcursos TI</strong> preza pela minimização de coleta de dados pessoais. Podemos coletar as seguintes categorias:
+              O <strong>Flash Concurso TI</strong> preza pela minimização de coleta de dados pessoais. Podemos coletar as seguintes categorias:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-xs text-slate-300">
               <li><strong>Dados de Conta e Autenticação (opcional):</strong> Nome de exibição, e-mail e foto de perfil quando você opta por criar uma conta via Firebase Authentication (Google ou e-mail/senha) para sincronizar seu progresso na nuvem.</li>

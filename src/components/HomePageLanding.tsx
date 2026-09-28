@@ -622,7 +622,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
         </div>
       </section>
 
-      {/* ================= 4. A METODOLOGIA DO DEVCONCURSOS TI ================= */}
+      {/* ================= 4. A METODOLOGIA DO FLASH CONCURSO TI ================= */}
       <section className="py-16 lg:py-24 bg-slate-900/30 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -1010,7 +1010,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
                 className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-slate-800/30 transition-colors"
               >
                 <span className="text-sm sm:text-base font-bold text-white">
-                  A plataforma DevConcursos TI / Flash Concurso TI é gratuita?
+                  A plataforma Flash Concurso TI é gratuita?
                 </span>
                 {openFaqIndex === 3 ? (
                   <ChevronUp className="w-4 h-4 text-indigo-400 shrink-0" />

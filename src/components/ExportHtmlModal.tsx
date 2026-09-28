@@ -25,7 +25,7 @@ export const ExportHtmlModal: React.FC<ExportHtmlModalProps> = ({
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DevConcursos - Flashcards TI Concursos (SRS)</title>
+  <title>Flash Concurso TI - Flashcards Concursos de TI (SRS)</title>
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1242153191500402" crossorigin="anonymous"></script>
   <!-- Tailwind CSS CDN -->

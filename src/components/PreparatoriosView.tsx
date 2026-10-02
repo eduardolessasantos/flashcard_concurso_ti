@@ -19,7 +19,9 @@ import {
   Award,
   Zap,
   Tag,
-  Compass
+  Compass,
+  ShoppingBag,
+  FileText
 } from 'lucide-react';
 import { Topico } from '../types';
 
@@ -500,6 +502,169 @@ export const PreparatoriosView: React.FC<PreparatoriosViewProps> = ({
               </div>
             </div>
           ))}
+        </div>
+
+        {/* ================= PLATAFORMAS MODULARES, APOSTILAS & LIVRARIAS ================= */}
+        <div className="pt-2 space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-3">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-900 border border-slate-700/80 text-slate-300 text-[11px] font-semibold mb-1">
+                <ShoppingBag className="w-3 h-3 text-amber-400" />
+                <span>Formatos Complementares & Específicos</span>
+              </div>
+              <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                Cursos Modulares Avulsos, Livrarias & Apostilas de TI
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 max-w-2xl">
+                Alternativas para quem não deseja assinar pacotes ilimitados caros e prefere adquirir apenas uma disciplina isolada de TI ou apostilas pontuais para o edital.
+              </p>
+            </div>
+            <span className="text-[11px] text-slate-500 font-mono">4 opções sob demanda</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            {/* 1. Provas de TI */}
+            <div className="bg-slate-900/50 hover:bg-slate-900 border border-slate-800/90 hover:border-indigo-500/50 rounded-xl p-4 flex flex-col justify-between transition-all group shadow-sm">
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    Cursos Avulsos de TI
+                  </span>
+                  <span className="text-[10px] text-emerald-400 font-semibold font-mono">100% TI</span>
+                </div>
+                <h3 className="text-sm font-bold text-white group-hover:text-indigo-300 transition-colors">
+                  Provas de TI (Prof. Walter Cunha)
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Pioneira plataforma dedicada exclusivamente a concursos de TI. Permite adquirir matérias e simulados isolados em vídeo (Engenharia de Software, ITIL, Redes e Bancos de Dados) ministrados por peritos e auditores.
+                </p>
+                <div className="pt-1 text-[11px] text-slate-500">
+                  <span className="font-semibold text-slate-300">💡 Indicado para: </span>
+                  Reforço pontual sem precisar assinar planos anuais caros.
+                </div>
+              </div>
+
+              <div className="pt-3 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-amber-400 font-semibold">Disciplinas Avulsas</span>
+                <a
+                  href="https://www.provasdeti.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-400 hover:text-indigo-300 group-hover:underline"
+                >
+                  <span>Conhecer</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* 2. Apostilas Opção & Nova Concursos */}
+            <div className="bg-slate-900/50 hover:bg-slate-900 border border-slate-800/90 hover:border-amber-500/50 rounded-xl p-4 flex flex-col justify-between transition-all group shadow-sm">
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    Apostilas Digitais & Físicas
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-mono">PDF / Impresso</span>
+                </div>
+                <h3 className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors">
+                  Apostilas Opção & Nova Concursos
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Lojas virtuais consolidadas com apostilas organizadas estritamente na ordem do edital recém-publicado para cargos de TI (ex: Dataprev, Correios TI, Caixa Econômica e BB Tecnologia).
+                </p>
+                <div className="pt-1 text-[11px] text-slate-500">
+                  <span className="font-semibold text-slate-300">💡 Indicado para: </span>
+                  Reta final de tiro curto e leitura direta do edital.
+                </div>
+              </div>
+
+              <div className="pt-3 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-amber-400 font-semibold">A partir de R$ 35</span>
+                <a
+                  href="https://www.apostilasopcao.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 hover:text-amber-300 group-hover:underline"
+                >
+                  <span>Conhecer</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* 3. Editora Juspodivm & Método */}
+            <div className="bg-slate-900/50 hover:bg-slate-900 border border-slate-800/90 hover:border-sky-500/50 rounded-xl p-4 flex flex-col justify-between transition-all group shadow-sm">
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                    Livros Doutrinários
+                  </span>
+                  <span className="text-[10px] text-sky-400 font-mono font-semibold">Perícia & Fisco</span>
+                </div>
+                <h3 className="text-sm font-bold text-white group-hover:text-sky-300 transition-colors">
+                  Editora Juspodivm & Método
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Livrarias especializadas em doutrina para concursos. Destacam-se os manuais de Informática e TI para Perito Criminal da Polícia Federal e questões comentadas por artigo.
+                </p>
+                <div className="pt-1 text-[11px] text-slate-500">
+                  <span className="font-semibold text-slate-300">💡 Indicado para: </span>
+                  Candidatos a Perito de TI e provas discursivas avançadas.
+                </div>
+              </div>
+
+              <div className="pt-3 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-amber-400 font-semibold">Livros Físicos / E-books</span>
+                <a
+                  href="https://www.editorajuspodivm.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-sky-400 hover:text-sky-300 group-hover:underline"
+                >
+                  <span>Conhecer</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* 4. Bibliografia Clássica das Bancas */}
+            <div className="bg-slate-900/50 hover:bg-slate-900 border border-slate-800/90 hover:border-emerald-500/50 rounded-xl p-4 flex flex-col justify-between transition-all group shadow-sm">
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    Bíblias Universitárias
+                  </span>
+                  <span className="text-[10px] text-emerald-400 font-mono font-semibold">Fonte das Bancas</span>
+                </div>
+                <h3 className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  Livros Clássicos de TI (Amazon)
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  As bancas (Cebraspe e FGV) extraem conceitos textuais literais das obras canônicas: Tanenbaum (Redes e SO), Pressman/Sommerville (Software) e Navathe (Bancos de Dados).
+                </p>
+                <div className="pt-1 text-[11px] text-slate-500">
+                  <span className="font-semibold text-slate-300">💡 Indicado para: </span>
+                  Fundamentar recursos e dominar a literalidade cobrada.
+                </div>
+              </div>
+
+              <div className="pt-3 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-amber-400 font-semibold">Obras Acadêmicas</span>
+                <a
+                  href="https://www.amazon.com.br/s?k=tanenbaum+redes+de+computadores"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 hover:text-emerald-300 group-hover:underline"
+                >
+                  <span>Ver Obras</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         {/* Tabela Comparativa de Recursos */}

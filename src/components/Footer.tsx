@@ -21,8 +21,8 @@ interface FooterProps {
   onOpenAbout?: () => void;
   onOpenContact?: () => void;
   onOpenEducationalGuide?: () => void;
-  onNavigateRoute?: (route: 'sobre' | 'privacidade' | 'termos' | 'contato' | 'concursos-abertos' | 'guia-carreira-ti') => void;
-  onSelectView?: (view: 'home' | 'flashcards' | 'guides' | 'concursos-abertos' | 'guia-carreira-ti') => void;
+  onNavigateRoute?: (route: 'sobre' | 'privacidade' | 'termos' | 'contato' | 'preparatorios' | 'concursos-abertos' | 'guia-carreira-ti') => void;
+  onSelectView?: (view: 'home' | 'flashcards' | 'guides' | 'preparatorios' | 'concursos-abertos' | 'guia-carreira-ti') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
   const handleNav = (
     e: React.MouseEvent, 
-    route: 'sobre' | 'privacidade' | 'termos' | 'contato' | 'concursos-abertos' | 'guia-carreira-ti', 
+    route: 'sobre' | 'privacidade' | 'termos' | 'contato' | 'preparatorios' | 'concursos-abertos' | 'guia-carreira-ti', 
     fallbackModal?: () => void
   ) => {
     e.preventDefault();
@@ -132,12 +132,12 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a 
-                href="/concursos-abertos"
-                onClick={(e) => handleNav(e, 'concursos-abertos')}
+                href="/preparatorios"
+                onClick={(e) => handleNav(e, 'preparatorios')}
                 className="hover:text-indigo-400 text-slate-300 transition-colors flex items-center gap-1.5 text-left"
               >
-                <Briefcase className="w-3.5 h-3.5 text-amber-400" />
-                <span>Concursos Abertos & Editais 2026</span>
+                <GraduationCap className="w-3.5 h-3.5 text-amber-400" />
+                <span>Vitrine de Cursos Preparatórios & Assinaturas</span>
               </a>
             </li>
             <li>

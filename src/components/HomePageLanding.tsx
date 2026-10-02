@@ -190,10 +190,10 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
                 onClick={onNavigateToConcursos}
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-slate-700/80 text-slate-200 hover:text-white font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 hover:border-slate-600"
               >
-                <Briefcase className="w-4 h-4 text-amber-400" />
-                <span>Radar de Concursos Abertos</span>
-                <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                  Edição 2026
+                <GraduationCap className="w-4 h-4 text-amber-400" />
+                <span>Vitrine de Preparatórios de TI</span>
+                <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  Comparador
                 </span>
               </button>
 
@@ -515,104 +515,104 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold">
-                <Briefcase className="w-3.5 h-3.5" />
-                <span>Oportunidades Mapeadas 2026</span>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold">
+                <GraduationCap className="w-3.5 h-3.5 text-amber-400" />
+                <span>Vitrine & Comparador de Preparatórios</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-bold text-white tracking-tight">
-                Principais Editais de TI em Pauta
+                Qual Cursinho de TI Escolher?
               </h2>
               <p className="text-sm text-slate-400 max-w-xl">
-                Confira os órgãos que estão contratando ou com editais iminentes para carreiras de tecnologia em âmbito nacional.
+                Compare as melhores assinaturas, metodologias (PDFs vs Vídeos vs Questões) e entenda onde investir seu tempo para concursos de TI.
               </p>
             </div>
 
             <button
               onClick={onNavigateToConcursos}
-              className="self-start md:self-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 group"
+              className="self-start md:self-auto px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 border border-indigo-500/40 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 group shadow-lg shadow-indigo-600/20"
             >
-              <span>Ver todos os 12 concursos mapeados</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-amber-400" />
+              <span>Ver Vitrine Completa com Preços</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-white" />
             </button>
           </div>
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            {/* Card 1: BACEN */}
-            <div className="bg-slate-900/60 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 transition-all hover:translate-y-[-2px] flex flex-col justify-between">
+            {/* Card 1: Estratégia */}
+            <div className="bg-slate-900/60 border border-blue-500/30 hover:border-blue-500/60 rounded-2xl p-6 transition-all hover:translate-y-[-2px] flex flex-col justify-between shadow-lg shadow-blue-950/20">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                    Banca: Cebraspe
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                    Foco: Livros Digitais (PDF)
                   </span>
-                  <span className="text-xs text-emerald-400 font-mono font-bold">R$ 20.924,80</span>
+                  <span className="text-xs text-amber-400 font-mono font-bold">12x ~R$ 89 a R$ 149</span>
                 </div>
-                <h3 className="text-lg font-bold text-white">Banco Central do Brasil (BACEN)</h3>
+                <h3 className="text-lg font-bold text-white">Estratégia Concursos (TI)</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Cargo de Analista de TI com foco em Arquitetura de Sistemas, Segurança da Informação, Infraestrutura de Nuvem e Pix/Open Finance.
+                  Líder em materiais escritos com PDFs aprofundados, Passo Estratégico e Trilhas semanais estruturadas para tribunais, Bacen e Receita Federal.
                 </p>
               </div>
 
               <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
-                <span className="text-slate-500">Nível Superior (Qualquer TI)</span>
+                <span className="text-slate-500">Trilha Guiada + Passo</span>
                 <button
-                  onClick={() => onStartStudy('Arquitetura de Software')}
+                  onClick={onNavigateToConcursos}
                   className="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1"
                 >
-                  Estudar Tópicos <ChevronRight className="w-3.5 h-3.5" />
+                  Ver Detalhes <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
 
-            {/* Card 2: SERPRO / DATAPREV */}
-            <div className="bg-slate-900/60 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 transition-all hover:translate-y-[-2px] flex flex-col justify-between">
+            {/* Card 2: Gran Cursos */}
+            <div className="bg-slate-900/60 border border-red-500/30 hover:border-red-500/60 rounded-2xl p-6 transition-all hover:translate-y-[-2px] flex flex-col justify-between shadow-lg shadow-red-950/20">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                    Banca: Cebraspe / FGV
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-red-500/20 text-red-300 border border-red-500/30">
+                    Foco: Videoaulas & App
                   </span>
-                  <span className="text-xs text-emerald-400 font-mono font-bold">R$ 10.500 a R$ 16.000 + PLR</span>
+                  <span className="text-xs text-amber-400 font-mono font-bold">12x ~R$ 59 a R$ 99</span>
                 </div>
-                <h3 className="text-lg font-bold text-white">SERPRO & DATAPREV</h3>
+                <h3 className="text-lg font-bold text-white">Gran Cursos Online (TI)</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Gigantes estatais de dados. Carreiras em Desenvolvimento de Software (Java, Python, C#), Engenharia de Dados, Nuvem Soberana e IA Governamental.
+                  Infraestrutura premiada de videoaulas didáticas, app com download offline, audiobooks e a plataforma Gran Questões integrada na assinatura ilimitada.
                 </p>
               </div>
 
               <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
-                <span className="text-slate-500">Teletrabalho Híbrido/Integral</span>
+                <span className="text-slate-500">Ilimitada + Questões</span>
                 <button
-                  onClick={() => onStartStudy('Engenharia de Software')}
+                  onClick={onNavigateToConcursos}
                   className="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1"
                 >
-                  Estudar Tópicos <ChevronRight className="w-3.5 h-3.5" />
+                  Ver Detalhes <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
 
-            {/* Card 3: Tribunais Federais (TRTs/TRFs/TJ) */}
-            <div className="bg-slate-900/60 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 transition-all hover:translate-y-[-2px] flex flex-col justify-between">
+            {/* Card 3: TEC Concursos */}
+            <div className="bg-slate-900/60 border border-emerald-500/30 hover:border-emerald-500/60 rounded-2xl p-6 transition-all hover:translate-y-[-2px] flex flex-col justify-between shadow-lg shadow-emerald-950/20">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30">
-                    Banca: FCC / FGV
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    Foco: Banco de Questões
                   </span>
-                  <span className="text-xs text-emerald-400 font-mono font-bold">R$ 15.387,88 Inicial</span>
+                  <span className="text-xs text-amber-400 font-mono font-bold">~R$ 39 a R$ 49/mês</span>
                 </div>
-                <h3 className="text-lg font-bold text-white">Tribunais Federais & Estaduais</h3>
+                <h3 className="text-lg font-bold text-white">TEC Concursos</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Analista Judiciário de TI. Processo Judicial Eletrônico (PJe), Banco de Dados, Segurança e Governança de TI com plano de carreira judiciário federal.
+                  O queridinho dos primeiros colocados de TI. Comentários teóricos de professores engenheiros e auditores em 95%+ das questões e filtros refinados por tecnologia.
                 </p>
               </div>
 
               <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
-                <span className="text-slate-500">Regime Estatutário (Lei 8.112)</span>
+                <span className="text-slate-500">Teoria na Questão</span>
                 <button
-                  onClick={() => onStartStudy('Governança & Gestão de TI')}
+                  onClick={onNavigateToConcursos}
                   className="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1"
                 >
-                  Estudar Tópicos <ChevronRight className="w-3.5 h-3.5" />
+                  Ver Detalhes <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>

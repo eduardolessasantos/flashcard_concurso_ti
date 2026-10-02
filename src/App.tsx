@@ -16,7 +16,7 @@ import { ContactModal } from './components/ContactModal';
 import { EducationalGuideModal } from './components/EducationalGuideModal';
 import { EducationalSection } from './components/EducationalSection';
 import { StaticPageView, StaticRoute } from './components/StaticPageView';
-import { ConcursosAbertosView } from './components/ConcursosAbertosView';
+import { PreparatoriosView } from './components/PreparatoriosView';
 import { GuiaCarreiraView } from './components/GuiaCarreiraView';
 import { HomePageLanding } from './components/HomePageLanding';
 import { GamificationDashboardModal } from './components/GamificationDashboardModal';
@@ -55,7 +55,7 @@ import {
 const STORAGE_KEY_CARDS = 'flashcards_ti_cards_v2';
 const STORAGE_KEY_STATS = 'flashcards_ti_stats_v2';
 
-export type ExtendedViewMode = 'home' | 'flashcards' | 'guides' | 'concursos-abertos' | 'guia-carreira-ti' | StaticRoute;
+export type ExtendedViewMode = 'home' | 'flashcards' | 'guides' | 'preparatorios' | 'concursos-abertos' | 'guia-carreira-ti' | StaticRoute;
 
 export default function App() {
   const { 
@@ -72,7 +72,7 @@ export default function App() {
 
   const isAuthenticated = !!user;
 
-  // Active View Mode: Home Landing, Flashcards, Study Guides, Concursos Abertos, Guia de Carreira, or Institutional Static
+  // Active View Mode: Home Landing, Flashcards, Study Guides, Preparatórios de TI, Guia de Carreira, or Institutional Static
   const [currentView, setCurrentView] = useState<ExtendedViewMode>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
@@ -80,7 +80,7 @@ export default function App() {
       if (path === 'privacidade') return 'privacidade';
       if (path === 'termos') return 'termos';
       if (path === 'contato') return 'contato';
-      if (path === 'concursos-abertos') return 'concursos-abertos';
+      if (path === 'preparatorios' || path === 'concursos-abertos' || path === 'cursos') return 'preparatorios';
       if (path === 'guia-carreira-ti') return 'guia-carreira-ti';
       if (path === 'guias' || path === 'cadernos') return 'guides';
       if (path === 'flashcards' || path === 'estudar' || path === 'praticar') return 'flashcards';
@@ -97,7 +97,7 @@ export default function App() {
       else if (path === 'privacidade') setCurrentView('privacidade');
       else if (path === 'termos') setCurrentView('termos');
       else if (path === 'contato') setCurrentView('contato');
-      else if (path === 'concursos-abertos') setCurrentView('concursos-abertos');
+      else if (path === 'preparatorios' || path === 'concursos-abertos' || path === 'cursos') setCurrentView('preparatorios');
       else if (path === 'guia-carreira-ti') setCurrentView('guia-carreira-ti');
       else if (path === 'guias' || path === 'cadernos') setCurrentView('guides');
       else if (path === 'flashcards' || path === 'estudar' || path === 'praticar') setCurrentView('flashcards');
@@ -122,7 +122,8 @@ export default function App() {
     navigateToView('flashcards');
   };
   const navigateToGuides = () => navigateToView('guides');
-  const navigateToConcursos = () => navigateToView('concursos-abertos');
+  const navigateToPreparatorios = () => navigateToView('preparatorios');
+  const navigateToConcursos = navigateToPreparatorios;
   const navigateToCarreira = () => navigateToView('guia-carreira-ti');
 
   // Gamification state from localStorage: devconcursos_gamification_v2
@@ -604,17 +605,17 @@ export default function App() {
             </button>
 
             <button
-              onClick={navigateToConcursos}
+              onClick={navigateToPreparatorios}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all ${
-                currentView === 'concursos-abertos'
+                currentView === 'preparatorios' || currentView === 'concursos-abertos'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <Briefcase className="w-3.5 h-3.5 text-amber-400" />
-              <span>Concursos Abertos</span>
-              <span className="text-[9px] px-1.5 py-0.2 bg-amber-500/20 text-amber-300 rounded-full border border-amber-500/30">
-                2026
+              <GraduationCap className="w-3.5 h-3.5 text-amber-400" />
+              <span>Preparatórios</span>
+              <span className="text-[9px] px-1.5 py-0.2 bg-indigo-500/20 text-indigo-300 rounded-full border border-indigo-500/30">
+                Guia
               </span>
             </button>
 
@@ -716,12 +717,12 @@ export default function App() {
           Flashcards (SRS)
         </button>
         <button
-          onClick={navigateToConcursos}
+          onClick={navigateToPreparatorios}
           className={`px-3 py-1 rounded-full whitespace-nowrap font-medium ${
-            currentView === 'concursos-abertos' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+            currentView === 'preparatorios' || currentView === 'concursos-abertos' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
           }`}
         >
-          Concursos Abertos
+          Preparatórios de TI
         </button>
         <button
           onClick={navigateToCarreira}
@@ -772,8 +773,8 @@ export default function App() {
           onNavigateHome={navigateHome}
           onNavigateRoute={(r) => navigateToView(r as ExtendedViewMode)}
         />
-      ) : currentView === 'concursos-abertos' ? (
-        <ConcursosAbertosView
+      ) : currentView === 'preparatorios' || currentView === 'concursos-abertos' ? (
+        <PreparatoriosView
           onSelectTopicForStudy={handleStartFlashcardTopic}
           onNavigateHome={navigateHome}
         />
@@ -959,14 +960,14 @@ export default function App() {
               {/* Promo Banners for New Sections */}
               <div className="space-y-2">
                 <button
-                  onClick={navigateToConcursos}
+                  onClick={navigateToPreparatorios}
                   className="w-full p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-left hover:border-amber-500/40 transition-colors flex items-center justify-between group"
                 >
                   <div className="flex items-center gap-2">
-                    <Briefcase className="w-4 h-4 text-amber-400 shrink-0" />
+                    <GraduationCap className="w-4 h-4 text-amber-400 shrink-0" />
                     <div>
-                      <div className="text-xs font-bold text-white group-hover:text-amber-300">Concursos Abertos</div>
-                      <div className="text-[10px] text-slate-400">TRT, Bacen, TCU e Dataprev</div>
+                      <div className="text-xs font-bold text-white group-hover:text-amber-300">Preparatórios de TI</div>
+                      <div className="text-[10px] text-slate-400">Estratégia, Gran, TEC e QC</div>
                     </div>
                   </div>
                   <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />

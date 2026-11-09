@@ -1,5 +1,5 @@
 # robots.txt para Flash Concurso TI
-# Permite a indexação completa por Googlebot e crawlers do Google AdSense
+# Permite indexação e rastreamento completo pelos bots do Google e anúncios
 
 User-agent: *
 Allow: /
@@ -13,4 +13,10 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
-Sitemap: https://flashconcursoti.netlify.app/sitemap.xml
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+Sitemap: https://flashconcursoti.com.br/sitemap.xml

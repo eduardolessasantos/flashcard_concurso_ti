@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LGPD para Concursos de TI – As 10 Bases Legais, Agentes de Tratamento e Pegadinhas de Prova | Flash Concurso TI</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="Guia esquematizado da Lei Geral de Proteção de Dados (Lei nº 13.709/2018) focado em concursos públicos de TI. Domine as 10 bases legais de tratamento, dados sensíveis, direitos dos titulares e penalidades da ANPD." />
+    <meta name="keywords" content="LGPD concurso TI, bases legais LGPD, controlador e operador diferenca, encarregado DPO LGPD, dados pessoais sensiveis LGPD, questoes LGPD Cebraspe FGV" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://flashconcursoti.com.br/guias/lgpd-concursos" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="LGPD para Concursos de TI: As 10 Bases Legais e Pegadinhas de Bancas" />
+    <meta property="og:description" content="Resumo completo com esquemas visuais, papéis dos agentes de tratamento e questões comentadas de tribunais e fisco." />
+    <meta property="og:url" content="https://flashconcursoti.com.br/guias/lgpd-concursos" />
+
+    <!-- Google AdSense Oficial -->
+    <meta name="google-adsense-account" content="ca-pub-1242153191500402">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1242153191500402" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics Oficial (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B91XT5E6VF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-B91XT5E6VF');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Schema.org Article Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "LGPD para Concursos de TI: As 10 Bases Legais, Agentes de Tratamento e Pegadinhas de Prova",
+      "description": "Manual esquematizado da Lei Geral de Proteção de Dados Pessoais direcionado para concurseiros da carreira de tecnologia.",
+      "inLanguage": "pt-BR",
+      "url": "https://flashconcursoti.com.br/guias/lgpd-concursos",
+      "datePublished": "2026-11-10T10:00:00-03:00",
+      "dateModified": "2026-11-11T11:00:00-03:00",
+      "author": {
+        "@type": "Person",
+        "name": "Eduardo Lessa",
+        "jobTitle": "Engenheiro de Software & Especialista em Concursos de TI"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Flash Concurso TI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://flashconcursoti.com.br/favicon.svg"
+        }
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-slate-950 text-slate-200 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur px-4 sm:px-8 py-4 sticky top-0 z-40">
+      <div class="max-w-5xl mx-auto flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2.5 text-white font-bold text-lg hover:text-indigo-400 transition-colors">
+          <span class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-black text-xs text-white">FC</span>
+          <span>Flash Concurso TI</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-xs text-slate-300">
+          <a href="/" class="hover:text-indigo-400 transition-colors">Flashcards</a>
+          <a href="/concursos-abertos" class="hover:text-indigo-400 transition-colors">Concursos Abertos</a>
+          <a href="/guia-carreira-ti" class="hover:text-indigo-400 transition-colors">Guia de Carreira</a>
+          <a href="/guias" class="text-indigo-400 font-semibold">Cadernos Teóricos</a>
+          <a href="/sobre" class="hover:text-indigo-400 transition-colors">Sobre</a>
+        </nav>
+        <a href="/" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition-colors shadow-lg shadow-indigo-600/20">
+          ← Praticar Flashcards
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 space-y-10 leading-relaxed text-slate-300">
+      
+      <!-- Breadcrumb & Metadados do Artigo -->
+      <div class="space-y-4 border-b border-slate-800 pb-8">
+        <nav class="flex items-center gap-2 text-xs text-slate-400">
+          <a href="/" class="hover:underline">Início</a>
+          <span>›</span>
+          <a href="/guias" class="hover:underline">Cadernos Teóricos</a>
+          <span>›</span>
+          <span class="text-indigo-400 font-medium">LGPD (Lei 13.709/2018)</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold">
+          ⚖️ Legislação Aplicada à TI • Edital 2026
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          LGPD Esquematizada para Concursos de TI: As 10 Bases Legais e Questões de Banca
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-400 pt-2">
+          <span>Por <strong class="text-slate-200">Eduardo Lessa</strong></span>
+          <span>•</span>
+          <span>Atualizado em 11 de Novembro de 2026</span>
+          <span>•</span>
+          <span>Tempo de leitura estimado: 10 min</span>
+        </div>
+      </div>
+
+      <!-- Resumo Executivo -->
+      <section class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>📌</span> O que todo Concurseiro de TI precisa saber sobre a LGPD
+        </h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          A <strong>Lei nº 13.709/2018 (Lei Geral de Proteção de Dados Pessoais - LGPD)</strong> tornou-se disciplina de cobrança obrigatória nos concursos públicos de TI no Brasil após a Emenda Constitucional nº 115/2022, que elevou a proteção de dados pessoais à categoria de <strong>direito fundamental</strong> no art. 5º, inciso LXXIX da Constituição Federal. Nas provas de Analista e Auditor, as bancas não cobram apenas o texto legal, mas principalmente a sua aplicação técnica: anonimização, Privacy by Design, ciclo de vida dos dados e papéis de arquitetura.
+        </p>
+      </section>
+
+      <!-- Seção 1: Conceitos Fundamentais -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">1. Conceitos Fundamentais: O Vocabulário da Lei (Art. 5º)</h2>
+        <p>
+          Antes de memorizar as bases legais, você precisa dominar com precisão a distinção entre os tipos de dados e os papéis definidos pela lei:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-400">Dado Pessoal Comum</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Informação relacionada a pessoa natural <strong>identificada ou identificável</strong> (ex: CPF, RG, e-mail, geolocalização e endereço IP).
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-sm font-bold text-rose-400">Dado Pessoal Sensível</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Dados sobre origem racial ou étnica, convicção religiosa, opinião política, filiação sindical, dados referentes à saúde ou à vida sexual, dado genético ou biométrico.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-sm font-bold text-emerald-400">Dado Anonimizado</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Dado relativo a titular que não possa ser identificado, considerando a utilização de meios técnicos razoáveis e disponíveis. <strong>Não é considerado dado pessoal para fins da LGPD!</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 2: As 10 Bases Legais (Art. 7º) -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">2. As 10 Hipóteses Legais para Tratamento de Dados Pessoais (Art. 7º)</h2>
+        <p>
+          A maior pegadinha de bancas como FGV e Cebraspe é afirmar que <em>"todo tratamento de dados pessoais depende do consentimento do titular"</em>. <strong>ERRADO!</strong> O consentimento é apenas <strong>uma das 10 bases legais</strong> existentes:
+        </p>
+
+        <div class="space-y-2.5 text-xs">
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">1</span>
+            <div><strong class="text-white">Consentimento do Titular:</strong> Manifestação livre, informada e inequívoca pela qual o titular concorda com o tratamento para finalidade determinada. Pode ser revogado a qualquer momento.</div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">2</span>
+            <div><strong class="text-white">Cumprimento de Obrigação Legal ou Regulatória:</strong> Pelo controlador (ex: guardar registros de log de conexão por 1 ano conforme o Marco Civil da Internet).</div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">3</span>
+            <div><strong class="text-white">Execução de Políticas Públicas:</strong> Pela administração pública, previstas em leis e regulamentos ou respaldadas em contratos e convênios.</div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">4</span>
+            <div><strong class="text-white">Realização de Estudos por Órgão de Pesquisa:</strong> Garantida, sempre que possível, a anonimização dos dados pessoais.</div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">5</span>
+            <div><strong class="text-white">Execução de Contrato:</strong> Ou procedimentos preliminares relacionados a contrato do qual seja parte o titular, a pedido deste.</div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">6</span>
+            <div><strong class="text-white">Exercício Regular de Direitos:</strong> Em processo judicial, administrativo ou arbitral (Lei de Arbitragem nº 9.307/1996).</div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">7</span>
+            <div><strong class="text-white">Proteção da Vida:</strong> Ou da incolumidade física do titular ou de terceiro.</div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">8</span>
+            <div><strong class="text-white">Tutela da Saúde:</strong> Exclusivamente, em procedimento realizado por profissionais de saúde, serviços de saúde ou autoridade sanitária.</div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">9</span>
+            <div><strong class="text-white">Legítimo Interesse:</strong> Do controlador ou de terceiro, exceto no caso de prevalecerem direitos e liberdades fundamentais do titular. <em>(Atenção: Não se aplica a dados sensíveis!).</em></div>
+          </div>
+          <div class="p-3.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">10</span>
+            <div><strong class="text-white">Proteção do Crédito:</strong> Inclusive quanto ao disposto na legislação pertinente (Cadastro Positivo e Serasa/SPC).</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 3: Os Atores da LGPD -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">3. Quem é Quem na LGPD: Agentes de Tratamento e o DPO</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
+            <h3 class="font-bold text-white text-sm">Controlador</h3>
+            <p class="text-slate-400">Pessoa natural ou jurídica a quem competem as <strong>decisões</strong> referentes ao tratamento de dados pessoais. É quem define a finalidade e a base legal.</p>
+          </div>
+          <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
+            <h3 class="font-bold text-white text-sm">Operador</h3>
+            <p class="text-slate-400">Pessoa natural ou jurídica que realiza o tratamento de dados pessoais <strong>em nome do controlador</strong> (ex: o provedor de Cloud, a empresa terceirizada de folha de pagamento).</p>
+          </div>
+          <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
+            <h3 class="font-bold text-white text-sm">Encarregado (DPO)</h3>
+            <p class="text-slate-400">Pessoa indicada pelo controlador e operador para atuar como <strong>canal de comunicação</strong> entre o controlador, os titulares dos dados e a ANPD.</p>
+          </div>
+        </div>
+        <p class="text-xs text-amber-400/90 italic bg-amber-500/10 p-3 rounded-lg border border-amber-500/20">
+          ⚠️ <strong>Alerta de Prova:</strong> O termo "Agentes de Tratamento" engloba apenas o <strong>Controlador e o Operador</strong>. O Encarregado (DPO) NÃO é agente de tratamento!
+        </p>
+      </section>
+
+      <!-- Seção 4: Os 10 Princípios do Art. 6º -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">4. Princípios Fundamentais (Art. 6º)</h2>
+        <p>
+          As atividades de tratamento devem observar a boa-fé e os 10 princípios basilares:
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-xs">
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-indigo-400">Finalidade</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-indigo-400">Adequação</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-indigo-400">Necessidade</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-indigo-400">Livre Acesso</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-indigo-400">Qualidade</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-emerald-400">Transparência</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-emerald-400">Segurança</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-emerald-400">Prevenção</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-emerald-400">Não Discriminação</span></div>
+          <div class="p-2.5 bg-slate-900/80 rounded-lg border border-slate-800"><span class="font-bold text-emerald-400">Responsabilização</span></div>
+        </div>
+      </section>
+
+      <!-- Questão Prática Comentada -->
+      <section class="p-6 rounded-2xl bg-cyan-950/30 border border-cyan-500/30 space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
+            Questão Comentada • FGV Concursos
+          </span>
+          <span class="text-xs text-slate-400">Auditor de Controle</span>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif italic bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
+          "Em conformidade com a LGPD (Lei nº 13.709/2018), caso uma instituição bancária pública utilize dados cadastrais de clientes para o cumprimento de normas de prevenção à lavagem de dinheiro expedidas pelo Banco Central do Brasil, o tratamento desses dados prescinde do consentimento prévio dos titulares."
+        </p>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2 text-xs">
+          <p class="font-bold text-emerald-400">Gabarito: CERTO</p>
+          <p class="text-slate-300 leading-relaxed">
+            <strong>Comentário Pedagógico:</strong> A palavra "prescinde" significa "dispensa / não necessita". Como o tratamento é realizado para o cumprimento de obrigação legal ou regulatória pelo controlador (Art. 7º, inciso II), <strong>não há necessidade de consentimento do titular</strong>. Essa é uma das hipóteses clássicas exploradas em concursos de tribunais e fisco.
+          </p>
+        </div>
+      </section>
+
+      <!-- CTA para Flashcards -->
+      <section class="p-8 rounded-2xl bg-gradient-to-br from-cyan-950 via-slate-900 to-slate-950 border border-cyan-500/30 text-center space-y-4">
+        <h2 class="text-2xl font-extrabold text-white">Memorize os Artigos e Prazos da LGPD</h2>
+        <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+          Pratique dezenas de cartões ativos com prazos da ANPD, sanções administrativas, direitos dos titulares e transferência internacional de dados com o nosso simulador SRS.
+        </p>
+        <div>
+          <a href="/" class="inline-block px-6 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-xl shadow-cyan-600/30 hover:scale-105">
+            Acessar Baralho de LGPD e Legislação de TI →
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-10 px-6 text-xs text-slate-400 mt-12">
+      <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="font-bold text-slate-200">Flash Concurso TI</span> — Plataforma Pedagógica Especializada em Concursos de Tecnologia da Informação.
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a href="/guias" class="hover:underline">Cadernos Teóricos</a>
+          <a href="/guia-carreira-ti" class="hover:underline">Guia de Carreira</a>
+          <a href="/concursos-abertos" class="hover:underline">Concursos Abertos</a>
+          <a href="/sobre" class="hover:underline">Sobre</a>
+          <a href="/termos" class="hover:underline">Termos</a>
+          <a href="/privacidade" class="hover:underline">Privacidade</a>
+          <a href="/contato" class="hover:underline">Contato</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

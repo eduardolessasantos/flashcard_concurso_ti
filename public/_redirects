@@ -1,18 +1,23 @@
+# Detailed SEO guides
+/guias/iso-27002-2022   /guias/iso-27002-2022/index.html   200
+/guias/lgpd-concursos    /guias/lgpd-concursos/index.html    200
+/guias/itil4-cobit2019   /guias/itil4-cobit2019/index.html   200
+
 # Static directories with pre-rendered SEO content
-/guias               /guias/index.html         200
-/guias/*             /guias/index.html         200
-/concursos-abertos   /concursos-abertos/index.html 200
-/concursos-abertos/* /concursos-abertos/index.html 200
-/guia-carreira-ti    /guia-carreira-ti/index.html  200
-/guia-carreira-ti/*  /guia-carreira-ti/index.html  200
-/sobre               /sobre/index.html         200
-/sobre/*             /sobre/index.html         200
-/privacidade         /privacidade/index.html   200
-/privacidade/*       /privacidade/index.html   200
-/termos              /termos/index.html        200
-/termos/*            /termos/index.html        200
-/contato             /contato/index.html       200
-/contato/*           /contato/index.html       200
+/guias                   /guias/index.html                 200
+/guias/*                 /guias/index.html                 200
+/concursos-abertos       /concursos-abertos/index.html     200
+/concursos-abertos/*     /concursos-abertos/index.html     200
+/guia-carreira-ti        /guia-carreira-ti/index.html      200
+/guia-carreira-ti/*      /guia-carreira-ti/index.html      200
+/sobre                   /sobre/index.html                 200
+/sobre/*                 /sobre/index.html                 200
+/privacidade             /privacidade/index.html           200
+/privacidade/*           /privacidade/index.html           200
+/termos                  /termos/index.html                200
+/termos/*                /termos/index.html                200
+/contato                 /contato/index.html               200
+/contato/*               /contato/index.html               200
 
 # SPA fallback (static files like /ads.txt, /robots.txt, /sitemap.xml are served automatically before this rule)
-/*                   /index.html               200
+/*                       /index.html                       200

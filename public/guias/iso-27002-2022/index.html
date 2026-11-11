@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia Completo da ISO/IEC 27002:2022 para Concursos de TI – Estrutura, 4 Temas e 93 Controles | Flash Concurso TI</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="Domine a norma ABNT NBR ISO/IEC 27002:2022 para concursos públicos de TI (Cebraspe, FGV e FCC). Entenda a transição dos 14 domínios para os 4 novos temas, os 93 controles de segurança, atributos e questões comentadas." />
+    <meta name="keywords" content="ISO 27002 2022 concurso, controles de seguranca da informacao, ISO 27001 e ISO 27002 diferenca, 4 temas ISO 27002, questoes comentadas ISO 27002 Cebraspe FGV" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://flashconcursoti.com.br/guias/iso-27002-2022" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Guia Completo da ISO/IEC 27002:2022 para Concursos de TI" />
+    <meta property="og:description" content="Resumo esquematizado e questões gabaritadas da norma de Segurança da Informação mais cobrada em concursos públicos." />
+    <meta property="og:url" content="https://flashconcursoti.com.br/guias/iso-27002-2022" />
+
+    <!-- Google AdSense Oficial -->
+    <meta name="google-adsense-account" content="ca-pub-1242153191500402">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1242153191500402" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics Oficial (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B91XT5E6VF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-B91XT5E6VF');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Schema.org Article Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Guia Completo da ISO/IEC 27002:2022 para Concursos de TI: Mudanças Estruturais, 4 Temas e 93 Controles",
+      "description": "Análise aprofundada da ABNT NBR ISO/IEC 27002:2022 voltada para candidatos de concursos públicos de tecnologia da informação.",
+      "inLanguage": "pt-BR",
+      "url": "https://flashconcursoti.com.br/guias/iso-27002-2022",
+      "datePublished": "2026-11-10T10:00:00-03:00",
+      "dateModified": "2026-11-11T11:00:00-03:00",
+      "author": {
+        "@type": "Person",
+        "name": "Eduardo Lessa",
+        "jobTitle": "Engenheiro de Software & Especialista em Concursos de TI"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Flash Concurso TI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://flashconcursoti.com.br/favicon.svg"
+        }
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-slate-950 text-slate-200 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur px-4 sm:px-8 py-4 sticky top-0 z-40">
+      <div class="max-w-5xl mx-auto flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2.5 text-white font-bold text-lg hover:text-indigo-400 transition-colors">
+          <span class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-black text-xs text-white">FC</span>
+          <span>Flash Concurso TI</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-xs text-slate-300">
+          <a href="/" class="hover:text-indigo-400 transition-colors">Flashcards</a>
+          <a href="/concursos-abertos" class="hover:text-indigo-400 transition-colors">Concursos Abertos</a>
+          <a href="/guia-carreira-ti" class="hover:text-indigo-400 transition-colors">Guia de Carreira</a>
+          <a href="/guias" class="text-indigo-400 font-semibold">Cadernos Teóricos</a>
+          <a href="/sobre" class="hover:text-indigo-400 transition-colors">Sobre</a>
+        </nav>
+        <a href="/" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition-colors shadow-lg shadow-indigo-600/20">
+          ← Praticar Flashcards
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 space-y-10 leading-relaxed text-slate-300">
+      
+      <!-- Breadcrumb & Metadados do Artigo -->
+      <div class="space-y-4 border-b border-slate-800 pb-8">
+        <nav class="flex items-center gap-2 text-xs text-slate-400">
+          <a href="/" class="hover:underline">Início</a>
+          <span>›</span>
+          <a href="/guias" class="hover:underline">Cadernos Teóricos</a>
+          <span>›</span>
+          <span class="text-indigo-400 font-medium">ISO/IEC 27002:2022</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-semibold">
+          🛡️ Segurança da Informação • Edital 2026
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          Guia Definitivo da ABNT NBR ISO/IEC 27002:2022 para Concursos Públicos de TI
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-400 pt-2">
+          <span>Por <strong class="text-slate-200">Eduardo Lessa</strong></span>
+          <span>•</span>
+          <span>Atualizado em 11 de Novembro de 2026</span>
+          <span>•</span>
+          <span>Tempo de leitura estimado: 12 min</span>
+        </div>
+      </div>
+
+      <!-- Resumo Executivo -->
+      <section class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>📌</span> Visão Geral para a Prova
+        </h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          A norma <strong>ABNT NBR ISO/IEC 27002:2022</strong> (atualização da versão 2013) é presença mandatória em todos os concursos de TI de alto nível — incluindo Cebraspe (STJ, TSE, TRF), FGV (Receita Federal, Senado, SEFAZ) e Fundação Cesgranrio (Bacen, Dataprev). O principal objetivo desta revisão internacional foi simplificar a taxonomia de segurança, adaptando-a à realidade moderna de computação em nuvem, trabalho remoto e ameaças cibernéticas sofisticadas.
+        </p>
+      </section>
+
+      <!-- Seção 1: Diferença Crucial entre ISO 27001 e ISO 27002 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">1. A Diferença Fundamental: ISO/IEC 27001 vs. ISO/IEC 27002</h2>
+        <p>
+          Esta é a pegadinha conceitual mais recorrente nas provas de bancas examinadoras. É imprescindível ter clareza sobre o escopo de cada norma:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-base font-bold text-indigo-400">ISO/IEC 27001 (Requisitos & SGSI)</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Define os <strong>requisitos formais</strong> para estabelecer, implementar, manter e melhorar continuamente um <strong>Sistema de Gestão de Segurança da Informação (SGSI)</strong>. É uma norma certificável. As cláusulas 4 a 10 seguem a estrutura de alto nível (Annex SL) e seu Anexo A lista os objetivos de controle de forma normativa.
+            </p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-base font-bold text-indigo-400">ISO/IEC 27002 (Código de Práticas)</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Funciona como um <strong>guia prático de implementação</strong> e referência de boas práticas para os controles de segurança. <strong>Não é uma norma de certificação de empresas</strong> por si só. Ela detalha <em>como</em> implementar cada controle recomendado no Anexo A da ISO 27001.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 2: Comparativo 2013 vs 2022 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">2. O Grande Salto: Comparativo Estrutural 2013 vs. 2022</h2>
+        <p>
+          As bancas adoram cobrar números e mudanças terminológicas. Veja a comparação direta entre as versões:
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left text-slate-300 border border-slate-800 rounded-xl overflow-hidden">
+            <thead class="bg-slate-900 text-slate-200 uppercase font-bold text-[11px] border-b border-slate-800">
+              <tr>
+                <th class="p-3">Característica</th>
+                <th class="p-3 text-slate-400">Versão Anterior (2013)</th>
+                <th class="p-3 text-indigo-400 font-extrabold">Versão Vigente (2022)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/80 bg-slate-950/40">
+              <tr>
+                <td class="p-3 font-semibold text-white">Número de Seções Principais</td>
+                <td class="p-3 text-slate-400">14 domínios (Cláusulas 5 a 18)</td>
+                <td class="p-3 text-emerald-400 font-bold">4 Temas Consolidadores (Cláusulas 5 a 8)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-semibold text-white">Total de Controles</td>
+                <td class="p-3 text-slate-400">114 controles</td>
+                <td class="p-3 text-emerald-400 font-bold">93 controles (redução por consolidação)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-semibold text-white">Novos Controles Criados</td>
+                <td class="p-3 text-slate-400">-</td>
+                <td class="p-3 text-amber-400 font-bold">11 novos controles inéditos</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-semibold text-white">Sistema de Atributos</td>
+                <td class="p-3 text-slate-400">Inexistente</td>
+                <td class="p-3 text-indigo-400 font-bold">5 atributos com hashtags (#) para filtragem ágil</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Seção 3: Os 4 Novos Temas da ISO 27002:2022 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">3. Os 4 Novos Temas Estruturais</h2>
+        <p>
+          Em vez de 14 domínios fragmentados, todos os 93 controles foram reorganizados em 4 grandes categorias:
+        </p>
+
+        <div class="space-y-3">
+          <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 space-y-1">
+            <h3 class="font-bold text-white text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 text-xs flex items-center justify-center font-bold">5</span>
+              Controles Organizacionais (37 controles)
+            </h3>
+            <p class="text-xs text-slate-400">
+              Políticas de segurança, governança interna, inventário de ativos, uso aceitável, gestão de fornecedores, resposta a incidentes e conformidade legal (LGPD, direitos autorais).
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 space-y-1">
+            <h3 class="font-bold text-white text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">6</span>
+              Controles de Pessoas (8 controles)
+            </h3>
+            <p class="text-xs text-slate-400">
+              Triagem pré-admissional (background check), termos de confidencialidade (NDA), conscientização e treinamento contínuo, processos de rescisão e trabalho remoto (home office).
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 space-y-1">
+            <h3 class="font-bold text-white text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-amber-500/20 text-amber-400 text-xs flex items-center justify-center font-bold">7</span>
+              Controles Físicos (14 controles)
+            </h3>
+            <p class="text-xs text-slate-400">
+              Perímetros de segurança física, salas de servidores (Data Centers), controle de entrada física de visitantes, proteção contra ameaças ambientais (incêndio, inundação) e descarte seguro de mídias.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 space-y-1">
+            <h3 class="font-bold text-white text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-rose-500/20 text-rose-400 text-xs flex items-center justify-center font-bold">8</span>
+              Controles Tecnológicos (34 controles)
+            </h3>
+            <p class="text-xs text-slate-400">
+              Controle de acesso lógico (RBAC, MFA), criptografia de dados em repouso e em trânsito, gestão de vulnerabilidades técnicas, backup, proteção contra malware e desenvolvimento seguro de software.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 4: Os 11 Novos Controles (O que as bancas mais amam cobrar) -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">4. Os 11 Novos Controles Criados na Edição 2022</h2>
+        <p>
+          Atenção máxima neste tópico! Os 11 novos controles representam mais de 70% das questões inéditas formuladas pelo Cebraspe e FGV nos últimos concursos:
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">5.7 Inteligência de Ameaças (Threat Intelligence):</strong> Coleta e análise de dados sobre ameaças cibernéticas para tomada de ação preventiva.
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">5.23 Segurança da Informação no uso de Serviços em Nuvem:</strong> Especificação de requisitos de segurança para aquisição, uso e gestão de nuvem (IaaS, PaaS, SaaS).
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">5.30 Prontidão das TIC para Continuidade de Negócios:</strong> Resiliência e recuperação da infraestrutura de TI em cenários de desastre.
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">7.4 Monitoramento de Segurança Física:</strong> Uso de sistemas de CFTV, alarmes e detecção de intrusão nos perímetros organizacionais.
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">8.9 Gerenciamento de Configuração:</strong> Padronização segura de templates de configuração de servidores, switches e contêineres.
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">8.10 Exclusão de Informações:</strong> Sanitização e exclusão irreversível de dados em conformidade com leis de privacidade (LGPD).
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">8.11 Mascaramento de Dados:</strong> Aplicação de técnicas de pseudonimização e anonimização de dados sensíveis.
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">8.12 Prevenção de Vazamento de Dados (DLP):</strong> Monitoramento e bloqueio de transferências não autorizadas de dados corporativos.
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">8.16 Monitoramento de Atividades:</strong> Registro e análise comportamental contínua de anomalias na rede e sistemas.
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg">
+            <strong class="text-indigo-400">8.23 Filtragem Web:</strong> Bloqueio de acesso a websites maliciosos para proteção contra phishing e malware.
+          </div>
+          <div class="p-3 bg-slate-900/70 border border-slate-800 rounded-lg sm:col-span-2">
+            <strong class="text-indigo-400">8.28 Codificação Segura (Secure Coding):</strong> Práticas e princípios de segurança aplicados em todo o ciclo de vida do desenvolvimento de software (DevSecOps, validação de inputs e sanitização contra vulnerabilidades OWASP).
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 5: Os 5 Tipos de Atributos -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">5. O Mecanismo de Atributos da ISO 27002:2022</h2>
+        <p>
+          A norma introduziu um mecanismo inovador de matriz de visualização. Cada controle agora recebe 5 atributos específicos:
+        </p>
+
+        <ul class="list-disc pl-6 space-y-2 text-xs text-slate-300">
+          <li><strong>Tipo de Controle:</strong> Preventivo (age antes da ocorrência do incidente), Detectivo (identifica quando o evento ocorre) ou Corretivo (remedia após o incidente).</li>
+          <li><strong>Propriedades de Segurança da Informação:</strong> Confidencialidade, Integridade e Disponibilidade (a tríade CID).</li>
+          <li><strong>Conceitos de Cibersegurança:</strong> Mapeados diretamente com o NIST CSF (Identificar, Proteger, Detectar, Responder e Recuperar).</li>
+          <li><strong>Capacidades Operacionais:</strong> Governança, Gestão de Ativos, Proteção da Informação, Segurança de Recursos Humanos, etc.</li>
+          <li><strong>Domínios de Segurança:</strong> Governança e Ecossistema, Proteção, Defesa e Resiliência.</li>
+        </ul>
+      </section>
+
+      <!-- Questão Prática Comentada -->
+      <section class="p-6 rounded-2xl bg-indigo-950/30 border border-indigo-500/30 space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
+            Questão de Fixação • Estilo Cebraspe / FGV
+          </span>
+          <span class="text-xs text-slate-400">Analista de TI</span>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif italic bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
+          "A ABNT NBR ISO/IEC 27002:2022 introduziu uma reestruturação em sua taxonomia, substituindo os antigos 14 domínios de segurança por 4 temas consolidadores denominados Organizacionais, Pessoas, Físicos e Tecnológicos, reduzindo a quantidade de controles para 93 através de aglutinações e introduzindo controles inéditos como a Inteligência de Ameaças e a Codificação Segura."
+        </p>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2 text-xs">
+          <p class="font-bold text-emerald-400">Gabarito: CERTO</p>
+          <p class="text-slate-300 leading-relaxed">
+            <strong>Comentário Pedagógico:</strong> A afirmação descreve com exatidão a evolução da norma de 2013 para 2022. Os 14 domínios foram sintetizados em 4 temas (Cláusulas 5 a 8), o total de controles foi ajustado para 93 e foram adicionados 11 novos controles modernos, incluindo Threat Intelligence (5.7) e Secure Coding (8.28).
+          </p>
+        </div>
+      </section>
+
+      <!-- CTA para Flashcards -->
+      <section class="p-8 rounded-2xl bg-gradient-to-br from-indigo-900/50 via-slate-900 to-slate-950 border border-indigo-500/30 text-center space-y-4">
+        <h2 class="text-2xl font-extrabold text-white">Fixe este conteúdo com Repetição Espaçada (SRS)</h2>
+        <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+          Nosso algoritmo calcula os momentos exatos em que seu cérebro está prestes a esquecer os controles da ISO 27002 e agenda a próxima revisão ativa para consolidar a memória permanente.
+        </p>
+        <div>
+          <a href="/" class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-xl shadow-indigo-600/30 hover:scale-105">
+            Treinar Flashcards de Segurança da Informação Agora →
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-10 px-6 text-xs text-slate-400 mt-12">
+      <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="font-bold text-slate-200">Flash Concurso TI</span> — Plataforma Pedagógica Especializada em Concursos de Tecnologia da Informação.
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a href="/guias" class="hover:underline">Cadernos Teóricos</a>
+          <a href="/guia-carreira-ti" class="hover:underline">Guia de Carreira</a>
+          <a href="/concursos-abertos" class="hover:underline">Concursos Abertos</a>
+          <a href="/sobre" class="hover:underline">Sobre</a>
+          <a href="/termos" class="hover:underline">Termos</a>
+          <a href="/privacidade" class="hover:underline">Privacidade</a>
+          <a href="/contato" class="hover:underline">Contato</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

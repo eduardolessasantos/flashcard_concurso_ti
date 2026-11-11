@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Governança de TI Descomplicada: ITIL 4 vs COBIT 2019 para Concursos | Flash Concurso TI</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="Guia comparativo entre ITIL 4 e COBIT 2019 para concursos públicos de TI. Entenda a distinção entre Governança e Gestão, os 5 domínios do COBIT (EDM, APO, BAI, DSS, MEA), o SVS do ITIL e as 34 práticas de gerenciamento." />
+    <meta name="keywords" content="ITIL 4 concurso, COBIT 2019 concurso TI, diferenca governanca e gestao TI, dominios COBIT 2019 EDM APO BAI DSS MEA, ITIL 4 SVS cadeia de valor, questoes ITIL COBIT Cebraspe FGV" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://flashconcursoti.com.br/guias/itil4-cobit2019" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Governança de TI Descomplicada: ITIL 4 vs COBIT 2019 para Concursos" />
+    <meta property="og:description" content="Matriz comparativa completa, distinção entre governança e gestão e questões comentadas dos editais mais disputados." />
+    <meta property="og:url" content="https://flashconcursoti.com.br/guias/itil4-cobit2019" />
+
+    <!-- Google AdSense Oficial -->
+    <meta name="google-adsense-account" content="ca-pub-1242153191500402">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1242153191500402" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics Oficial (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B91XT5E6VF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-B91XT5E6VF');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Schema.org Article Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Governança de TI Descomplicada: ITIL 4 vs COBIT 2019 para Concursos Públicos de TI",
+      "description": "Análise comparativa aprofundada dos frameworks ITIL 4 e COBIT 2019 para candidatos de concursos de TI.",
+      "inLanguage": "pt-BR",
+      "url": "https://flashconcursoti.com.br/guias/itil4-cobit2019",
+      "datePublished": "2026-11-10T10:00:00-03:00",
+      "dateModified": "2026-11-11T11:00:00-03:00",
+      "author": {
+        "@type": "Person",
+        "name": "Eduardo Lessa",
+        "jobTitle": "Engenheiro de Software & Especialista em Concursos de TI"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Flash Concurso TI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://flashconcursoti.com.br/favicon.svg"
+        }
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-slate-950 text-slate-200 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur px-4 sm:px-8 py-4 sticky top-0 z-40">
+      <div class="max-w-5xl mx-auto flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2.5 text-white font-bold text-lg hover:text-indigo-400 transition-colors">
+          <span class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-black text-xs text-white">FC</span>
+          <span>Flash Concurso TI</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-xs text-slate-300">
+          <a href="/" class="hover:text-indigo-400 transition-colors">Flashcards</a>
+          <a href="/concursos-abertos" class="hover:text-indigo-400 transition-colors">Concursos Abertos</a>
+          <a href="/guia-carreira-ti" class="hover:text-indigo-400 transition-colors">Guia de Carreira</a>
+          <a href="/guias" class="text-indigo-400 font-semibold">Cadernos Teóricos</a>
+          <a href="/sobre" class="hover:text-indigo-400 transition-colors">Sobre</a>
+        </nav>
+        <a href="/" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition-colors shadow-lg shadow-indigo-600/20">
+          ← Praticar Flashcards
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 space-y-10 leading-relaxed text-slate-300">
+      
+      <!-- Breadcrumb & Metadados do Artigo -->
+      <div class="space-y-4 border-b border-slate-800 pb-8">
+        <nav class="flex items-center gap-2 text-xs text-slate-400">
+          <a href="/" class="hover:underline">Início</a>
+          <span>›</span>
+          <a href="/guias" class="hover:underline">Cadernos Teóricos</a>
+          <span>›</span>
+          <span class="text-indigo-400 font-medium">Governança (ITIL 4 & COBIT 2019)</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold">
+          🏛️ Governança Corporativa de TI • Edital 2026
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          Governança de TI Descomplicada: ITIL 4 vs. COBIT 2019 para Concursos
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-400 pt-2">
+          <span>Por <strong class="text-slate-200">Eduardo Lessa</strong></span>
+          <span>•</span>
+          <span>Atualizado em 11 de Novembro de 2026</span>
+          <span>•</span>
+          <span>Tempo de leitura estimado: 11 min</span>
+        </div>
+      </div>
+
+      <!-- Resumo Executivo -->
+      <section class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>📌</span> O Cenário da Governança de TI no Serviço Público
+        </h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          Órgãos públicos como TCU (Tribunal de Contas da União), CGU, STJ, Bacen e Receita Federal exigem que seus gestores de tecnologia dominem os dois principais frameworks mundiais de TI: o <strong>COBIT 2019</strong> (da ISACA), focado em governança estratégica e alinhamento com os objetivos de negócio, e o <strong>ITIL 4</strong> (da PeopleCert/Axelos), focado na gestão de serviços de ponta a ponta e na entrega contínua de valor (SVS).
+        </p>
+      </section>
+
+      <!-- Seção 1: Distinção entre Governança e Gestão -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">1. O Divisor de Águas: Governança vs. Gestão</h2>
+        <p>
+          O COBIT 2019 estabelece uma linha divisória claríssima entre essas duas disciplinas organizacionais:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-base font-bold text-violet-400">Governança (Conselho / Direção)</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Responsável por <strong>Avaliar, Dirigir e Monitorar (EDM)</strong>. Define as necessidades, condições e opções dos stakeholders para determinar objetivos corporativos equilibrados e acordados; define a direção por meio de priorização e tomada de decisão; e monitora o desempenho e a conformidade.
+            </p>
+            <p class="text-[11px] text-violet-300 font-mono">Papel: O que a organização deve alcançar.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-base font-bold text-indigo-400">Gestão (Diretoria Executiva / Operação)</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Responsável por <strong>Planejar, Construir, Executar e Monitorar (PBRM)</strong> as atividades em alinhamento com a direção estabelecida pela governança para atingir os objetivos corporativos.
+            </p>
+            <p class="text-[11px] text-indigo-300 font-mono">Papel: Como executar as tarefas operacionais.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 2: Os 5 Domínios do COBIT 2019 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">2. Os 5 Domínios e os 40 Objetivos de Governança e Gestão do COBIT 2019</h2>
+        <p>
+          O modelo central do COBIT 2019 organiza seus 40 objetivos em 5 domínios fundamentais, separados por Governança e Gestão:
+        </p>
+
+        <div class="space-y-3">
+          <div class="p-4 rounded-xl bg-violet-950/20 border border-violet-500/30 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-violet-300 text-sm">Domínio 1: EDM – Avaliar, Dirigir e Monitorar (5 Objetivos)</h3>
+              <span class="text-[11px] font-bold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded">Único Domínio de Governança</span>
+            </div>
+            <p class="text-xs text-slate-400">
+              EDM01 (Estrutura de Governança), EDM02 (Entrega de Benefícios), EDM03 (Otimização de Riscos), EDM04 (Otimização de Recursos) e EDM05 (Engajamento dos Stakeholders).
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm">Domínio 2: APO – Alinhar, Planejar e Organizar (14 Objetivos)</h3>
+              <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Gestão</span>
+            </div>
+            <p class="text-xs text-slate-400">
+              Estratégia de TI, arquitetura corporativa, gestão de inovação, portfólio, custos, recursos humanos, fornecedores, qualidade, riscos e segurança da informação.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm">Domínio 3: BAI – Construir, Adquirir e Implementar (11 Objetivos)</h3>
+              <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Gestão</span>
+            </div>
+            <p class="text-xs text-slate-400">
+              Gerenciamento de programas e projetos, definição de requisitos, desenvolvimento/aquisição de software, gestão de disponibilidade/capacidade, mudanças organizacionais e conhecimento.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm">Domínio 4: DSS – Entregar, Prestar Serviços e Suporte (6 Objetivos)</h3>
+              <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Gestão</span>
+            </div>
+            <p class="text-xs text-slate-400">
+              Operações de serviços, gestão de incidentes e requisições, gestão de problemas, continuidade de serviços (backup/restore), serviços de segurança e controles de processos de negócios.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-white text-sm">Domínio 5: MEA – Monitorar, Avaliar e Medir (4 Objetivos)</h3>
+              <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Gestão</span>
+            </div>
+            <p class="text-xs text-slate-400">
+              Monitoramento de desempenho e conformidade, sistema de controle interno, conformidade com requisitos externos (leis e auditorias) e garantia de governança.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 3: ITIL 4 e o Sistema de Valor de Serviço (SVS) -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">3. ITIL 4: O Sistema de Valor de Serviço (SVS)</h2>
+        <p>
+          O ITIL 4 substituiu o antigo "Ciclo de Vida do Serviço" do ITIL v3 por um modelo integrado e flexível: o <strong>Service Value System (SVS)</strong>. O objetivo do SVS é garantir que a organização cocrie valor de forma constante com todas as partes interessadas.
+        </p>
+
+        <div class="p-5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-3">
+          <h3 class="font-bold text-indigo-400 text-sm">Os 5 Componentes do SVS:</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-300">
+            <li><strong>Princípios Orientadores (7 princípios):</strong> Foco no valor, Começar de onde você está, Progredir iterativamente com feedback, Colaborar e promover visibilidade, Pensar e trabalhar holisticamente, Manter de forma simples e prática, Otimizar e automatizar.</li>
+            <li><strong>Governança:</strong> Mecanismos que avaliam, dirigem e monitoram a organização.</li>
+            <li><strong>Cadeia de Valor de Serviço (SVC):</strong> O núcleo operacional contendo 6 atividades (PIODMT: Planejar, Melhorar, Engajar, Desenhar e Fazer a Transição, Obter/Construir, Entregar e Suportar).</li>
+            <li><strong>Práticas de Gerenciamento:</strong> As 34 práticas estruturadas (substitutas dos antigos 26 processos).</li>
+            <li><strong>Melhoria Contínua:</strong> Modelo recursivo com 7 etapas para evolução institucional contínua.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Seção 4: As 34 Práticas do ITIL 4 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">4. As 34 Práticas do ITIL 4 (Divididas em 3 Grupos)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
+            <h4 class="font-bold text-white text-sm">Práticas Gerais (14)</h4>
+            <p class="text-slate-400">Adaptadas do mundo corporativo global: Gestão de Estratégia, Portfólio, Finanças, Pessoas, Riscos, Segurança da Informação, Fornecedores e Melhoria Contínua.</p>
+          </div>
+          <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
+            <h4 class="font-bold text-white text-sm">Práticas de Serviços (17)</h4>
+            <p class="text-slate-400">Específicas de entrega: Gerenciamento de Incidentes, Requisições, Problemas, Mudanças, Nível de Serviço (SLA), Central de Serviços (Service Desk) e Disponibilidade.</p>
+          </div>
+          <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
+            <h4 class="font-bold text-white text-sm">Práticas Técnicas (3)</h4>
+            <p class="text-slate-400">Adaptadas da engenharia de infraestrutura: Gerenciamento de Implantação (Deployment), Infraestrutura e Plataformas, e Desenvolvimento e Gerenciamento de Software.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Questão Prática Comentada -->
+      <section class="p-6 rounded-2xl bg-violet-950/30 border border-violet-500/30 space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-violet-400 bg-violet-500/10 px-3 py-1 rounded-full border border-violet-500/20">
+            Questão de Fixação • Cebraspe
+          </span>
+          <span class="text-xs text-slate-400">Tribunais Federais</span>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif italic bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
+          "No COBIT 2019, o domínio EDM (Avaliar, Dirigir e Monitorar) é o único associado às responsabilidades de governança, enquanto os domínios APO, BAI, DSS e MEA englobam os objetivos de gestão da tecnologia da informação."
+        </p>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2 text-xs">
+          <p class="font-bold text-emerald-400">Gabarito: CERTO</p>
+          <p class="text-slate-300 leading-relaxed">
+            <strong>Comentário Pedagógico:</strong> Exatamente. O COBIT 2019 segrega estritamente os domínios: apenas o <strong>EDM</strong> pertence à governança (Board/Conselho). Os outros quatro (APO, BAI, DSS e MEA) estão sob o guarda-chuva da gestão executiva.
+          </p>
+        </div>
+      </section>
+
+      <!-- CTA para Flashcards -->
+      <section class="p-8 rounded-2xl bg-gradient-to-br from-violet-950 via-slate-900 to-slate-950 border border-violet-500/30 text-center space-y-4">
+        <h2 class="text-2xl font-extrabold text-white">Domine Governança de TI com Flashcards</h2>
+        <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+          Pratique a memorização de todos os objetivos do COBIT 2019 e as 34 práticas do ITIL 4 sem confusão mental com repetição espaçada ativa.
+        </p>
+        <div>
+          <a href="/" class="inline-block px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-xl shadow-violet-600/30 hover:scale-105">
+            Estudar Baralho de Governança e Gestão de TI →
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-10 px-6 text-xs text-slate-400 mt-12">
+      <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="font-bold text-slate-200">Flash Concurso TI</span> — Plataforma Pedagógica Especializada em Concursos de Tecnologia da Informação.
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a href="/guias" class="hover:underline">Cadernos Teóricos</a>
+          <a href="/guia-carreira-ti" class="hover:underline">Guia de Carreira</a>
+          <a href="/concursos-abertos" class="hover:underline">Concursos Abertos</a>
+          <a href="/sobre" class="hover:underline">Sobre</a>
+          <a href="/termos" class="hover:underline">Termos</a>
+          <a href="/privacidade" class="hover:underline">Privacidade</a>
+          <a href="/contato" class="hover:underline">Contato</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

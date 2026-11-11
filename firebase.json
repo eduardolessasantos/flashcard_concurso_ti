@@ -45,6 +45,18 @@
     ],
     "rewrites": [
       {
+        "source": "/guias/iso-27002-2022",
+        "destination": "/guias/iso-27002-2022/index.html"
+      },
+      {
+        "source": "/guias/lgpd-concursos",
+        "destination": "/guias/lgpd-concursos/index.html"
+      },
+      {
+        "source": "/guias/itil4-cobit2019",
+        "destination": "/guias/itil4-cobit2019/index.html"
+      },
+      {
         "source": "/guias",
         "destination": "/guias/index.html"
       },

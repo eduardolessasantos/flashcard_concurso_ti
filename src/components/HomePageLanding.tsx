@@ -33,6 +33,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { Topico, Banca } from '../types';
+import { ContentCarousel } from './ContentCarousel';
 
 interface HomePageLandingProps {
   onStartStudy: (topic?: Topico) => void;
@@ -221,6 +222,16 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
                 <Check className="w-4 h-4 text-emerald-400" /> 100% Gratuito para Começar
               </span>
             </div>
+          </div>
+
+          {/* ================= CARROSSEL DE DESTAQUES & CONTEÚDOS PRINCIPAIS ================= */}
+          <div className="mt-12">
+            <ContentCarousel 
+              onStartStudy={onStartStudy}
+              onNavigateToConcursos={onNavigateToConcursos}
+              onNavigateToCarreira={onNavigateToCarreira}
+              onNavigateToGuides={onNavigateToGuides}
+            />
           </div>
 
           {/* ================= LIVE SAMPLE FLASHCARD WIDGET ================= */}

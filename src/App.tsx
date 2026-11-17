@@ -19,6 +19,7 @@ import { StaticPageView, StaticRoute } from './components/StaticPageView';
 import { PreparatoriosView } from './components/PreparatoriosView';
 import { GuiaCarreiraView } from './components/GuiaCarreiraView';
 import { HomePageLanding } from './components/HomePageLanding';
+import { TypingPracticeView } from './components/TypingPracticeView';
 import { GamificationDashboardModal } from './components/GamificationDashboardModal';
 import { 
   loadGamificationState, 
@@ -49,13 +50,14 @@ import {
   Trophy,
   ChevronRight,
   Zap,
-  Home
+  Home,
+  Keyboard
 } from 'lucide-react';
 
 const STORAGE_KEY_CARDS = 'flashcards_ti_cards_v2';
 const STORAGE_KEY_STATS = 'flashcards_ti_stats_v2';
 
-export type ExtendedViewMode = 'home' | 'flashcards' | 'guides' | 'preparatorios' | 'concursos-abertos' | 'guia-carreira-ti' | StaticRoute;
+export type ExtendedViewMode = 'home' | 'flashcards' | 'guides' | 'preparatorios' | 'concursos-abertos' | 'guia-carreira-ti' | 'digitacao' | 'aprenda-digitacao' | StaticRoute;
 
 export default function App() {
   const { 
@@ -72,7 +74,7 @@ export default function App() {
 
   const isAuthenticated = !!user;
 
-  // Active View Mode: Home Landing, Flashcards, Study Guides, Preparatórios de TI, Guia de Carreira, or Institutional Static
+  // Active View Mode: Home Landing, Flashcards, Study Guides, Preparatórios de TI, Guia de Carreira, Aprenda por Digitação, or Institutional Static
   const [currentView, setCurrentView] = useState<ExtendedViewMode>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
@@ -80,6 +82,7 @@ export default function App() {
       if (path === 'privacidade') return 'privacidade';
       if (path === 'termos') return 'termos';
       if (path === 'contato') return 'contato';
+      if (path === 'digitacao' || path === 'aprenda-digitacao' || path === 'teclado') return 'digitacao';
       if (path === 'preparatorios' || path === 'concursos-abertos' || path === 'cursos') return 'preparatorios';
       if (path === 'guia-carreira-ti') return 'guia-carreira-ti';
       if (path === 'guias' || path === 'cadernos') return 'guides';
@@ -97,6 +100,7 @@ export default function App() {
       else if (path === 'privacidade') setCurrentView('privacidade');
       else if (path === 'termos') setCurrentView('termos');
       else if (path === 'contato') setCurrentView('contato');
+      else if (path === 'digitacao' || path === 'aprenda-digitacao' || path === 'teclado') setCurrentView('digitacao');
       else if (path === 'preparatorios' || path === 'concursos-abertos' || path === 'cursos') setCurrentView('preparatorios');
       else if (path === 'guia-carreira-ti') setCurrentView('guia-carreira-ti');
       else if (path === 'guias' || path === 'cadernos') setCurrentView('guides');
@@ -125,6 +129,7 @@ export default function App() {
   const navigateToPreparatorios = () => navigateToView('preparatorios');
   const navigateToConcursos = navigateToPreparatorios;
   const navigateToCarreira = () => navigateToView('guia-carreira-ti');
+  const navigateToDigitacao = () => navigateToView('digitacao');
 
   // Gamification state from localStorage: devconcursos_gamification_v2
   const [gamification, setGamification] = useState<GamificationState>(() => loadGamificationState());
@@ -642,6 +647,21 @@ export default function App() {
               <BookOpen className="w-3.5 h-3.5" />
               <span>Cadernos Teóricos</span>
             </button>
+
+            <button
+              onClick={navigateToDigitacao}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all ${
+                currentView === 'digitacao' || currentView === 'aprenda-digitacao'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Keyboard className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Digitação Guiada</span>
+              <span className="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded-full border border-emerald-500/30">
+                Novo
+              </span>
+            </button>
           </nav>
         </div>
 
@@ -740,6 +760,16 @@ export default function App() {
         >
           Cadernos Teóricos
         </button>
+        <button
+          onClick={navigateToDigitacao}
+          className={`px-3 py-1 rounded-full whitespace-nowrap font-medium flex items-center gap-1.5 ${
+            currentView === 'digitacao' || currentView === 'aprenda-digitacao' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          <Keyboard className="w-3 h-3" />
+          <span>Digitação</span>
+          <span className="text-[9px] px-1 py-0.2 bg-emerald-500/30 text-emerald-300 rounded-full font-bold">Novo</span>
+        </button>
       </div>
 
       {/* Gamification Floating Toast Notification */}
@@ -764,6 +794,7 @@ export default function App() {
           onNavigateToConcursos={navigateToConcursos}
           onNavigateToCarreira={navigateToCarreira}
           onNavigateToGuides={navigateToGuides}
+          onNavigateToDigitacao={navigateToDigitacao}
           onNavigateToStatic={(route) => navigateToView(route as ExtendedViewMode)}
           onOpenAuthModal={() => setIsAuthModalOpen(true)}
         />
@@ -785,6 +816,11 @@ export default function App() {
         />
       ) : currentView === 'guides' ? (
         <StudyGuidesView onStartFlashcardTopic={handleStartFlashcardTopic} />
+      ) : currentView === 'digitacao' || currentView === 'aprenda-digitacao' ? (
+        <TypingPracticeView
+          onNavigateHome={navigateHome}
+          onSelectTopicForFlashcards={handleStartFlashcardTopic}
+        />
       ) : (
         /* ================= FLASHCARD WORKSPACE ================= */
         <div className="flex-1 flex flex-col lg:flex-row min-h-[680px]">
@@ -1111,6 +1147,7 @@ export default function App() {
           }}
           onOpenEducationalGuideModal={() => setIsEducationalGuideOpen(true)}
           onNavigateToGuides={navigateToGuides}
+          onNavigateToDigitacao={navigateToDigitacao}
         />
       )}
 

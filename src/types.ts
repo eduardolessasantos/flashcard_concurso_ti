@@ -169,3 +169,30 @@ export interface UserCardProgressMap {
     nextReviewDate?: string;
   };
 }
+
+// ================= APRENDA POR DIGITAÇÃO =================
+export interface PerguntaFixacao {
+  pergunta: string;
+  gabarito: 'CERTO' | 'ERRADO';
+  explicacao: string;
+}
+
+export interface TrechoConceito {
+  id: string;
+  texto: string;
+  palavraChave?: string;
+  dicaProfessor: string;
+  alertaBanca?: string;
+  perguntaFixacao?: PerguntaFixacao;
+}
+
+export interface LicaoDigitacao {
+  id: string;
+  titulo: string;
+  topico: Topico;
+  banca?: Banca | 'Geral';
+  dificuldade: 'iniciante' | 'intermediario' | 'avancado';
+  descricao: string;
+  tempoEstimadoMin: number;
+  trechos: TrechoConceito[];
+}

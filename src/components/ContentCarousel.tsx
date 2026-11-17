@@ -11,7 +11,8 @@ import {
   FileText, 
   Sparkles,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  Keyboard
 } from 'lucide-react';
 import { Topico } from '../types';
 
@@ -36,6 +37,7 @@ interface ContentCarouselProps {
   onNavigateToConcursos: () => void;
   onNavigateToCarreira: () => void;
   onNavigateToGuides: () => void;
+  onNavigateToDigitacao?: () => void;
 }
 
 export const ContentCarousel: React.FC<ContentCarouselProps> = ({
@@ -43,12 +45,26 @@ export const ContentCarousel: React.FC<ContentCarouselProps> = ({
   onNavigateToConcursos,
   onNavigateToCarreira,
   onNavigateToGuides,
+  onNavigateToDigitacao,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const items: FeaturedCarouselItem[] = [
+    {
+      id: 'aprenda-digitacao',
+      badge: 'Nova Metodologia • Exclusivo',
+      badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+      title: 'Aprenda por Digitação Orientada com Mentor',
+      description: 'Digite conceitos-chave caractere a caractere. Um professor acompanha seu ritmo e faz intervenções pontuais com alertas de pegadinhas a cada trecho completado.',
+      tag: 'Memória Muscular + Cognitiva • Mentor Interativo',
+      icon: <Keyboard className="w-5 h-5 text-emerald-400" />,
+      gradient: 'from-emerald-950/40 via-slate-900/90 to-slate-950',
+      borderHover: 'hover:border-emerald-500/40',
+      buttonLabel: 'Experimentar Digitação com Mentor',
+      action: () => onNavigateToDigitacao ? onNavigateToDigitacao() : (window.location.href = '/digitacao'),
+    },
     {
       id: 'srs-cards',
       badge: 'Metodologia Ativa',

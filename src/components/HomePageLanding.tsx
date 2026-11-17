@@ -30,7 +30,8 @@ import {
   Cpu, 
   FileCheck,
   AlertCircle,
-  GraduationCap
+  GraduationCap,
+  Keyboard
 } from 'lucide-react';
 import { Topico, Banca } from '../types';
 import { ContentCarousel } from './ContentCarousel';
@@ -40,6 +41,7 @@ interface HomePageLandingProps {
   onNavigateToConcursos: () => void;
   onNavigateToCarreira: () => void;
   onNavigateToGuides: () => void;
+  onNavigateToDigitacao?: () => void;
   onNavigateToStatic: (route: 'sobre' | 'privacidade' | 'termos' | 'contato') => void;
   onOpenAuthModal?: () => void;
 }
@@ -114,6 +116,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
   onNavigateToConcursos,
   onNavigateToCarreira,
   onNavigateToGuides,
+  onNavigateToDigitacao,
   onNavigateToStatic,
   onOpenAuthModal
 }) => {
@@ -231,6 +234,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
               onNavigateToConcursos={onNavigateToConcursos}
               onNavigateToCarreira={onNavigateToCarreira}
               onNavigateToGuides={onNavigateToGuides}
+              onNavigateToDigitacao={onNavigateToDigitacao}
             />
           </div>
 

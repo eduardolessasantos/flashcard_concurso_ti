@@ -35,6 +35,7 @@ import {
 } from 'lucide-react';
 import { Topico, Banca } from '../types';
 import { ContentCarousel } from './ContentCarousel';
+import { AdcashBanner } from './AdcashBanner';
 
 interface HomePageLandingProps {
   onStartStudy: (topic?: Topico) => void;
@@ -954,6 +955,11 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
 
         </div>
       </section>
+
+      {/* ================= PUBLICIDADE PARCEIRA (ADCASH DISPLAY 250x250) ================= */}
+      <div className="py-6 bg-slate-950/60 border-b border-slate-800/60 flex justify-center">
+        <AdcashBanner zoneId="12468870" />
+      </div>
 
       {/* ================= 7. PERGUNTAS FREQUENTES (FAQ) - ALTO VALOR ADSENSE ================= */}
       <section className="py-16 lg:py-24 border-b border-slate-800/80">

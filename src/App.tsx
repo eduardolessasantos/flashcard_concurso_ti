@@ -20,6 +20,7 @@ import { PreparatoriosView } from './components/PreparatoriosView';
 import { GuiaCarreiraView } from './components/GuiaCarreiraView';
 import { HomePageLanding } from './components/HomePageLanding';
 import { TypingPracticeView } from './components/TypingPracticeView';
+import { AdcashBanner } from './components/AdcashBanner';
 import { GamificationDashboardModal } from './components/GamificationDashboardModal';
 import { 
   loadGamificationState, 
@@ -1022,6 +1023,11 @@ export default function App() {
                   </div>
                   <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
                 </button>
+              </div>
+
+              {/* Adcash Display Banner 250x250 */}
+              <div className="pt-2 flex justify-center">
+                <AdcashBanner zoneId="12468870" />
               </div>
 
             </div>

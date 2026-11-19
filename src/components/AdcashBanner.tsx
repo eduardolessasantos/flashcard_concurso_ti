@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
+export type AdcashFormat = '250x250' | '160x600';
+
 interface AdcashBannerProps {
   className?: string;
   zoneId?: string;
+  format?: AdcashFormat;
 }
 
 declare global {
@@ -16,8 +19,11 @@ declare global {
 
 export const AdcashBanner: React.FC<AdcashBannerProps> = ({ 
   className = '', 
-  zoneId = '12468870' 
+  format = '250x250',
+  zoneId 
 }) => {
+  // Use official zoneIds from publisher dashboard according to format
+  const effectiveZoneId = zoneId || (format === '160x600' ? '12469042' : '12468870');
   const containerRef = useRef<HTMLDivElement>(null);
   const scriptInjectedRef = useRef<boolean>(false);
 
@@ -31,13 +37,13 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
       script.text = `
         if (window.aclib && typeof window.aclib.runBanner === 'function') {
           aclib.runBanner({
-            zoneId: '${zoneId}',
+            zoneId: '${effectiveZoneId}',
           });
         } else {
           window.addEventListener('load', function() {
             if (window.aclib && typeof window.aclib.runBanner === 'function') {
               aclib.runBanner({
-                zoneId: '${zoneId}',
+                zoneId: '${effectiveZoneId}',
               });
             }
           });
@@ -48,10 +54,12 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
     } catch (e) {
       console.warn('Adcash display banner init error:', e);
     }
-  }, [zoneId]);
+  }, [effectiveZoneId]);
+
+  const isSkyscraper = format === '160x600';
 
   return (
-    <div className={`flex flex-col items-center justify-center my-3 select-none ${className}`}>
+    <div className={`flex flex-col items-center justify-center my-2 select-none ${className}`}>
       <div className="flex items-center gap-1.5 mb-1">
         <span className="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">
           Publicidade
@@ -59,10 +67,18 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
       </div>
       <div 
         ref={containerRef}
-        className="w-[250px] min-h-[250px] bg-slate-900/50 border border-slate-800/80 rounded-2xl flex items-center justify-center overflow-hidden transition-all shadow-sm"
-        style={{ minWidth: '250px', minHeight: '250px' }}
+        className={`bg-slate-900/50 border border-slate-800/80 rounded-2xl flex items-center justify-center overflow-hidden transition-all shadow-sm ${
+          isSkyscraper 
+            ? 'w-[160px] min-h-[600px]' 
+            : 'w-[250px] min-h-[250px]'
+        }`}
+        style={
+          isSkyscraper
+            ? { width: '160px', minHeight: '600px' }
+            : { width: '250px', minHeight: '250px' }
+        }
       >
-        {/* Adcash 250x250 Banner will be rendered inside this container */}
+        {/* Adcash Banner will be rendered inside this container */}
       </div>
     </div>
   );

@@ -1141,6 +1141,13 @@ export default function App() {
               </div>
             )}
           </main>
+
+          {/* Right Skyscraper Ad Column (Widescreen Desktop only) */}
+          <aside className="hidden xl:flex flex-col items-center justify-start p-4 border-l border-slate-800/80 bg-slate-900/30 shrink-0">
+            <div className="sticky top-20">
+              <AdcashBanner format="160x600" />
+            </div>
+          </aside>
         </div>
       )}
 

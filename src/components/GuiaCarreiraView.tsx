@@ -314,9 +314,9 @@ export const GuiaCarreiraView: React.FC<GuiaCarreiraViewProps> = ({
         </button>
       </div>
 
-      {/* Espaço de Publicidade no final do artigo */}
+      {/* Espaço de Publicidade no final do artigo (300x250) */}
       <div className="pt-8 border-t border-slate-800 flex justify-center">
-        <AdcashBanner zoneId="12484154" />
+        <AdcashBanner format="300x250" />
       </div>
 
     </div>

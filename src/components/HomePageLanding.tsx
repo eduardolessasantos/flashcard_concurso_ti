@@ -956,9 +956,9 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
         </div>
       </section>
 
-      {/* ================= PUBLICIDADE PARCEIRA (ADCASH DISPLAY 250x250) ================= */}
+      {/* ================= PUBLICIDADE PARCEIRA (ADCASH DISPLAY 300x250) ================= */}
       <div className="py-6 bg-slate-950/60 border-b border-slate-800/60 flex justify-center">
-        <AdcashBanner zoneId="12484154" />
+        <AdcashBanner format="300x250" />
       </div>
 
       {/* ================= 7. PERGUNTAS FREQUENTES (FAQ) - ALTO VALOR ADSENSE ================= */}

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export type AdcashFormat = '250x250' | '160x600';
+export type AdcashFormat = '300x250' | '250x250' | '160x600';
 
 interface AdcashBannerProps {
   className?: string;
@@ -19,11 +19,37 @@ declare global {
 
 export const AdcashBanner: React.FC<AdcashBannerProps> = ({ 
   className = '', 
-  format = '250x250',
+  format = '300x250',
   zoneId 
 }) => {
-  // Use official zoneIds from publisher dashboard according to format
-  const effectiveZoneId = zoneId || (format === '160x600' ? '12485358' : '12484154');
+  const getZoneAndDimensions = () => {
+    switch (format) {
+      case '160x600':
+        return {
+          zone: zoneId || '12485358',
+          width: '160px',
+          height: '600px',
+          containerClass: 'w-[160px] min-h-[600px]'
+        };
+      case '250x250':
+        return {
+          zone: zoneId || '12484154',
+          width: '250px',
+          height: '250px',
+          containerClass: 'w-[250px] min-h-[250px]'
+        };
+      case '300x250':
+      default:
+        return {
+          zone: zoneId || '12485366',
+          width: '300px',
+          height: '250px',
+          containerClass: 'w-[300px] min-h-[250px]'
+        };
+    }
+  };
+
+  const { zone: effectiveZoneId, width, height, containerClass } = getZoneAndDimensions();
   const containerRef = useRef<HTMLDivElement>(null);
   const scriptInjectedRef = useRef<boolean>(false);
 
@@ -56,8 +82,6 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
     }
   }, [effectiveZoneId]);
 
-  const isSkyscraper = format === '160x600';
-
   return (
     <div className={`flex flex-col items-center justify-center my-2 select-none ${className}`}>
       <div className="flex items-center gap-1.5 mb-1">
@@ -67,16 +91,8 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
       </div>
       <div 
         ref={containerRef}
-        className={`bg-slate-900/50 border border-slate-800/80 rounded-2xl flex items-center justify-center overflow-hidden transition-all shadow-sm ${
-          isSkyscraper 
-            ? 'w-[160px] min-h-[600px]' 
-            : 'w-[250px] min-h-[250px]'
-        }`}
-        style={
-          isSkyscraper
-            ? { width: '160px', minHeight: '600px' }
-            : { width: '250px', minHeight: '250px' }
-        }
+        className={`bg-slate-900/50 border border-slate-800/80 rounded-2xl flex items-center justify-center overflow-hidden transition-all shadow-sm ${containerClass}`}
+        style={{ width, minHeight: height }}
       >
         {/* Adcash Banner will be rendered inside this container */}
       </div>

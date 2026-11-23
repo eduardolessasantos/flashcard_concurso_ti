@@ -1025,9 +1025,9 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Adcash Display Banner 250x250 */}
+              {/* Adcash Display Banner 250x250 (Encaixa na barra lateral de 320px) */}
               <div className="pt-2 flex justify-center">
-                <AdcashBanner zoneId="12484154" />
+                <AdcashBanner format="250x250" />
               </div>
 
             </div>
@@ -1139,9 +1139,9 @@ export default function App() {
                   </button>
                 </div>
 
-                {/* Banner de recompensa/intervalo ao concluir sessão de estudos */}
+                {/* Banner de recompensa/intervalo ao concluir sessão de estudos (300x250) */}
                 <div className="pt-4 border-t border-slate-800/80 flex justify-center">
-                  <AdcashBanner zoneId="12484154" />
+                  <AdcashBanner format="300x250" />
                 </div>
               </div>
             )}

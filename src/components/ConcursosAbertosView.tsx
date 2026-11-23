@@ -293,9 +293,9 @@ export const ConcursosAbertosView: React.FC<ConcursosAbertosViewProps> = ({
         ))}
       </div>
 
-      {/* Espaço de Publicidade no final da listagem */}
+      {/* Espaço de Publicidade no final da listagem (300x250) */}
       <div className="pt-8 border-t border-slate-800 flex justify-center">
-        <AdcashBanner zoneId="12484154" />
+        <AdcashBanner format="300x250" />
       </div>
 
     </div>

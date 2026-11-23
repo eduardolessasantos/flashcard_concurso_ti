@@ -1,23 +1,14 @@
-# Detailed SEO guides
-/guias/iso-27002-2022   /guias/iso-27002-2022/index.html   200
-/guias/lgpd-concursos    /guias/lgpd-concursos/index.html    200
-/guias/itil4-cobit2019   /guias/itil4-cobit2019/index.html   200
+# Redirecionamentos 301 explícitos para garantir a versão canônica com barra (trailing slash) exigida pelo Search Console
+/guias/iso-27002-2022   /guias/iso-27002-2022/   301!
+/guias/lgpd-concursos    /guias/lgpd-concursos/    301!
+/guias/itil4-cobit2019   /guias/itil4-cobit2019/   301!
+/guias                   /guias/                  301!
+/concursos-abertos       /concursos-abertos/      301!
+/guia-carreira-ti        /guia-carreira-ti/       301!
+/sobre                   /sobre/                  301!
+/privacidade             /privacidade/            301!
+/termos                  /termos/                 301!
+/contato                 /contato/                301!
 
-# Static directories with pre-rendered SEO content
-/guias                   /guias/index.html                 200
-/guias/*                 /guias/index.html                 200
-/concursos-abertos       /concursos-abertos/index.html     200
-/concursos-abertos/*     /concursos-abertos/index.html     200
-/guia-carreira-ti        /guia-carreira-ti/index.html      200
-/guia-carreira-ti/*      /guia-carreira-ti/index.html      200
-/sobre                   /sobre/index.html                 200
-/sobre/*                 /sobre/index.html                 200
-/privacidade             /privacidade/index.html           200
-/privacidade/*           /privacidade/index.html           200
-/termos                  /termos/index.html                200
-/termos/*                /termos/index.html                200
-/contato                 /contato/index.html               200
-/contato/*               /contato/index.html               200
-
-# SPA fallback (static files like /ads.txt, /robots.txt, /sitemap.xml are served automatically before this rule)
-/*                       /index.html                       200
+# SPA fallback para navegação React
+/*                       /index.html              200

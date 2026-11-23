@@ -14,6 +14,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { Topico } from '../types';
+import { AdcashBanner } from './AdcashBanner';
 
 export interface ConcursoItem {
   id: string;
@@ -290,6 +291,11 @@ export const ConcursosAbertosView: React.FC<ConcursosAbertosViewProps> = ({
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Espaço de Publicidade no final da listagem */}
+      <div className="pt-8 border-t border-slate-800 flex justify-center">
+        <AdcashBanner zoneId="12484154" />
       </div>
 
     </div>

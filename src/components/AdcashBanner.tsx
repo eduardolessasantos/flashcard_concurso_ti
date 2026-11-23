@@ -23,7 +23,7 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
   zoneId 
 }) => {
   // Use official zoneIds from publisher dashboard according to format
-  const effectiveZoneId = zoneId || (format === '160x600' ? '12469042' : '12468870');
+  const effectiveZoneId = zoneId || (format === '160x600' ? '12469042' : '12484154');
   const containerRef = useRef<HTMLDivElement>(null);
   const scriptInjectedRef = useRef<boolean>(false);
 

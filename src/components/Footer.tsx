@@ -12,8 +12,10 @@ import {
   ArrowRight,
   Briefcase,
   TrendingUp,
-  ExternalLink
+  ExternalLink,
+  ShoppingBag
 } from 'lucide-react';
+import { MERCADO_LIVRE_AFFILIATE } from '../config/affiliates';
 
 interface FooterProps {
   onOpenPrivacy?: () => void;
@@ -150,6 +152,18 @@ export const Footer: React.FC<FooterProps> = ({
                 <span>Guia de Carreira & Tabela Salarial</span>
               </a>
             </li>
+            <li>
+              <a
+                href={MERCADO_LIVRE_AFFILIATE.url}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="hover:text-amber-300 text-amber-400 font-medium transition-colors flex items-center gap-1.5 text-left"
+              >
+                <ShoppingBag className="w-3.5 h-3.5 text-amber-400" />
+                <span>Vitrine TI · Mercado Livre</span>
+                <ExternalLink className="w-3 h-3 opacity-70" />
+              </a>
+            </li>
             {onOpenEducationalGuide && (
               <li>
                 <button 
@@ -218,7 +232,7 @@ export const Footer: React.FC<FooterProps> = ({
             Transparência & LGPD
           </h4>
           <p className="text-[11px] text-slate-400 leading-relaxed">
-            Este site respeita a sua privacidade nos termos da LGPD (Lei 13.709/18). Utilizamos cookies e identificadores para veicular anúncios através do Google AdSense (pub-1242153191500402).
+            Este site respeita a sua privacidade nos termos da LGPD (Lei 13.709/18). Monetizamos por meio do Google AdSense (pub-1242153191500402) e do Programa de Afiliados Mercado Livre (ID {MERCADO_LIVRE_AFFILIATE.id}).
           </p>
           <p className="text-[11px] text-slate-500">
             Você pode gerenciar preferências de cookies a qualquer momento em nossa Política de Privacidade.

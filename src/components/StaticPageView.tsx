@@ -148,12 +148,15 @@ export const StaticPageView: React.FC<StaticPageViewProps> = ({
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white">2. Cookies e Google AdSense</h2>
+            <h2 className="text-lg font-bold text-white">2. Cookies, Google AdSense e Links de Afiliados</h2>
             <p className="text-sm">
               Utilizamos o serviço <strong>Google AdSense</strong> para a exibição de anúncios. O Google pode utilizar cookies, incluindo o cookie DART, para veicular publicidade com base no histórico de visitas anteriores a este ou a outros websites.
             </p>
             <p className="text-sm">
               Você pode desativar a personalização de anúncios do Google acessando diretamente as <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline">Configurações de Anúncios do Google</a>.
+            </p>
+            <p className="text-sm">
+              Também participamos do <strong>Programa de Afiliados Mercado Livre (ID 7G6VVK-AQ9D)</strong>. Links identificados como publicidade ou ofertas parceiras redirecionam para o domínio oficial do Mercado Livre e podem gerar uma pequena comissão para manutenção gratuita da plataforma, sem qualquer acréscimo no preço pago pelo usuário.
             </p>
           </section>
 

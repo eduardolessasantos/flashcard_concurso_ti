@@ -18,6 +18,7 @@ import {
   Award
 } from 'lucide-react';
 import { Topico } from '../types';
+import { MercadoLivreShowcase } from './MercadoLivreShowcase';
 
 interface EducationalSectionProps {
   onSelectTopic?: (topic: Topico) => void;
@@ -256,6 +257,9 @@ export const EducationalSection: React.FC<EducationalSectionProps> = ({
             })}
           </div>
         </div>
+
+        {/* Área Reservada: Parceiro Mercado Livre */}
+        <MercadoLivreShowcase variant="banner" />
 
       </div>
     </section>

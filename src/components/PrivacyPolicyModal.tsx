@@ -70,7 +70,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
                 • Os usuários podem desativar a publicidade personalizada acessando as <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline hover:text-indigo-300">Configurações de Anúncios do Google</a> ou através do site <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline hover:text-indigo-300">www.aboutads.info</a>.
               </p>
               <p>
-                • <strong>Programa de Afiliados Mercado Livre (ID 7G6VVK-AQ9D):</strong> O site possui áreas reservadas de recomendações com links patrocinados (<code className="text-amber-300">rel=&quot;sponsored&quot;</code>) para o Mercado Livre. Ao clicar nesses links, o parceiro pode utilizar cookies próprios para atribuir a comissão de afiliado, sem alterar o valor final da sua compra.
+                • <strong>Programa de Afiliados Mercado Livre:</strong> O site possui áreas reservadas de recomendações com links patrocinados (<code className="text-amber-300">rel=&quot;sponsored&quot;</code>) para o Mercado Livre. Ao clicar nesses links, o parceiro pode utilizar cookies próprios para atribuir a comissão de afiliado, sem alterar o valor final da sua compra.
               </p>
               <p>
                 • Não vendemos nem compartilhamos seus dados pessoais com terceiros para fins de marketing direto não relacionado ao serviço.

@@ -156,7 +156,7 @@ export const StaticPageView: React.FC<StaticPageViewProps> = ({
               Você pode desativar a personalização de anúncios do Google acessando diretamente as <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline">Configurações de Anúncios do Google</a>.
             </p>
             <p className="text-sm">
-              Também participamos do <strong>Programa de Afiliados Mercado Livre (ID 7G6VVK-AQ9D)</strong>. Links identificados como publicidade ou ofertas parceiras redirecionam para o domínio oficial do Mercado Livre e podem gerar uma pequena comissão para manutenção gratuita da plataforma, sem qualquer acréscimo no preço pago pelo usuário.
+              Também participamos do <strong>Programa de Afiliados Mercado Livre</strong>. Links identificados como publicidade ou ofertas parceiras redirecionam para o domínio oficial do Mercado Livre e podem gerar uma pequena comissão para manutenção gratuita da plataforma, sem qualquer acréscimo no preço pago pelo usuário.
             </p>
           </section>
 

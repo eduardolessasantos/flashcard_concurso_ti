@@ -77,9 +77,6 @@ export const MercadoLivreShowcase: React.FC<MercadoLivreShowcaseProps> = ({
       >
         <div className="flex items-center justify-between gap-2 text-[11px] text-slate-400">
           <span className="font-semibold text-amber-300">Parceiro Mercado Livre</span>
-          <span className="font-mono tabular-nums text-slate-500">
-            ID {MERCADO_LIVRE_AFFILIATE.id}
-          </span>
         </div>
 
         <div className="space-y-1">
@@ -120,16 +117,12 @@ export const MercadoLivreShowcase: React.FC<MercadoLivreShowcaseProps> = ({
             <span className="font-semibold text-amber-300">Publicidade</span>
             <span aria-hidden="true">·</span>
             <span>{MERCADO_LIVRE_AFFILIATE.programLabel}</span>
-            <span aria-hidden="true">·</span>
-            <span className="font-mono tabular-nums text-slate-500">
-              ID {MERCADO_LIVRE_AFFILIATE.id}
-            </span>
           </div>
           <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
             Equipamentos, Periféricos e Bibliografia Oficial de TI no Mercado Livre
           </h3>
           <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-            Reserve seu próximo livro de referência, fone com cancelamento de ruído ou upgrade de setup pela nossa vitrine oficial de afiliado e ajude a manter esta plataforma de estudos aberta e gratuita.
+            Reserve seu próximo livro de referência, fone com cancelamento de ruído ou upgrade de setup pela nossa vitrine oficial de parceiro e ajude a manter esta plataforma de estudos aberta e gratuita.
           </p>
         </div>
 
@@ -144,9 +137,6 @@ export const MercadoLivreShowcase: React.FC<MercadoLivreShowcaseProps> = ({
             <span>Ver Ofertas no Mercado Livre</span>
             <ArrowUpRight className="w-4 h-4 shrink-0" />
           </a>
-          <span className="text-[11px] text-slate-500 text-center lg:text-right">
-            Redirecionamento seguro para meli.la
-          </span>
         </div>
       </div>
     );
@@ -176,10 +166,6 @@ export const MercadoLivreShowcase: React.FC<MercadoLivreShowcaseProps> = ({
               </span>
               <span aria-hidden="true">·</span>
               <span>Programa de Afiliados</span>
-              <span aria-hidden="true">·</span>
-              <span className="font-mono tabular-nums text-slate-500">
-                ID {MERCADO_LIVRE_AFFILIATE.id}
-              </span>
             </div>
 
             <h2
@@ -246,9 +232,6 @@ export const MercadoLivreShowcase: React.FC<MercadoLivreShowcaseProps> = ({
                   </span>
                   <span>{featuredSlot.categoryLabel}</span>
                 </div>
-                <span className="font-mono text-[11px] text-slate-300 tabular-nums">
-                  {MERCADO_LIVRE_AFFILIATE.id}
-                </span>
               </div>
             </div>
 
@@ -277,21 +260,17 @@ export const MercadoLivreShowcase: React.FC<MercadoLivreShowcaseProps> = ({
                 </ul>
               </div>
 
-              <div className="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="pt-4 border-t border-slate-800/80 flex items-center">
                 <a
                   href={featuredSlot.url}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
-                  className="px-6 py-3 rounded-xl bg-[#FFE600] hover:bg-[#f2da00] text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#FFE600] hover:bg-[#f2da00] text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
                 >
                   <ShoppingBag className="w-4 h-4 shrink-0" />
                   <span>{featuredSlot.ctaLabel}</span>
                   <ExternalLink className="w-4 h-4 shrink-0" />
                 </a>
-
-                <span className="text-xs text-slate-400 font-mono truncate">
-                  {MERCADO_LIVRE_AFFILIATE.url}
-                </span>
               </div>
             </div>
           </article>

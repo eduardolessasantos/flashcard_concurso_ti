@@ -26,7 +26,7 @@ export const MERCADO_LIVRE_AFFILIATE = {
   partnerName: 'Mercado Livre',
   programLabel: 'Programa de Afiliados Mercado Livre',
   disclosureText:
-    'Espaço publicitário reservado para publicações e ofertas do Programa de Afiliados Mercado Livre (ID 7G6VVK-AQ9D). Compras realizadas por este link apoiam a manutenção gratuita do Flash Concurso TI sem custo adicional no preço final.',
+    'Espaço publicitário reservado para publicações e ofertas do Programa de Afiliados Mercado Livre. Compras realizadas por este espaço apoiam a manutenção gratuita do Flash Concurso TI sem custo adicional no preço final.',
 } as const;
 
 export const MERCADO_LIVRE_SLOTS: MercadoLivrePublicationSlot[] = [

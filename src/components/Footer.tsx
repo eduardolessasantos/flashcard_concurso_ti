@@ -232,7 +232,7 @@ export const Footer: React.FC<FooterProps> = ({
             Transparência & LGPD
           </h4>
           <p className="text-[11px] text-slate-400 leading-relaxed">
-            Este site respeita a sua privacidade nos termos da LGPD (Lei 13.709/18). Monetizamos por meio do Google AdSense (pub-1242153191500402) e do Programa de Afiliados Mercado Livre (ID {MERCADO_LIVRE_AFFILIATE.id}).
+            Este site respeita a sua privacidade nos termos da LGPD (Lei 13.709/18). Monetizamos por meio do Google AdSense (pub-1242153191500402) e do Programa de Afiliados Mercado Livre.
           </p>
           <p className="text-[11px] text-slate-500">
             Você pode gerenciar preferências de cookies a qualquer momento em nossa Política de Privacidade.

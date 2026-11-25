@@ -24,6 +24,7 @@ import {
   FileText
 } from 'lucide-react';
 import { Topico } from '../types';
+import { MercadoLivreShowcase } from './MercadoLivreShowcase';
 
 export type PreparatorioCategory = 'TODOS' | 'CURSINHOS_COMPLETOS' | 'QUESTOES' | 'PRATICA_TECNICA';
 
@@ -826,6 +827,9 @@ export const PreparatoriosView: React.FC<PreparatoriosViewProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Área Reservada: Parceiro Mercado Livre */}
+        <MercadoLivreShowcase variant="banner" />
 
         {/* Disclaimer Jurídico & Transparência Obrigatória */}
         <div className="p-5 rounded-2xl bg-slate-900/40 border border-slate-800/80 text-xs text-slate-500 space-y-2">

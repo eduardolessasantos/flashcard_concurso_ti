@@ -21,6 +21,7 @@ import { GuiaCarreiraView } from './components/GuiaCarreiraView';
 import { HomePageLanding } from './components/HomePageLanding';
 import { TypingPracticeView } from './components/TypingPracticeView';
 import { AdcashBanner } from './components/AdcashBanner';
+import { MercadoLivreShowcase } from './components/MercadoLivreShowcase';
 import { GamificationDashboardModal } from './components/GamificationDashboardModal';
 import { 
   loadGamificationState, 
@@ -1024,6 +1025,9 @@ export default function App() {
                   <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
                 </button>
               </div>
+
+              {/* Área Reservada: Vitrine de Afiliados Mercado Livre */}
+              <MercadoLivreShowcase variant="compact" />
 
               {/* Adcash Display Banner 250x250 (Encaixa na barra lateral de 320px) */}
               <div className="pt-2 flex justify-center">

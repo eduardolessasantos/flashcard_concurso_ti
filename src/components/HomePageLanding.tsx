@@ -36,6 +36,7 @@ import {
 import { Topico, Banca } from '../types';
 import { ContentCarousel } from './ContentCarousel';
 import { AdcashBanner } from './AdcashBanner';
+import { MercadoLivreShowcase } from './MercadoLivreShowcase';
 
 interface HomePageLandingProps {
   onStartStudy: (topic?: Topico) => void;
@@ -961,6 +962,9 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
         <AdcashBanner format="300x250" />
       </div>
 
+      {/* ================= 6.5. ÁREA RESERVADA: VITRINE MERCADO LIVRE (AFILIADOS) ================= */}
+      <MercadoLivreShowcase variant="section" />
+
       {/* ================= 7. PERGUNTAS FREQUENTES (FAQ) - ALTO VALOR ADSENSE ================= */}
       <section className="py-16 lg:py-24 border-b border-slate-800/80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1041,7 +1045,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
               </button>
               {openFaqIndex === 3 && (
                 <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-300 border-t border-slate-800/60 leading-relaxed animate-in fade-in duration-150">
-                  <strong>Sim, é 100% gratuita para os candidatos.</strong> Nossa missão é democratizar o acesso à preparação de alto nível em tecnologia. Mantemos os custos de infraestrutura e hospedagem por meio de parcerias e anúncios não intrusivos veiculados pelo Google AdSense. Você pode estudar todos os cartões e cadernos teóricos livremente.
+                  <strong>Sim, é 100% gratuita para os candidatos.</strong> Nossa missão é democratizar o acesso à preparação de alto nível em tecnologia. Mantemos os custos de infraestrutura e hospedagem por meio de anúncios não intrusivos via Google AdSense e da nossa área oficial de ofertas do Programa de Afiliados Mercado Livre. Você pode estudar todos os cartões e cadernos teóricos livremente.
                 </div>
               )}
             </div>

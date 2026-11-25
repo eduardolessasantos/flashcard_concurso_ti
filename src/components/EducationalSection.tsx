@@ -15,7 +15,8 @@ import {
   ExternalLink,
   Target,
   Layers,
-  Award
+  Award,
+  Keyboard
 } from 'lucide-react';
 import { Topico } from '../types';
 import { MercadoLivreShowcase } from './MercadoLivreShowcase';
@@ -24,12 +25,14 @@ interface EducationalSectionProps {
   onSelectTopic?: (topic: Topico) => void;
   onOpenEducationalGuideModal?: () => void;
   onNavigateToGuides?: () => void;
+  onNavigateToDigitacao?: () => void;
 }
 
 export const EducationalSection: React.FC<EducationalSectionProps> = ({
   onSelectTopic,
   onOpenEducationalGuideModal,
-  onNavigateToGuides
+  onNavigateToGuides,
+  onNavigateToDigitacao
 }) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
@@ -135,15 +138,26 @@ export const EducationalSection: React.FC<EducationalSectionProps> = ({
               </h3>
               <p className="text-xs text-slate-400">Clique em qualquer disciplina para praticar diretamente os flashcards relacionados</p>
             </div>
-            {onNavigateToGuides && (
-              <button
-                onClick={onNavigateToGuides}
-                className="self-start sm:self-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5"
-              >
-                <span>Acessar Cadernos Teóricos Completos</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            )}
+            <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+              {onNavigateToDigitacao && (
+                <button
+                  onClick={onNavigateToDigitacao}
+                  className="px-4 py-2 bg-emerald-600/15 hover:bg-emerald-600/25 text-emerald-300 text-xs font-semibold rounded-xl border border-emerald-500/30 transition-colors flex items-center gap-1.5 whitespace-nowrap"
+                >
+                  <Keyboard className="w-3.5 h-3.5" />
+                  <span>Digitação com Mentor</span>
+                </button>
+              )}
+              {onNavigateToGuides && (
+                <button
+                  onClick={onNavigateToGuides}
+                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5 whitespace-nowrap"
+                >
+                  <span>Acessar Cadernos Teóricos Completos</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

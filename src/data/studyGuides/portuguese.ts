@@ -52,7 +52,7 @@ export const PORTUGUESE_TOPIC: StudyGuideTopic = {
       ],
       handwrittenNotes: [
         {
-          title: 'Quadro Negro: Raio-X de Crase & Regência em Questão Real FGV',
+          title: 'Quadro Negro: Raio-X de Crase & Regência em Questão Estilo FGV (Adaptada)',
           topicTag: '✍️ Análise Detalhada de Questão',
           paperStyle: 'lined',
           colorTheme: 'yellow',
@@ -195,7 +195,7 @@ Teste Rápido: "Vou À feira" -> Troca por masculino: "Vou AO mercado" => Deu "A
       ],
       handwrittenNotes: [
         {
-          title: 'Quadro Negro: Raio-X dos 4 Porquês em Questão Real FGV',
+          title: 'Quadro Negro: Raio-X dos 4 Porquês em Questão Estilo FGV (Adaptada)',
           topicTag: '✍️ Ortografia Aplicada a Questões',
           paperStyle: 'lined',
           colorTheme: 'cyan',
@@ -330,7 +330,7 @@ IV. A diretoria de TI exigiu um relatório conclusivo para esclarecer o ________
       ],
       handwrittenNotes: [
         {
-          title: 'Quadro Negro: Raio-X de Concordância Verbal em Questão Real FGV',
+          title: 'Quadro Negro: Raio-X de Concordância Verbal em Questão Estilo FGV (Adaptada)',
           topicTag: '✍️ Análise Sintática no Quadro',
           paperStyle: 'lined',
           colorTheme: 'green',
@@ -470,7 +470,7 @@ Haver (= existir / tempo)      => SINGULAR SEMPRE   ("Houve dois acidentes")`,
       ],
       handwrittenNotes: [
         {
-          title: 'Quadro Negro: Raio-X da Vírgula em Questão Real FGV',
+          title: 'Quadro Negro: Raio-X da Vírgula em Questão Estilo FGV (Adaptada)',
           topicTag: '✍️ Análise Sintática de Pontuação',
           paperStyle: 'lined',
           colorTheme: 'yellow',
@@ -604,7 +604,7 @@ Adjunto Adverbial Deslocado Longo (3+ palavras) => [VÍRGULA OBRIGATÓRIA]`,
       ],
       handwrittenNotes: [
         {
-          title: 'Quadro Negro: Raio-X de Conjunções em Questão Real Cebraspe',
+          title: 'Quadro Negro: Raio-X de Conjunções em Questão Estilo Cebraspe (Adaptada)',
           topicTag: '✍️ Análise Semântica de Conectivos',
           paperStyle: 'lined',
           colorTheme: 'cyan',
@@ -721,7 +721,7 @@ A substituição do conectivo "Conquanto" por "Embora" preservaria a correção 
       ],
       handwrittenNotes: [
         {
-          title: 'Quadro Negro: Raio-X de Coesão Referencial em Questão Real FGV',
+          title: 'Quadro Negro: Raio-X de Coesão Referencial em Questão Estilo FGV (Adaptada)',
           topicTag: '✍️ Análise Textual no Quadro',
           paperStyle: 'lined',
           colorTheme: 'green',

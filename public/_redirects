@@ -7,7 +7,11 @@
 /guia-carreira-ti        /guia-carreira-ti/       301!
 /sobre                   /sobre/                  301!
 /privacidade             /privacidade/            301!
+/politica-de-privacidade /privacidade/            301!
+/politica-de-privacidade/ /privacidade/           301!
 /termos                  /termos/                 301!
+/termos-de-uso           /termos/                 301!
+/termos-de-uso/          /termos/                 301!
 /contato                 /contato/                301!
 
 # SPA fallback para navegação React

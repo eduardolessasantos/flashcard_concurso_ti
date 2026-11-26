@@ -94,7 +94,7 @@ export const EducationalSection: React.FC<EducationalSectionProps> = ({
   const faqs = [
     {
       question: 'Por que o método de Active Recall (Recordação Ativa) com Flashcards é superior à releitura?',
-      answer: 'A releitura passiva de PDFs e videoaulas gera o fenômeno cognitivo chamado "ilusão de competência": o cérebro reconhece a informação ao vê-la, mas não consegue resgatá-la de memória durante a prova. O flashcard força o esforço ativo de recuperação antes de revelar o gabarito, consolidando trilhas neurais duradouras e aumentando a retenção em até 300% segundo pesquisas de psicologia cognitiva.'
+      answer: 'A releitura passiva de PDFs e videoaulas gera o fenômeno cognitivo chamado "ilusão de competência": o cérebro reconhece a informação ao vê-la, mas não consegue resgatá-la de memória durante a prova. O flashcard força o esforço ativo de recuperação antes de revelar o gabarito, consolidando trilhas neurais duradouras e aumentando significativamente a retenção de longo prazo segundo estudos de psicologia cognitiva.'
     },
     {
       question: 'Como funciona a Repetição Espaçada (SRS) contra a Curva do Esquecimento?',
@@ -206,7 +206,7 @@ export const EducationalSection: React.FC<EducationalSectionProps> = ({
           <div className="space-y-3 max-w-2xl text-center lg:text-left">
             <div className="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 uppercase tracking-wider">
               <Brain className="w-4 h-4" />
-              <span>A Ciência por Trás da Aprovação</span>
+              <span>A Ciência por Trás da Memorização</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold text-white">
               Curva do Esquecimento e a Força da Repetição Espaçada

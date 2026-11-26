@@ -132,41 +132,46 @@ export const StaticPageView: React.FC<StaticPageViewProps> = ({
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white">Política de Privacidade & Cookies</h1>
             <p className="text-sm text-slate-400">
-              Transparência total no tratamento de dados e conformidade com o Google AdSense e a Lei nº 13.709/2018.
+              Transparência total no tratamento de dados e conformidade com o Google AdSense e a Lei nº 13.709/2018 (LGPD).
             </p>
           </header>
 
           <div className="bg-indigo-950/30 border border-indigo-500/20 p-4 rounded-xl text-xs text-indigo-200">
-            <strong>Última atualização:</strong> Setembro de 2026. Seus dados e seu ritmo de estudo são tratados com absoluto sigilo.
+            <strong>Última atualização:</strong> Novembro de 2026. Seus dados e seu ritmo de estudo são tratados com transparência e segurança.
           </div>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white">1. Informações Coletadas</h2>
+            <h2 className="text-lg font-bold text-white">1. Dados Coletados e Finalidades</h2>
             <p className="text-sm">
-              A navegação, resolução de flashcards e leitura de cadernos teóricos no Flash Concurso TI são totalmente acessíveis sem necessidade de identificação. Caso o usuário decida vincular uma conta de autenticação (Firebase Auth com Google ou e-mail/senha), coletamos apenas nome público e e-mail para viabilizar a sincronização de estatísticas no banco de dados Firestore.
+              A navegação, resolução de flashcards e leitura de cadernos teóricos no Flash Concurso TI são acessíveis sem necessidade de cadastro. Coletamos ou processamos apenas os dados necessários para o funcionamento da plataforma:
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-sm text-slate-300">
+              <li><strong>Armazenamento Local (LocalStorage):</strong> progresso de estudos, revisões SRS, preferências de interface e sua escolha de consentimento de cookies ficam gravados localmente no navegador.</li>
+              <li><strong>Conta Opcional (Firebase Auth e Firestore):</strong> caso você escolha criar conta ou entrar com Google, coletamos nome público e e-mail exclusivamente para autenticar seu acesso e sincronizar suas estatísticas de estudo.</li>
+              <li><strong>Métricas de Navegação (Google Analytics 4):</strong> mediante seu consentimento no banner de cookies, coletamos dados agregados de tráfego, páginas acessadas, dispositivo e endereço IP anonimizado para melhorar a experiência e o conteúdo pedagógico.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-white">2. Cookies, Publicidade (AdSense / Adcash) e Links de Afiliados</h2>
+            <p className="text-sm">
+              Utilizamos serviços de publicidade de terceiros — <strong>Google AdSense</strong> e <strong>Adcash</strong> — para manter o acesso gratuito aos estudos. Você pode aceitar ou recusar cookies não essenciais de análise e publicidade personalizada no banner exibido ao acessar o site ou alterar sua preferência a qualquer momento pelo link <strong>"Gerenciar preferências de cookies"</strong> no rodapé.
+            </p>
+            <p className="text-sm">
+              Quando autorizados, o Google e seus parceiros podem utilizar cookies (incluindo o cookie DART) para exibir anúncios relevantes. Você também pode gerenciar ou desativar anúncios personalizados diretamente nas <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline">Configurações de Anúncios do Google</a>.
+            </p>
+            <p className="text-sm">
+              <strong>Divulgação de Afiliados:</strong> Este site contém links de afiliado (Programa de Afiliados Mercado Livre). Ao comprar por eles, podemos receber uma pequena comissão, sem custo extra para você. Todos os links patrocinados utilizam marcação <code>rel=&quot;sponsored&quot;</code>.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white">2. Cookies, Google AdSense e Links de Afiliados</h2>
+            <h2 className="text-lg font-bold text-white">3. Seus Direitos como Titular (LGPD) e Exclusão de Dados</h2>
             <p className="text-sm">
-              Utilizamos o serviço <strong>Google AdSense</strong> para a exibição de anúncios. O Google pode utilizar cookies, incluindo o cookie DART, para veicular publicidade com base no histórico de visitas anteriores a este ou a outros websites.
+              Nos termos do Art. 18 da LGPD (Lei nº 13.709/2018), você tem direito a confirmar a existência de tratamento, acessar seus dados, corrigir informações incompletas, revogar o consentimento de cookies e solicitar a <strong>exclusão integral da sua conta e dos seus dados</strong> a qualquer momento.
             </p>
             <p className="text-sm">
-              Você pode desativar a personalização de anúncios do Google acessando diretamente as <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline">Configurações de Anúncios do Google</a>.
-            </p>
-            <p className="text-sm">
-              Também participamos do <strong>Programa de Afiliados Mercado Livre</strong>. Links identificados como publicidade ou ofertas parceiras redirecionam para o domínio oficial do Mercado Livre e podem gerar uma pequena comissão para manutenção gratuita da plataforma, sem qualquer acréscimo no preço pago pelo usuário.
-            </p>
-          </section>
-
-          <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white">3. Seus Direitos (LGPD)</h2>
-            <p className="text-sm">
-              Nos termos do Art. 18 da LGPD, o usuário tem direito à confirmação da existência de tratamento, acesso aos dados, retificação de dados incorretos e exclusão integral da sua conta e de suas métricas a qualquer momento.
-            </p>
-            <p className="text-sm">
-              Contato do Encarregado pelo tratamento de dados (DPO): <strong className="text-white font-mono">eduardolessa2011@gmail.com</strong>.
+              Para exercer seus direitos ou solicitar exclusão de dados, entre em contato com o Encarregado de Dados (DPO): <strong className="text-white font-mono">eduardolessa2011@gmail.com</strong>.
             </p>
           </section>
         </article>
@@ -181,21 +186,31 @@ export const StaticPageView: React.FC<StaticPageViewProps> = ({
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white">Termos de Uso do Serviço</h1>
             <p className="text-sm text-slate-400">
-              Diretrizes de utilização pedagógica e limites de responsabilidade da plataforma.
+              Diretrizes de utilização pedagógica, direitos autorais e limites de responsabilidade da plataforma.
             </p>
           </header>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white">1. Condições de Uso</h2>
+            <h2 className="text-lg font-bold text-white">1. Natureza Educacional e Ausência de Garantia de Aprovação</h2>
             <p className="text-sm">
-              Ao acessar a plataforma Flash Concurso TI, você concorda em utilizar seus recursos exclusivamente para fins de preparação pessoal e educacional. É expressamente vedada a revenda de materiais didáticos, bem como a extração automatizada de dados em massa sem autorização prévia por escrito.
+              O <strong>Flash Concurso TI</strong> é uma ferramenta auxiliar de revisão ativa com finalidade estritamente educacional. A utilização dos flashcards, resumos e guias <strong>não garante aprovação em concursos públicos</strong> nem substitui a leitura oficial dos editais vigentes. O planejamento, a dedicação e o desempenho nas avaliações são de integral responsabilidade do usuário.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white">2. Isenção e Responsabilidade</h2>
+            <h2 className="text-lg font-bold text-white">2. Direitos Autorais e Independência Institucional</h2>
             <p className="text-sm">
-              Os flashcards, resumos e cadernos de estudo são elaborados com rigor com base em editais públicos e bibliografia padrão de Tecnologia da Informação. Contudo, a plataforma não se responsabiliza por eventuais alterações supervenientes em editais ou divergências de interpretação de bancas examinadoras.
+              Os flashcards, resumos teóricos e comentários pedagógicos são elaborados de forma autoral ou adaptados para fins didáticos, de estudo e comentário crítico nos termos do Art. 46 da Lei nº 9.610/1998 (Lei de Direitos Autorais). O <strong>Flash Concurso TI</strong> é uma iniciativa independente e <strong>não possui qualquer vínculo oficial, parceria ou endosso</strong> de bancas examinadoras (como FGV, Cebraspe ou Cesgranrio) ou de órgãos públicos.
+            </p>
+            <p className="text-sm">
+              É vedada a revenda de materiais didáticos, bem como a extração automatizada de conteúdo em massa (scraping) sem autorização prévia por escrito.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-white">3. Publicidade, Afiliados e Atualização de Editais</h2>
+            <p className="text-sm">
+              Este site exibe anúncios de terceiros e contém links de afiliado (Mercado Livre); ao realizar compras por meio desses links, podemos receber uma pequena comissão, sem custo adicional para você. Embora o acervo seja revisado periodicamente com base em normas técnicas e bibliografia de TI, não nos responsabilizamos por alterações supervenientes em editais, legislação ou entendimentos de bancas.
             </p>
           </section>
         </article>

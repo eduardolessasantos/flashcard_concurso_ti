@@ -141,7 +141,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 {card.concurso && (
                   <>
                     <span className="text-slate-600">•</span>
-                    <span className="text-slate-400 truncate">{card.concurso} {card.ano ? `(${card.ano})` : ''}</span>
+                    <span className="text-slate-400 truncate">Ref. temática: {card.concurso} {card.ano ? `(${card.ano})` : ''}</span>
                   </>
                 )}
               </div>
@@ -242,7 +242,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                       {card.gabaritoOficial}
                     </span>
                     <span className="text-xs text-slate-400">
-                      Gabarito Oficial {card.banca}
+                      Gabarito Comentado · Estilo {card.banca}
                     </span>
                   </div>
                 ) : (

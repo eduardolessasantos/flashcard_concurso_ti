@@ -215,13 +215,13 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
             {/* Micro Highlights */}
             <div className="pt-6 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-slate-400">
               <span className="flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-emerald-400" /> +1.200 Questões de TI Catalogadas
+                <Check className="w-4 h-4 text-emerald-400" /> Flashcards Comentados de TI & Conhecimentos Gerais
               </span>
               <span className="flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-400" /> Algoritmo Leitner de Repetição Espaçada
               </span>
               <span className="flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-emerald-400" /> Salários de R$ 10.000 a R$ 33.000
+                <Check className="w-4 h-4 text-emerald-400" /> Guia de Carreiras Públicas de TI (Editais e Salários)
               </span>
               <span className="flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-400" /> 100% Gratuito para Começar
@@ -295,7 +295,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
                   </div>
 
                   <div className="text-[11px] text-slate-400 font-mono">
-                    {currentSample.concurso} ({currentSample.ano})
+                    Ref. temática: {currentSample.concurso} ({currentSample.ano})
                   </div>
                 </div>
 
@@ -323,7 +323,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
                       </div>
                       <div className="space-y-1">
                         <div className="text-xs font-bold uppercase tracking-wider">
-                          Gabarito Oficial: <span className="underline">{currentSample.resposta}</span>
+                          Gabarito Comentado: <span className="underline">{currentSample.resposta}</span>
                           {userAnswer && (
                             <span className="ml-2 font-normal text-slate-300">
                               (Você escolheu: <strong className={userAnswer === currentSample.resposta ? 'text-emerald-400' : 'text-rose-400'}>{userAnswer}</strong> — {userAnswer === currentSample.resposta ? 'Você acertou!' : 'Você errou!'})
@@ -670,7 +670,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
                 Ao invés de ler a resposta pronta, seu cérebro é forçado a recuperar a informação da memória. Essa sinapse fortalece os caminhos neurais e transforma memória de curto prazo em conhecimento definitivo para o dia da prova.
               </p>
               <div className="pt-2 text-xs text-indigo-400 font-semibold flex items-center gap-1">
-                <span>+300% de retenção comprovada</span>
+                <span>Maior retenção de longo prazo (Active Recall)</span>
               </div>
             </div>
 
@@ -1107,7 +1107,7 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Sua vaga de R$ 15k a R$ 25k em TI pública começa na próxima revisão
+            Construa sua rotina diária de revisão ativa para concursos de TI
           </h2>
 
           <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">

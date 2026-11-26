@@ -23,6 +23,7 @@ interface FooterProps {
   onOpenAbout?: () => void;
   onOpenContact?: () => void;
   onOpenEducationalGuide?: () => void;
+  onOpenCookiePreferences?: () => void;
   onNavigateRoute?: (route: 'sobre' | 'privacidade' | 'termos' | 'contato' | 'preparatorios' | 'concursos-abertos' | 'guia-carreira-ti') => void;
   onSelectView?: (view: 'home' | 'flashcards' | 'guides' | 'preparatorios' | 'concursos-abertos' | 'guia-carreira-ti') => void;
 }
@@ -33,6 +34,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenAbout,
   onOpenContact,
   onOpenEducationalGuide,
+  onOpenCookiePreferences,
   onNavigateRoute,
   onSelectView
 }) => {
@@ -232,11 +234,20 @@ export const Footer: React.FC<FooterProps> = ({
             Transparência & LGPD
           </h4>
           <p className="text-[11px] text-slate-400 leading-relaxed">
-            Este site respeita a sua privacidade nos termos da LGPD (Lei 13.709/18). Monetizamos por meio do Google AdSense (pub-1242153191500402) e do Programa de Afiliados Mercado Livre.
+            Este site contém links de afiliado (Mercado Livre). Ao comprar por eles, podemos receber uma pequena comissão, sem custo extra para você. Também exibimos anúncios via Google AdSense e Adcash, em conformidade com a LGPD (Lei nº 13.709/18).
           </p>
-          <p className="text-[11px] text-slate-500">
-            Você pode gerenciar preferências de cookies a qualquer momento em nossa Política de Privacidade.
+          <p className="text-[11px] text-slate-500 leading-relaxed">
+            Plataforma educacional independente, sem vínculo oficial com FGV, Cebraspe, Cesgranrio ou órgãos públicos. Não garantimos aprovação em concursos.
           </p>
+          {onOpenCookiePreferences && (
+            <button
+              type="button"
+              onClick={onOpenCookiePreferences}
+              className="text-[11px] font-semibold text-indigo-400 hover:text-indigo-300 underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              Gerenciar preferências de cookies
+            </button>
+          )}
           <div className="pt-2 border-t border-slate-800 flex items-center flex-wrap gap-2.5 text-[11px]">
             <a 
               href="/ads.txt" 
@@ -270,7 +281,7 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
 
       <div className="max-w-7xl mx-auto pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-        <p>© 2026 Flash Concurso TI. Todos os direitos reservados. Plataforma educacional aberta.</p>
+        <p>© 2026 Flash Concurso TI. Todos os direitos reservados. Ferramenta educacional independente.</p>
         <p className="flex items-center gap-1">
           Feito com <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> para concurseiros de TI
         </p>

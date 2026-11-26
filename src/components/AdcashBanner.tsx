@@ -1,4 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  CONSENT_EVENT_NAME,
+  CookieConsentStatus,
+  getCookieConsent,
+} from '../services/cookieConsent';
 
 export type AdcashFormat = '300x250' | '250x250' | '160x600';
 
@@ -22,6 +27,17 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
   format = '300x250',
   zoneId 
 }) => {
+  const [consent, setConsent] = useState<CookieConsentStatus | null>(() => getCookieConsent());
+
+  useEffect(() => {
+    const handleConsentChange = (event: Event) => {
+      const customEvent = event as CustomEvent<CookieConsentStatus>;
+      setConsent(customEvent.detail ?? getCookieConsent());
+    };
+    window.addEventListener(CONSENT_EVENT_NAME, handleConsentChange);
+    return () => window.removeEventListener(CONSENT_EVENT_NAME, handleConsentChange);
+  }, []);
+
   const getZoneAndDimensions = () => {
     switch (format) {
       case '160x600':
@@ -54,10 +70,9 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
   const scriptInjectedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (scriptInjectedRef.current || !containerRef.current) return;
+    if (consent !== 'accepted' || scriptInjectedRef.current || !containerRef.current) return;
 
     try {
-      // Create script element to call aclib.runBanner as recommended by Adcash
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.text = `
@@ -80,7 +95,11 @@ export const AdcashBanner: React.FC<AdcashBannerProps> = ({
     } catch (e) {
       console.warn('Adcash display banner init error:', e);
     }
-  }, [effectiveZoneId]);
+  }, [consent, effectiveZoneId]);
+
+  if (consent !== 'accepted') {
+    return null;
+  }
 
   return (
     <div className={`flex flex-col items-center justify-center my-2 select-none ${className}`}>

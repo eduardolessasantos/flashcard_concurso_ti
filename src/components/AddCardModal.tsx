@@ -190,7 +190,7 @@ export const AddCardModal: React.FC<AddCardModalProps> = ({
           {/* Resposta / Gabarito */}
           {tipo === 'certo_errado' ? (
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Gabarito Oficial</label>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Gabarito Esperado</label>
               <div className="flex gap-3">
                 <button
                   type="button"

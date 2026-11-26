@@ -592,7 +592,7 @@ export const StudyGuidesView: React.FC<StudyGuidesViewProps> = ({ onStartFlashca
                 {revealedAnswers[currentLesson.id] && (
                   <div className="mt-3 p-4 bg-slate-950/80 border border-slate-800 rounded-xl space-y-2 animate-in fade-in duration-200">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-emerald-400">Gabarito Oficial:</span>
+                      <span className="text-xs font-bold text-emerald-400">Gabarito Comentado:</span>
                       <span className="text-xs font-mono font-bold text-white px-2 py-0.5 bg-emerald-500/20 border border-emerald-500/30 rounded">
                         {currentLesson.sampleQuestion.answer}
                       </span>

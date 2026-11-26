@@ -98,7 +98,7 @@ export const EducationalGuideModal: React.FC<EducationalGuideModalProps> = ({
           <div className="p-5 rounded-2xl bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-900/40 space-y-3">
             <h3 className="text-lg sm:text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-indigo-400 shrink-0" />
-              Flash Concurso TI – Metodologia Científica para a sua Aprovação
+              Flash Concurso TI – Metodologia Científica de Revisão Ativa
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               O <strong>Flash Concurso TI</strong> é um portal educacional gratuito de alta performance, desenvolvido exclusivamente para concurseiros e profissionais de tecnologia que buscam a aprovação em cargos de TI em Tribunais (STJ, TSE, TRF, TRT), Carreiras Fiscais (Receita Federal e SEFAZ), Bancos Públicos (Banco do Brasil, Caixa Econômica Federal e BNDES), Órgãos Federais e Estaduais.
@@ -129,7 +129,7 @@ export const EducationalGuideModal: React.FC<EducationalGuideModalProps> = ({
               A maioria dos concurseiros comete o erro clássico de praticar o estudo passivo: ler apostilas volumosas em PDF, grifar páginas inteiras com marca-texto ou assistir a horas seguidas de videoaulas. Estudos consagrados na psicologia cognitiva demonstram que esse comportamento produz a chamada <strong>ilusão de competência</strong>: o estudante reconhece a informação quando ela está diante dos seus olhos, mas é incapaz de evocá-la espontaneamente no dia da prova quando confrontado com uma folha em branco ou com enunciados ardilosos.
             </p>
             <p className="text-xs sm:text-sm text-slate-300">
-              O estudo com flashcards inverte essa lógica através do <strong>Active Recall</strong> (recuperação ativa). Ao visualizar apenas a pergunta ou a situação-problema no cartão (por exemplo: <em>"Quais são os 4 temas de controles da ISO/IEC 27002:2022?"</em> ou <em>"Qual a diferença entre Star Schema e Snowflake Schema no Data Warehouse?"</em>), o cérebro é forçado a reativar os circuitos neurais de longo prazo para formular a resposta antes de virar o cartão. Esse esforço de recuperação fortalece as conexões sinápticas e multiplica a taxa de retenção da memória em até 300% em relação à simples releitura.
+              O estudo com flashcards inverte essa lógica através do <strong>Active Recall</strong> (recuperação ativa). Ao visualizar apenas a pergunta ou a situação-problema no cartão (por exemplo: <em>"Quais são os 4 temas de controles da ISO/IEC 27002:2022?"</em> ou <em>"Qual a diferença entre Star Schema e Snowflake Schema no Data Warehouse?"</em>), o cérebro é forçado a reativar os circuitos neurais de longo prazo para formular a resposta antes de virar o cartão. Esse esforço de recuperação fortalece as conexões sinápticas e melhora significativamente a retenção de longo prazo em relação à simples releitura.
             </p>
           </section>
 
@@ -192,7 +192,7 @@ export const EducationalGuideModal: React.FC<EducationalGuideModalProps> = ({
               4. Como Estudar com Flashcards para Concursos de TI: Guia Prático
             </h3>
             <p className="text-xs sm:text-sm text-slate-300">
-              Para extrair o rendimento máximo da nossa plataforma e acelerar a sua aprovação, recomendamos o seguinte fluxo de estudos:
+              Para extrair o melhor aproveitamento da nossa plataforma e organizar e potencializar seus estudos, recomendamos o seguinte fluxo:
             </p>
             <div className="space-y-2.5 text-xs sm:text-sm">
               <div className="flex gap-3 p-3 bg-slate-800/40 rounded-xl border border-slate-800">

@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <!-- Adcash Autotag Library & Zone -->
-    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Política de Privacidade & Cookies - Flash Concurso TI</title>
@@ -14,21 +12,36 @@
     <meta name="google-adsense-account" content="ca-pub-1242153191500402">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1242153191500402" crossorigin="anonymous"></script>
 
-    <!-- Google Analytics Oficial (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B91XT5E6VF"></script>
+    <!-- Google Consent Mode v2 (LGPD) & Analytics (GA4) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      var savedConsent = null;
+      try { savedConsent = localStorage.getItem('flashconcursoti_cookie_consent_v1'); } catch (e) {}
+      var state = savedConsent === 'accepted' ? 'granted' : 'denied';
+      gtag('consent', 'default', {
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state
+      });
+      if (savedConsent === 'accepted') {
+        var ac = document.createElement('script');
+        ac.id = 'aclib';
+        ac.type = 'text/javascript';
+        ac.src = '//acscdn.com/script/aclib.js';
+        document.head.appendChild(ac);
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B91XT5E6VF"></script>
+    <script>
       gtag('js', new Date());
-
       gtag('config', 'G-B91XT5E6VF');
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-slate-950 text-slate-200 font-sans min-h-screen flex flex-col antialiased">
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur px-6 py-4 sticky top-0 z-10">
-    <!-- Adcash Autotag Library & Zone -->
-    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
       <div class="max-w-5xl mx-auto flex items-center justify-between">
         <a href="/" class="flex items-center gap-2.5 text-white font-bold text-lg hover:text-indigo-400 transition-colors">
           <span class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-black text-xs text-white">FC</span>
@@ -44,14 +57,14 @@
       <div class="border-b border-slate-800 pb-6">
         <p class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">Conformidade Legal & LGPD</p>
         <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Política de Privacidade e Termos de Cookies</h1>
-        <p class="text-xs text-slate-400 mt-1">Última atualização: Setembro de 2026</p>
+        <p class="text-xs text-slate-400 mt-1">Última atualização: Novembro de 2026</p>
       </div>
 
       <article class="space-y-6 text-sm text-slate-300 leading-relaxed">
         <section class="space-y-3">
           <h2 class="text-xl font-bold text-white">1. Compromisso com a Privacidade e LGPD</h2>
           <p>
-            O <strong>Flash Concurso TI (https://flashconcursoti.com.br)</strong> preza pela transparência, privacidade e proteção dos dados pessoais de seus usuários, em total conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018)</strong> e os requisitos de conformidade do Google AdSense.
+            O <strong>Flash Concurso TI (https://flashconcursoti.com.br)</strong> preza pela transparência, privacidade e proteção dos dados pessoais de seus usuários, em total conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018)</strong> e os requisitos do Google AdSense.
           </p>
         </section>
 
@@ -61,28 +74,28 @@
             Nosso site prioriza o funcionamento com retenção mínima de dados:
           </p>
           <ul class="list-disc pl-6 space-y-2">
-            <li><strong>Progresso de Estudos e Gamificação (LocalStorage):</strong> As estatísticas de acertos, sequência diária (streak), pontos de experiência (XP) e intervalos de repetição espaçada são processados localmente no seu próprio navegador via LocalStorage.</li>
-            <li><strong>Autenticação Opcional:</strong> Caso você opte por autenticar-se, utilizamos provedores seguros (como Firebase Authentication) apenas para vincular seu progresso de estudo em nuvem de forma privada.</li>
+            <li><strong>Progresso de Estudos e Preferências (LocalStorage):</strong> As estatísticas de acertos, sequência diária (streak), intervalos de repetição espaçada e sua escolha no banner de cookies são salvos localmente no navegador.</li>
+            <li><strong>Autenticação Opcional (Firebase Auth / Firestore):</strong> Caso você opte por criar conta ou entrar com Google, coletamos nome público e e-mail apenas para sincronizar seu progresso de estudo na nuvem.</li>
+            <li><strong>Análise de Navegação (Google Analytics 4):</strong> Mediante seu consentimento de cookies, coletamos dados agregados de navegação (páginas visitadas, tipo de dispositivo e IP anonimizado) para aprimorar a qualidade do site.</li>
           </ul>
         </section>
 
         <section class="space-y-3">
-          <h2 class="text-xl font-bold text-white">3. Publicidade, Google AdSense e Programa de Afiliados</h2>
+          <h2 class="text-xl font-bold text-white">3. Cookies, Publicidade (AdSense / Adcash) e Programa de Afiliados</h2>
           <p>
-            Este site utiliza serviços de publicidade online providos pelo <strong>Google AdSense (Google LLC)</strong> e participa do <strong>Programa de Afiliados Mercado Livre</strong>. Como fornecedores terceiros, podem utilizar cookies para veicular anúncios e atribuir recomendações comerciais.
+            Este site utiliza serviços de publicidade online providos pelo <strong>Google AdSense (Google LLC)</strong> e pela rede <strong>Adcash</strong>, além de participar do <strong>Programa de Afiliados Mercado Livre</strong>. Você pode aceitar ou recusar cookies não essenciais no banner de consentimento e alterar sua escolha a qualquer momento pelo rodapé da página inicial.
           </p>
           <ul class="list-disc pl-6 space-y-2">
-            <li>O uso de cookies de publicidade pelo Google permite que ele e seus parceiros veiculem anúncios com base na sua navegação neste e em outros sites da Web.</li>
-            <li>Os usuários podem desativar a publicidade personalizada acessando as <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">Configurações de Anúncios do Google</a>.</li>
-            <li>Você também pode optar por não utilizar cookies de fornecedores terceiros para publicidade personalizada visitando <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">www.aboutads.info</a>.</li>
-            <li>Links sinalizados como publicidade ou vitrine de ofertas do Mercado Livre utilizam marcação <code>rel="sponsored"</code> e redirecionam para o ambiente oficial do parceiro sem alterar o preço final do produto para o usuário.</li>
+            <li>Com seu consentimento, o Google e seus parceiros podem utilizar cookies (incluindo o cookie DART) para veicular anúncios com base na navegação neste e em outros sites.</li>
+            <li>Você pode desativar a publicidade personalizada acessando as <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">Configurações de Anúncios do Google</a> ou <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">www.aboutads.info</a>.</li>
+            <li><strong>Transparência de Afiliados:</strong> Este site contém links de afiliado. Ao comprar por eles, podemos receber uma pequena comissão, sem custo extra para você. Os links utilizam marcação <code>rel="sponsored"</code>.</li>
           </ul>
         </section>
 
         <section class="space-y-3">
-          <h2 class="text-xl font-bold text-white">4. Seus Direitos como Titular</h2>
+          <h2 class="text-xl font-bold text-white">4. Seus Direitos como Titular e Exclusão de Dados</h2>
           <p>
-            Nos termos do Art. 18 da LGPD, você tem o direito de confirmar a existência de tratamento, acessar seus dados, solicitar a correção de dados incompletos ou a eliminação de dados tratados com seu consentimento a qualquer momento através do nosso canal de contato.
+            Nos termos do Art. 18 da LGPD, você tem o direito de confirmar a existência de tratamento, acessar seus dados, corrigir informações incompletas, revogar o consentimento de cookies ou solicitar a <strong>exclusão definitiva da sua conta e dados</strong> enviando e-mail para <strong class="text-white font-mono">eduardolessa2011@gmail.com</strong>.
           </p>
         </section>
       </article>

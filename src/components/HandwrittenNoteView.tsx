@@ -240,14 +240,14 @@ export const HandwrittenNoteView: React.FC<HandwrittenNoteViewProps> = ({ note }
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30">
-                      Questão Real de Concurso
+                      Questão Comentada (Estilo de Banca)
                     </span>
                     <span className="text-xs font-bold text-slate-200">
                       {note.realExamQuestion.banca}
                     </span>
                   </div>
                   <p className="text-xs text-slate-400 font-sans">
-                    {note.realExamQuestion.orgaoAno}
+                    Adaptado para estudo · {note.realExamQuestion.orgaoAno}
                   </p>
                 </div>
               </div>
@@ -261,7 +261,7 @@ export const HandwrittenNoteView: React.FC<HandwrittenNoteViewProps> = ({ note }
             {/* Question Statement with chalk style */}
             <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-700/80 font-sans text-xs sm:text-sm text-slate-200 leading-relaxed shadow-md">
               <p className="font-bold text-slate-400 uppercase text-[10px] tracking-wider mb-2 font-mono">
-                Enunciado Oficial:
+                Enunciado Adaptado para Análise:
               </p>
               <div className="whitespace-pre-line">
                 {renderFormattedHandwritten(note.realExamQuestion.enunciado)}
@@ -364,13 +364,13 @@ export const HandwrittenNoteView: React.FC<HandwrittenNoteViewProps> = ({ note }
               </div>
             )}
 
-            {/* Official Answer & Pedagogical Conclusion */}
+            {/* Commented Answer & Pedagogical Conclusion */}
             <div className="p-3.5 rounded-xl bg-emerald-950/50 border border-emerald-500/40 flex flex-wrap items-center justify-between gap-3 text-xs">
               <div className="flex items-center gap-2">
                 <GraduationCap className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-bold text-emerald-300 font-sans">Gabarito Oficial da Banca:</span>
+                <span className="font-bold text-emerald-300 font-sans">Gabarito Comentado:</span>
                 <span className="px-2.5 py-0.5 rounded bg-emerald-500 text-slate-950 font-mono font-black text-xs shadow-xs">
-                  {note.realExamQuestion.gabaritoOficial}
+                  {note.realExamQuestion.gabaritoOficial.replace(/^GABARITO OFICIAL:\s*/i, '')}
                 </span>
               </div>
               {note.realExamQuestion.conclusaoPedagogica && (
@@ -379,6 +379,9 @@ export const HandwrittenNoteView: React.FC<HandwrittenNoteViewProps> = ({ note }
                 </p>
               )}
             </div>
+            <p className="text-[10px] text-slate-500 font-sans leading-relaxed">
+              Conteúdo adaptado para fins estritamente didáticos e de comentário crítico (Art. 46 da Lei nº 9.610/98). O Flash Concurso TI não possui vínculo oficial com bancas examinadoras ou órgãos públicos.
+            </p>
           </div>
         )}
 

@@ -22,6 +22,7 @@ import { HomePageLanding } from './components/HomePageLanding';
 import { TypingPracticeView } from './components/TypingPracticeView';
 import { AdcashBanner } from './components/AdcashBanner';
 import { MercadoLivreShowcase } from './components/MercadoLivreShowcase';
+import { CookieConsentBanner } from './components/CookieConsentBanner';
 import { GamificationDashboardModal } from './components/GamificationDashboardModal';
 import { 
   loadGamificationState, 
@@ -81,8 +82,8 @@ export default function App() {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       if (path === 'sobre') return 'sobre';
-      if (path === 'privacidade') return 'privacidade';
-      if (path === 'termos') return 'termos';
+      if (path === 'privacidade' || path === 'politica-de-privacidade') return 'privacidade';
+      if (path === 'termos' || path === 'termos-de-uso') return 'termos';
       if (path === 'contato') return 'contato';
       if (path === 'digitacao' || path === 'aprenda-digitacao' || path === 'teclado') return 'digitacao';
       if (path === 'preparatorios' || path === 'concursos-abertos' || path === 'cursos') return 'preparatorios';
@@ -99,8 +100,8 @@ export default function App() {
     const handleLocation = () => {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       if (path === 'sobre') setCurrentView('sobre');
-      else if (path === 'privacidade') setCurrentView('privacidade');
-      else if (path === 'termos') setCurrentView('termos');
+      else if (path === 'privacidade' || path === 'politica-de-privacidade') setCurrentView('privacidade');
+      else if (path === 'termos' || path === 'termos-de-uso') setCurrentView('termos');
       else if (path === 'contato') setCurrentView('contato');
       else if (path === 'digitacao' || path === 'aprenda-digitacao' || path === 'teclado') setCurrentView('digitacao');
       else if (path === 'preparatorios' || path === 'concursos-abertos' || path === 'cursos') setCurrentView('preparatorios');
@@ -136,6 +137,7 @@ export default function App() {
   // Gamification state from localStorage: devconcursos_gamification_v2
   const [gamification, setGamification] = useState<GamificationState>(() => loadGamificationState());
   const [isGamificationModalOpen, setIsGamificationModalOpen] = useState(false);
+  const [isCookieBannerForcedOpen, setIsCookieBannerForcedOpen] = useState(false);
   const [gamificationNotification, setGamificationNotification] = useState<{ message: string; type: 'xp' | 'badge' | 'level' } | null>(null);
 
   // Load saved cards or default to seed data
@@ -1180,8 +1182,16 @@ export default function App() {
         onOpenAbout={() => navigateToView('sobre')}
         onOpenContact={() => navigateToView('contato')}
         onOpenEducationalGuide={() => setIsEducationalGuideOpen(true)}
+        onOpenCookiePreferences={() => setIsCookieBannerForcedOpen(true)}
         onNavigateRoute={(route) => navigateToView(route as ExtendedViewMode)}
         onSelectView={(v) => navigateToView(v as ExtendedViewMode)}
+      />
+
+      {/* ================= LGPD COOKIE CONSENT BANNER ================= */}
+      <CookieConsentBanner
+        forceOpen={isCookieBannerForcedOpen}
+        onCloseForceOpen={() => setIsCookieBannerForcedOpen(false)}
+        onOpenPrivacyPolicy={() => navigateToView('privacidade')}
       />
 
       {/* ================= MODALS ================= */}

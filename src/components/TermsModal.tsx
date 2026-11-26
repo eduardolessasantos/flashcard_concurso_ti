@@ -46,30 +46,30 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
           <section className="space-y-2">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-indigo-400" />
-              2. Finalidade Educacional e Licença de Uso
+              2. Finalidade Educacional, Direitos Autorais e Vínculo
             </h3>
             <p className="text-xs text-slate-300">
-              O Flash Concurso TI é uma ferramenta educacional voltada para o aprendizado ativo, memorização e estudo para concursos públicos nas áreas de Tecnologia da Informação, Governança, Segurança e Conhecimentos Gerais.
+              O Flash Concurso TI é uma ferramenta educacional independente voltada ao apoio à revisão ativa e memorização. O usuário é inteiramente responsável por sua rotina de estudos e conferência dos editais vigentes.
             </p>
             <p className="text-xs text-slate-300">
-              É concedida permissão para usar e estudar os materiais disponibilizados na plataforma para uso estritamente pessoal, não comercial e preparatório.
+              Os flashcards e resumos são de redação autoral ou adaptados para fins didáticos e de comentário crítico (Art. 46 da Lei nº 9.610/98), sem vínculo oficial com FGV, Cebraspe, Cesgranrio ou órgãos públicos. É concedida permissão de uso estritamente pessoal e não comercial.
             </p>
           </section>
 
           <section className="space-y-2">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-400" />
-              3. Isenção de Responsabilidade
+              3. Isenção de Responsabilidade e Links de Afiliados
             </h3>
             <p className="text-xs text-slate-300">
-              Os materiais no site do Flash Concurso TI são fornecidos "como estão". Embora todo o conteúdo seja elaborado e revisado com base nas principais bancas examinadoras (Cebraspe, FGV, Cesgranrio) e normas oficiais (ISO, ITIL, COBIT, Leis Federais), não garantimos a aprovação em concursos nem a ausência de divergências doutrinárias ou jurisprudenciais futuras.
+              Os materiais no site do Flash Concurso TI são fornecidos &quot;como estão&quot;. Não garantimos aprovação em concursos públicos nem a ausência de alterações em editais ou divergências futuras de interpretação. Este site também contém links de afiliado (como Mercado Livre), pelos quais podemos receber comissão sem custo extra ao usuário.
             </p>
           </section>
 
           <section className="space-y-2">
             <h3 className="text-base font-bold text-white">4. Modificações e Atualizações</h3>
             <p className="text-xs text-slate-300">
-              O Flash Concurso TI pode revisar estes termos de serviço a qualquer momento, sem aviso prévio. Ao usar este site, você concorda em ficar vinculado à versão atualizada destes Termos de Uso.
+              O Flash Concurso TI pode revisar estes termos de serviço a qualquer momento. O uso contínuo do site implica concordância com a versão vigente destes Termos de Uso.
             </p>
           </section>
         </div>

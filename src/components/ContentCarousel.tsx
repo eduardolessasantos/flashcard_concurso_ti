@@ -70,7 +70,7 @@ export const ContentCarousel: React.FC<ContentCarouselProps> = ({
       badge: 'Metodologia Ativa',
       badgeColor: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
       title: 'Flashcards com Repetição Espaçada (SRS)',
-      description: 'Mais de 1.200 cartões comentados pelo algoritmo Leitner. Fixe conceitos de TI antes da curva do esquecimento de Ebbinghaus.',
+      description: 'Cartões comentados com algoritmo Leitner de repetição espaçada. Fixe conceitos de TI antes da curva do esquecimento de Ebbinghaus.',
       tag: 'Prática Ativa • Algoritmo SRS',
       icon: <Layers className="w-5 h-5 text-indigo-400" />,
       gradient: 'from-indigo-950/40 via-slate-900/90 to-slate-950',

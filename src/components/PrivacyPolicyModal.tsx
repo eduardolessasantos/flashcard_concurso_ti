@@ -53,24 +53,24 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
             </ul>
           </section>
 
-          {/* 2. Google AdSense e Cookies de Terceiros */}
+          {/* 2. Google Analytics, Google AdSense, Adcash e Cookies */}
           <section className="space-y-2">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <Cookie className="w-4 h-4 text-amber-400" />
-              2. Google AdSense e Cookies de Publicidade
+              2. Cookies, Google Analytics, AdSense, Adcash e Afiliados
             </h3>
             <p>
-              Este site utiliza o <strong>Google AdSense</strong>, um serviço de veiculação de anúncios fornecido pela Google LLC.
+              Mediante sua escolha no banner de cookies (com opção de aceitar ou recusar cookies não essenciais), este site utiliza <strong>Google Analytics (GA4)</strong> para estatísticas de uso e <strong>Google AdSense</strong> / <strong>Adcash</strong> para veiculação de anúncios.
             </p>
             <div className="bg-slate-800/60 p-4 rounded-xl border border-slate-700/60 text-xs space-y-2">
               <p>
-                • O Google, como fornecedor terceirizado, utiliza <strong>cookies</strong> (incluindo o cookie DART) para veicular anúncios neste site com base nas visitas anteriores dos usuários a este ou a outros sites na internet.
+                • O Google, como fornecedor terceirizado, utiliza <strong>cookies</strong> para veicular anúncios e medir audiência respeitando o seu consentimento (Google Consent Mode v2).
               </p>
               <p>
                 • Os usuários podem desativar a publicidade personalizada acessando as <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline hover:text-indigo-300">Configurações de Anúncios do Google</a> ou através do site <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline hover:text-indigo-300">www.aboutads.info</a>.
               </p>
               <p>
-                • <strong>Programa de Afiliados Mercado Livre:</strong> O site possui áreas reservadas de recomendações com links patrocinados (<code className="text-amber-300">rel=&quot;sponsored&quot;</code>) para o Mercado Livre. Ao clicar nesses links, o parceiro pode utilizar cookies próprios para atribuir a comissão de afiliado, sem alterar o valor final da sua compra.
+                • <strong>Programa de Afiliados Mercado Livre:</strong> Este site contém links de afiliado (<code className="text-amber-300">rel=&quot;sponsored&quot;</code>). Ao comprar por eles, podemos receber uma pequena comissão sem custo extra para você.
               </p>
               <p>
                 • Não vendemos nem compartilhamos seus dados pessoais com terceiros para fins de marketing direto não relacionado ao serviço.

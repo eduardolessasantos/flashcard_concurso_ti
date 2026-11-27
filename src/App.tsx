@@ -20,7 +20,6 @@ import { PreparatoriosView } from './components/PreparatoriosView';
 import { GuiaCarreiraView } from './components/GuiaCarreiraView';
 import { HomePageLanding } from './components/HomePageLanding';
 import { TypingPracticeView } from './components/TypingPracticeView';
-import { AdcashBanner } from './components/AdcashBanner';
 import { MercadoLivreShowcase } from './components/MercadoLivreShowcase';
 import { CookieConsentBanner } from './components/CookieConsentBanner';
 import { GamificationDashboardModal } from './components/GamificationDashboardModal';
@@ -1031,11 +1030,6 @@ export default function App() {
               {/* Área Reservada: Vitrine de Afiliados Mercado Livre */}
               <MercadoLivreShowcase variant="compact" />
 
-              {/* Adcash Display Banner 250x250 (Encaixa na barra lateral de 320px) */}
-              <div className="pt-2 flex justify-center">
-                <AdcashBanner format="250x250" />
-              </div>
-
             </div>
 
             {/* Bottom Actions inside Sidebar */}
@@ -1144,21 +1138,9 @@ export default function App() {
                     Ver Todas as Questões
                   </button>
                 </div>
-
-                {/* Banner de recompensa/intervalo ao concluir sessão de estudos (300x250) */}
-                <div className="pt-4 border-t border-slate-800/80 flex justify-center">
-                  <AdcashBanner format="300x250" />
-                </div>
               </div>
             )}
           </main>
-
-          {/* Right Skyscraper Ad Column (Widescreen Desktop only) */}
-          <aside className="hidden xl:flex flex-col items-center justify-start p-4 border-l border-slate-800/80 bg-slate-900/30 shrink-0">
-            <div className="sticky top-20">
-              <AdcashBanner format="160x600" zoneId="12485358" />
-            </div>
-          </aside>
         </div>
       )}
 

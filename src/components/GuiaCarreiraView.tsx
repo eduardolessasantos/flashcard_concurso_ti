@@ -15,7 +15,6 @@ import {
   FileText
 } from 'lucide-react';
 import { Topico } from '../types';
-import { AdcashBanner } from './AdcashBanner';
 
 interface GuiaCarreiraViewProps {
   onSelectTopicForStudy: (topic: Topico) => void;
@@ -312,11 +311,6 @@ export const GuiaCarreiraView: React.FC<GuiaCarreiraViewProps> = ({
           <span>Acessar Flashcards Gratuitos</span>
           <ArrowRight className="w-4 h-4" />
         </button>
-      </div>
-
-      {/* Espaço de Publicidade no final do artigo (300x250) */}
-      <div className="pt-8 border-t border-slate-800 flex justify-center">
-        <AdcashBanner format="300x250" />
       </div>
 
     </div>

@@ -153,9 +153,9 @@ export const StaticPageView: React.FC<StaticPageViewProps> = ({
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white">2. Cookies, Publicidade (AdSense / Adcash) e Links de Afiliados</h2>
+            <h2 className="text-lg font-bold text-white">2. Cookies, Google AdSense e Links de Afiliados</h2>
             <p className="text-sm">
-              Utilizamos serviços de publicidade de terceiros — <strong>Google AdSense</strong> e <strong>Adcash</strong> — para manter o acesso gratuito aos estudos. Você pode aceitar ou recusar cookies não essenciais de análise e publicidade personalizada no banner exibido ao acessar o site ou alterar sua preferência a qualquer momento pelo link <strong>"Gerenciar preferências de cookies"</strong> no rodapé.
+              Utilizamos o serviço <strong>Google AdSense</strong> para manter o acesso gratuito aos estudos. Você pode aceitar ou recusar cookies não essenciais de análise e publicidade personalizada no banner exibido ao acessar o site ou alterar sua preferência a qualquer momento pelo link <strong>"Gerenciar preferências de cookies"</strong> no rodapé.
             </p>
             <p className="text-sm">
               Quando autorizados, o Google e seus parceiros podem utilizar cookies (incluindo o cookie DART) para exibir anúncios relevantes. Você também pode gerenciar ou desativar anúncios personalizados diretamente nas <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline">Configurações de Anúncios do Google</a>.

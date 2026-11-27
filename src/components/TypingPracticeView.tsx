@@ -20,6 +20,8 @@ import {
 } from 'lucide-react';
 import { LicaoDigitacao, TrechoConceito } from '../types';
 import { TYPING_LESSONS } from '../data/typingLessonsData';
+import { SectionBackdrop } from './SectionBackdrop';
+import bgTypingPractice from '../assets/images/bg_typing_practice_1795821324122.jpg';
 
 interface TypingPracticeViewProps {
   onNavigateHome?: () => void;
@@ -212,7 +214,14 @@ export const TypingPracticeView: React.FC<TypingPracticeViewProps> = ({
   }, [selectedLesson, currentTrechoIndex, isTypingCompleted, typedText.length, targetText.length]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="relative min-h-screen bg-slate-950 text-slate-100 flex flex-col overflow-hidden">
+      <SectionBackdrop
+        imageSrc={bgTypingPractice}
+        alt="Mãos digitando texto em teclado mecânico durante estudo de tecnologia"
+        intensity={selectedLesson ? 'subtle' : 'balanced'}
+        position="center"
+        priority
+      />
       {/* Header bar */}
       <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-20 px-4 py-3">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
@@ -272,7 +281,7 @@ export const TypingPracticeView: React.FC<TypingPracticeViewProps> = ({
       </header>
 
       {/* Main Container */}
-      <main className="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+      <main className="relative z-10 flex-1 max-w-5xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
         {!selectedLesson ? (
           /* ================= SCREEN 1: LESSON SELECTOR ================= */
           <div className="space-y-6">

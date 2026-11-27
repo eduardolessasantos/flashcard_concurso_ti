@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { STUDY_GUIDE_TOPICS } from '../data/studyGuides';
 import { Topico, StudyGuideLesson, UsefulLink } from '../types';
 import { HandwrittenNoteView } from './HandwrittenNoteView';
+import { SectionBackdrop } from './SectionBackdrop';
+import bgStudyGuidesNotebook from '../assets/images/bg_study_guides_notebook_1795821323341.jpg';
 import { useAuth } from '../context/AuthContext';
 import { 
   BookOpen, 
@@ -357,7 +359,15 @@ export const StudyGuidesView: React.FC<StudyGuidesViewProps> = ({ onStartFlashca
       </div>
 
       {/* ================= RIGHT LESSON VIEWER & STUDY ARENA ================= */}
-      <div className="flex-1 flex flex-col overflow-y-auto bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-indigo-950/20 via-slate-950 to-slate-950 p-4 sm:p-8 lg:p-10">
+      <div className="relative flex-1 flex flex-col overflow-hidden bg-slate-950">
+        <SectionBackdrop
+          imageSrc={bgStudyGuidesNotebook}
+          alt="Estudante realizando anotações estruturadas em caderno didático de TI"
+          intensity="subtle"
+          position="top"
+          priority
+        />
+        <div className="relative z-10 flex-1 overflow-y-auto p-4 sm:p-8 lg:p-10">
         <div className="max-w-4xl w-full mx-auto space-y-6">
           
           {/* Breadcrumb & Action Toolbar */}
@@ -634,6 +644,7 @@ export const StudyGuidesView: React.FC<StudyGuidesViewProps> = ({ onStartFlashca
             </div>
           </div>
 
+        </div>
         </div>
       </div>
     </div>

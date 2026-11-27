@@ -25,6 +25,8 @@ import {
 } from 'lucide-react';
 import { Topico } from '../types';
 import { MercadoLivreShowcase } from './MercadoLivreShowcase';
+import { SectionBackdrop } from './SectionBackdrop';
+import bgPreparatoriosShowcase from '../assets/images/bg_preparatorios_showcase_1795821323740.jpg';
 
 export type PreparatorioCategory = 'TODOS' | 'CURSINHOS_COMPLETOS' | 'QUESTOES' | 'PRATICA_TECNICA';
 
@@ -287,47 +289,55 @@ export const PreparatoriosView: React.FC<PreparatoriosViewProps> = ({
   });
 
   return (
-    <div className="flex-1 bg-slate-950 text-slate-100 min-h-[calc(100vh-140px)] py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto space-y-10">
-
-        {/* Top Header & Breadcrumb */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-6">
-          <div className="space-y-1">
+    <div className="relative flex-1 bg-slate-950 text-slate-100 min-h-[calc(100vh-140px)] overflow-hidden">
+      {/* Smooth Hero Atmospheric Backdrop for Vitrine de Preparatórios */}
+      <div className="relative overflow-hidden border-b border-slate-800/80 py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+        <SectionBackdrop
+          imageSrc={bgPreparatoriosShowcase}
+          alt="Estudante de TI assistindo videoaula preparatória com monitor amplo, fones e caderno de planejamento"
+          intensity="hero"
+          position="top"
+          priority
+        />
+        <div className="max-w-7xl mx-auto relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+          <div className="space-y-2">
             <button
               onClick={onNavigateHome}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors mb-2"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-300 hover:text-white transition-colors mb-2 bg-slate-900/70 backdrop-blur-sm border border-slate-700/70 px-3 py-1.5 rounded-lg"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Voltar para o Início</span>
             </button>
-            <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                Guia Independente
-              </span>
-              <span className="text-xs text-slate-400 flex items-center gap-1">
+            <div className="flex items-center gap-2 text-xs text-slate-300">
+              <span className="font-semibold text-indigo-300">Guia Independente</span>
+              <span aria-hidden="true" className="text-slate-500">·</span>
+              <span className="flex items-center gap-1 text-slate-300">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                 Dados Públicos Consolidados
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
-              <GraduationCap className="w-8 h-8 text-indigo-400" />
-              Vitrine de Cursos Preparatórios & Assinaturas de TI
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3">
+              <GraduationCap className="w-8 h-8 text-indigo-400 shrink-0" />
+              <span>Vitrine de Cursos Preparatórios & Assinaturas de TI</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-400 max-w-3xl leading-relaxed">
-              Compare as principais plataformas, planos de assinatura, metodologias (PDFs vs Videoaulas vs Questões) e escolha a ferramenta certa para acelerar sua aprovação em cargos de TI.
+            <p className="text-sm sm:text-base text-slate-200/90 max-w-3xl leading-relaxed">
+              Compare as principais plataformas, planos de assinatura, metodologias (PDFs vs Videoaulas vs Questões) e escolha a ferramenta certa para organizar sua preparação em cargos de TI.
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <a
               href="#comparativo"
-              className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs sm:text-sm font-semibold text-slate-200 transition-all flex items-center gap-2"
+              className="px-4 py-2.5 rounded-xl bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border border-slate-700 text-xs sm:text-sm font-semibold text-slate-100 transition-all flex items-center gap-2 whitespace-nowrap"
             >
               <Layers className="w-4 h-4 text-indigo-400" />
               <span>Ver Tabela Comparativa</span>
             </a>
           </div>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
 
         {/* Filter & Search Bar */}
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-800">

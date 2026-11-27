@@ -35,8 +35,13 @@ import {
 } from 'lucide-react';
 import { Topico, Banca } from '../types';
 import { ContentCarousel } from './ContentCarousel';
-import { AdcashBanner } from './AdcashBanner';
 import { MercadoLivreShowcase } from './MercadoLivreShowcase';
+import { SectionBackdrop } from './SectionBackdrop';
+import bgHomeHeroStudying from '../assets/images/bg_home_hero_studying_1795821319377.jpg';
+import bgHomeCareerStudying from '../assets/images/bg_home_career_studying_1795821320650.jpg';
+import bgHomeFocusStudy from '../assets/images/bg_home_focus_study_1795821321610.jpg';
+import bgStudyGuidesNotebook from '../assets/images/bg_study_guides_notebook_1795821323341.jpg';
+import bgPreparatoriosShowcase from '../assets/images/bg_preparatorios_showcase_1795821323740.jpg';
 
 interface HomePageLandingProps {
   onStartStudy: (topic?: Topico) => void;
@@ -151,7 +156,14 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
       
       {/* ================= 1. HERO SECTION ================= */}
-      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28 border-b border-slate-800/80 bg-gradient-to-b from-slate-900/90 via-slate-950 to-slate-950">
+      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28 border-b border-slate-800/80 bg-slate-950">
+        <SectionBackdrop
+          imageSrc={bgHomeHeroStudying}
+          alt="Profissional de TI estudando com foco em mesa iluminada com notebook e caderno"
+          intensity="hero"
+          position="top"
+          priority
+        />
         {/* Glow ambient effects */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-indigo-600/15 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute top-36 right-10 w-96 h-96 bg-emerald-500/10 blur-[130px] rounded-full pointer-events-none" />
@@ -402,8 +414,14 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
       </section>
 
       {/* ================= 2. POR QUE CONCURSO PÚBLICO DE TI? (COMPARAÇÃO REALISTA) ================= */}
-      <section className="py-16 lg:py-24 bg-slate-900/50 border-b border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-16 lg:py-24 bg-slate-950 border-b border-slate-800/80">
+        <SectionBackdrop
+          imageSrc={bgHomeCareerStudying}
+          alt="Estudantes de tecnologia revisando conteúdos em biblioteca moderna"
+          intensity="balanced"
+          position="center"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
@@ -527,8 +545,14 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
       </section>
 
       {/* ================= 3. RADAR DE CONCURSOS EM DESTAQUE ================= */}
-      <section className="py-16 lg:py-24 border-b border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-16 lg:py-24 bg-slate-950 border-b border-slate-800/80">
+        <SectionBackdrop
+          imageSrc={bgPreparatoriosShowcase}
+          alt="Estudante de TI assistindo a aula preparatória online com fones e anotações"
+          intensity="balanced"
+          position="center"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
             <div className="space-y-2">
@@ -640,8 +664,14 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
       </section>
 
       {/* ================= 4. A METODOLOGIA DO FLASH CONCURSO TI ================= */}
-      <section className="py-16 lg:py-24 bg-slate-900/30 border-b border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-16 lg:py-24 bg-slate-950 border-b border-slate-800/80">
+        <SectionBackdrop
+          imageSrc={bgHomeFocusStudy}
+          alt="Estudante revisando flashcards e anotações técnicas em mesa organizada"
+          intensity="balanced"
+          position="center"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
@@ -708,8 +738,14 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
       </section>
 
       {/* ================= 5. GRANDES EIXOS TEMÁTICOS ================= */}
-      <section className="py-16 lg:py-24 border-b border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-16 lg:py-24 bg-slate-950 border-b border-slate-800/80">
+        <SectionBackdrop
+          imageSrc={bgStudyGuidesNotebook}
+          alt="Pessoa escrevendo anotações de estudo em caderno técnico ao lado de livros"
+          intensity="subtle"
+          position="center"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
@@ -886,8 +922,14 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
       </section>
 
       {/* ================= 6. PERFIL DAS BANCAS EXAMINADORAS ================= */}
-      <section className="py-16 lg:py-24 bg-slate-900/40 border-b border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-16 lg:py-24 bg-slate-950 border-b border-slate-800/80">
+        <SectionBackdrop
+          imageSrc={bgHomeCareerStudying}
+          alt="Candidatos estudando estratégias de provas de tecnologia"
+          intensity="subtle"
+          position="top"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
@@ -957,17 +999,18 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
         </div>
       </section>
 
-      {/* ================= PUBLICIDADE PARCEIRA (ADCASH DISPLAY 300x250) ================= */}
-      <div className="py-6 bg-slate-950/60 border-b border-slate-800/60 flex justify-center">
-        <AdcashBanner format="300x250" />
-      </div>
-
       {/* ================= 6.5. ÁREA RESERVADA: VITRINE MERCADO LIVRE (AFILIADOS) ================= */}
       <MercadoLivreShowcase variant="section" />
 
       {/* ================= 7. PERGUNTAS FREQUENTES (FAQ) - ALTO VALOR ADSENSE ================= */}
-      <section className="py-16 lg:py-24 border-b border-slate-800/80">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-16 lg:py-24 bg-slate-950 border-b border-slate-800/80">
+        <SectionBackdrop
+          imageSrc={bgHomeFocusStudy}
+          alt="Estudante consultando resumos e revisando dúvidas de concurso de TI"
+          intensity="subtle"
+          position="center"
+        />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="text-center space-y-3 mb-12">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
@@ -1100,8 +1143,14 @@ export const HomePageLanding: React.FC<HomePageLandingProps> = ({
       </section>
 
       {/* ================= 8. FINAL CTA BANNER ================= */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-slate-950 to-slate-900">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <section className="relative overflow-hidden py-16 lg:py-24 bg-slate-950">
+        <SectionBackdrop
+          imageSrc={bgHomeHeroStudying}
+          alt="Estudante de TI focado em revisão noturna com notebook e caderno"
+          intensity="balanced"
+          position="center"
+        />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <div className="w-16 h-16 bg-indigo-600/20 border border-indigo-500/30 rounded-2xl flex items-center justify-center text-indigo-400 mx-auto shadow-lg shadow-indigo-600/20">
             <GraduationCap className="w-8 h-8" />
           </div>

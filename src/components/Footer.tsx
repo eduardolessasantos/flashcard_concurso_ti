@@ -234,7 +234,7 @@ export const Footer: React.FC<FooterProps> = ({
             Transparência & LGPD
           </h4>
           <p className="text-[11px] text-slate-400 leading-relaxed">
-            Este site contém links de afiliado (Mercado Livre). Ao comprar por eles, podemos receber uma pequena comissão, sem custo extra para você. Também exibimos anúncios via Google AdSense e Adcash, em conformidade com a LGPD (Lei nº 13.709/18).
+            Este site contém links de afiliado (Mercado Livre). Ao comprar por eles, podemos receber uma pequena comissão, sem custo extra para você. Também exibimos anúncios via Google AdSense, em conformidade com a LGPD (Lei nº 13.709/18).
           </p>
           <p className="text-[11px] text-slate-500 leading-relaxed">
             Plataforma educacional independente, sem vínculo oficial com FGV, Cebraspe, Cesgranrio ou órgãos públicos. Não garantimos aprovação em concursos.

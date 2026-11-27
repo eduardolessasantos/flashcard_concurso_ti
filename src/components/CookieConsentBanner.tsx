@@ -62,7 +62,7 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
               Sua privacidade e uso de cookies (LGPD)
             </p>
             <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed">
-              Usamos armazenamento essencial para salvar seu progresso de estudo e, com sua permissão, cookies de análise (Google Analytics) e publicidade (Google AdSense e Adcash). Você pode aceitar ou recusar cookies não essenciais.{' '}
+              Usamos armazenamento essencial para salvar seu progresso de estudo e, com sua permissão, cookies de análise (Google Analytics) e publicidade (Google AdSense). Você pode aceitar ou recusar cookies não essenciais.{' '}
               <button
                 type="button"
                 onClick={() => {

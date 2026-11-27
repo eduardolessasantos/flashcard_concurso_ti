@@ -53,14 +53,14 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
             </ul>
           </section>
 
-          {/* 2. Google Analytics, Google AdSense, Adcash e Cookies */}
+          {/* 2. Google Analytics, Google AdSense e Cookies */}
           <section className="space-y-2">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <Cookie className="w-4 h-4 text-amber-400" />
-              2. Cookies, Google Analytics, AdSense, Adcash e Afiliados
+              2. Cookies, Google Analytics, AdSense e Afiliados
             </h3>
             <p>
-              Mediante sua escolha no banner de cookies (com opção de aceitar ou recusar cookies não essenciais), este site utiliza <strong>Google Analytics (GA4)</strong> para estatísticas de uso e <strong>Google AdSense</strong> / <strong>Adcash</strong> para veiculação de anúncios.
+              Mediante sua escolha no banner de cookies (com opção de aceitar ou recusar cookies não essenciais), este site utiliza <strong>Google Analytics (GA4)</strong> para estatísticas de uso e <strong>Google AdSense</strong> para veiculação de anúncios.
             </p>
             <div className="bg-slate-800/60 p-4 rounded-xl border border-slate-700/60 text-xs space-y-2">
               <p>
